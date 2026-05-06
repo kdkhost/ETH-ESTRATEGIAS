@@ -320,32 +320,51 @@
     <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/lang/summernote-pt-BR.min.js"></script>
 
     <script>
         // Setup Ajax CSRF
         $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
 
-        // Global Summernote Premium
+        // Global Summernote Premium Initialization
         $(document).ready(function() {
-            if ($('.summernote').length > 0) {
-                $('.summernote').summernote({
-                    height: 350,
-                    lang: 'pt-BR',
-                    placeholder: 'Comece a escrever seu conteúdo premium...',
-                    dialogsInBody: true,
-                    toolbar: [
-                        ['style', ['style']],
-                        ['font', ['bold', 'underline', 'clear', 'strikethrough', 'superscript', 'subscript']],
-                        ['fontname', ['fontname']],
-                        ['fontsize', ['fontsize']],
-                        ['color', ['color']],
-                        ['para', ['ul', 'ol', 'paragraph']],
-                        ['table', ['table']],
-                        ['insert', ['link', 'picture', 'video', 'hr']],
-                        ['view', ['fullscreen', 'codeview', 'help']]
-                    ]
-                });
-            }
+            const initSummernote = () => {
+                if ($('.summernote').length > 0) {
+                    $('.summernote').each(function() {
+                        if (!$(this).next('.note-editor').length) { // Evita dupla inicialização
+                            $(this).summernote({
+                                height: 350,
+                                lang: 'pt-BR',
+                                placeholder: 'Comece a escrever seu conteúdo premium...',
+                                dialogsInBody: true,
+                                toolbar: [
+                                    ['style', ['style']],
+                                    ['font', ['bold', 'underline', 'clear', 'strikethrough', 'superscript', 'subscript']],
+                                    ['fontname', ['fontname']],
+                                    ['fontsize', ['fontsize']],
+                                    ['color', ['color']],
+                                    ['para', ['ul', 'ol', 'paragraph']],
+                                    ['table', ['table']],
+                                    ['insert', ['link', 'picture', 'video', 'hr']],
+                                    ['view', ['fullscreen', 'codeview', 'help']]
+                                ],
+                                callbacks: {
+                                    onImageUpload: function(files) {
+                                        // Futura implementação de upload via Ajax aqui se necessário
+                                    }
+                                }
+                            });
+                        }
+                    });
+                }
+            };
+
+            initSummernote();
+
+            // Re-inicializar Summernote em modais ou elementos dinâmicos se necessário
+            $(document).on('shown.bs.modal', function() {
+                initSummernote();
+            });
         });
 
         // Global FilePond Premium Config
