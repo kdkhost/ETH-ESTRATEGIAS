@@ -40,6 +40,7 @@
                     </button>
                 </div>
 
+                </form>
                 <div class="table-responsive">
                     <table class="table table-hover align-middle border-0" id="dataTable" width="100%" cellspacing="0">
                         <thead class="bg-light">
@@ -56,7 +57,7 @@
                             @if($sliders)
                                 @foreach($sliders as $slider)
                                     <tr>
-                                        <td><input class="checkboxes form-check-input" type="checkbox" name="checkbox_array[]" value="{{$slider->id}}"></td>
+                                        <td><input class="checkboxes form-check-input" form="delete-sliders-form" type="checkbox" name="checkbox_array[]" value="{{$slider->id}}"></td>
                                         <td>
                                             <img width="80" class="rounded shadow-sm" src="{{$slider->photo ? asset('images/media/' . $slider->photo->file) : asset('img/200x200.png')}}" alt="">
                                         </td>
@@ -85,7 +86,6 @@
                         </tbody>
                     </table>
                 </div>
-            </form>
         </div>
     </div>
 </div>
@@ -117,6 +117,7 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    $('<input>').attr({type: 'hidden', name: 'delete_all', value: '1'}).appendTo(this);
                     this.submit();
                 }
             });
@@ -124,3 +125,5 @@
     });
 </script>
 @stop
+
+

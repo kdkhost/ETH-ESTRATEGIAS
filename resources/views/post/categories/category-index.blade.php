@@ -40,7 +40,8 @@
                             </button>
                         </div>
 
-                        <div class="table-responsive">
+                        </form>
+                <div class="table-responsive">
                             <table class="table table-hover align-middle border-0" id="dataTable" width="100%" cellspacing="0">
                                 <thead class="bg-light">
                                     <tr>
@@ -54,7 +55,7 @@
                                     @if($categories)
                                         @foreach($categories as $category)
                                             <tr>
-                                                <td><input class="checkboxes form-check-input" type="checkbox" name="checkbox_array[]" value="{{$category->id}}"></td>
+                                                <td><input class="checkboxes form-check-input" form="delete-categories-form" type="checkbox" name="checkbox_array[]" value="{{$category->id}}"></td>
                                                 <td><span class="badge bg-light text-dark">#{{$category->id}}</span></td>
                                                 <td class="fw-bold">{{$category->name}}</td>
                                                 <td class="text-end">
@@ -76,8 +77,7 @@
                                     @endif
                                 </tbody>
                             </table>
-                        </div>
-                    </form>
+                </div>
                     <div class="mt-3">
                         {!! $categories->appends(request()->input())->render() !!}
                     </div>
@@ -137,6 +137,7 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    $('<input>').attr({type: 'hidden', name: 'delete_all', value: '1'}).appendTo(this);
                     this.submit();
                 }
             });
@@ -144,3 +145,5 @@
     });
 </script>
 @stop
+
+

@@ -45,6 +45,7 @@
                     </button>
                 </div>
 
+                </form>
                 <div class="table-responsive">
                     <table class="table table-hover align-middle border-0" id="dataTable" width="100%" cellspacing="0">
                         <thead class="bg-light">
@@ -62,7 +63,7 @@
                             @if($posts)
                                 @foreach($posts as $post)
                                     <tr>
-                                        <td><input class="checkboxes form-check-input" type="checkbox" name="checkbox_array[]" value="{{$post->id}}"></td>
+                                        <td><input class="checkboxes form-check-input" form="delete-posts-form" type="checkbox" name="checkbox_array[]" value="{{$post->id}}"></td>
                                         <td><span class="badge bg-light text-dark">#{{$post->id}}</span></td>
                                         <td>
                                             <img width="60" class="rounded shadow-sm" src="{{$post->photo ? asset('images/media/' . $post->photo->file) : asset('img/200x200.png')}}" alt="">
@@ -100,7 +101,6 @@
                         </tbody>
                     </table>
                 </div>
-            </form>
         </div>
     </div>
 </div>
@@ -140,6 +140,7 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    $('<input>').attr({type: 'hidden', name: 'delete_all', value: '1'}).appendTo(this);
                     this.submit();
                 }
             });
@@ -147,3 +148,5 @@
     });
 </script>
 @stop
+
+

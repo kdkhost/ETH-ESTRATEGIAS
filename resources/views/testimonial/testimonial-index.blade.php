@@ -40,6 +40,7 @@
                     </button>
                 </div>
 
+                </form>
                 <div class="table-responsive">
                     <table class="table table-hover align-middle border-0" id="dataTable" width="100%" cellspacing="0">
                         <thead class="bg-light">
@@ -56,7 +57,7 @@
                             @if($testimonials)
                                 @foreach($testimonials as $testimonial)
                                     <tr>
-                                        <td><input class="checkboxes form-check-input" type="checkbox" name="checkbox_array[]" value="{{$testimonial->id}}"></td>
+                                        <td><input class="checkboxes form-check-input" form="delete-testimonials-form" type="checkbox" name="checkbox_array[]" value="{{$testimonial->id}}"></td>
                                         <td>
                                             <img width="60" height="60" class="rounded-circle shadow-sm" src="{{$testimonial->photo ? asset('images/media/' . $testimonial->photo->file) : asset('img/200x200.png')}}" alt="">
                                         </td>
@@ -86,7 +87,6 @@
                         </tbody>
                     </table>
                 </div>
-            </form>
         </div>
     </div>
 </div>
@@ -118,6 +118,7 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    $('<input>').attr({type: 'hidden', name: 'delete_all', value: '1'}).appendTo(this);
                     this.submit();
                 }
             });
@@ -125,3 +126,5 @@
     });
 </script>
 @stop
+
+
