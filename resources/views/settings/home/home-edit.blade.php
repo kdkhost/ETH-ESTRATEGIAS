@@ -4,526 +4,287 @@
 
 @include('includes.tinyeditor')
 
-<!-- Begin Page Content -->
 <div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">{{clean( trans('niva-backend.home_settings') )}}</h1>
+        @if (!empty($langs))
+            <select name="language" class="form-select form-select-sm language-control shadow-sm" style="width: 150px;" onchange="window.location='{{url()->current() . '?language='}}'+this.value">
+                <option value="" selected disabled>{{clean( trans('niva-backend.select_language') )}}</option>
+                @foreach ($langs as $lang)
+                    <option value="{{$lang->code}}" {{$lang->code == request()->input('language') ? 'selected' : ''}}>{{$lang->name}}</option>
+                @endforeach
+            </select>
+        @endif
+    </div>
 
+    @include('includes.form-errors')
 
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">{{clean( trans('niva-backend.home_settings') , array('Attr.EnableID' => true))}}</h1>
-
-
-                @if ($message = Session::get('setting_success'))
-                    <div class="alert alert-success alert-block">
-                        <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>    
-                        <strong>{{ $message }}</strong>
+    <div class="row g-4">
+        
+        <!-- SECTION 1: Slider Management -->
+        <div class="col-12">
+            <div class="card shadow border-0 overflow-hidden">
+                <div class="card-header py-3 bg-white border-0 d-flex justify-content-between align-items-center">
+                    <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-sliders-h me-2"></i> {{clean( trans('niva-backend.section_1_main_slider') )}}</h6>
+                    <div class="d-flex gap-2">
+                        <a class="btn btn-sm btn-primary" href="{{ route('slider.index') . '?language=' . request()->input('language')}}">Ver Todos</a>
+                        <a class="btn btn-sm btn-light border" href="{{ route('slider.create') . '?language=' . request()->input('language')}}">Novo Slider</a>
                     </div>
-                @endif
-
-                <div class="pb-2 text-right">
-                    @if (!empty($langs))
-                        <select name="language" class="form-control language-control" onchange="window.location='{{url()->current() . '?language='}}'+this.value">
-                            <option value="" selected disabled>{{clean( trans('niva-backend.select_language') , array('Attr.EnableID' => true))}}</option>
-                            @foreach ($langs as $lang)
-                                <option value="{{$lang->code}}" {{$lang->code == request()->input('language') ? 'selected' : ''}}>{{$lang->name}}</option>
-                            @endforeach
-                        </select>
-                    @endif
                 </div>
-
-
-                @include('includes.form-errors')
-
-                <div class="row">
-
-                	<div class="col-md-12">
-
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-dark">{{clean( trans('niva-backend.section_1_main_slider') , array('Attr.EnableID' => true))}}</h6>
-                            </div>
-                            <div class="card-body">
-                                <a class="btn btn-primary" href="{{ route('slider.index') . '?language=' . request()->input('language')}}">{{clean( trans('niva-backend.view_all') , array('Attr.EnableID' => true))}}</a>
-                                <a class="btn btn-primary" href="{{ route('slider.create') . '?language=' . request()->input('language')}}">{{clean( trans('niva-backend.create') , array('Attr.EnableID' => true))}}</a>
-                            </div>
-                        </div>
-
-                        
-
-                        <!-- about -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-dark">{{clean( trans('niva-backend.section_3_about') , array('Attr.EnableID' => true))}}</h6>
-                            </div>
-                            <div class="card-body">
-                                <form action="{{route('home-setting.update', $setting->id)}}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    @method('PUT')
-
-                                    <div class="row">
-                                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                            
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <strong>{{clean( trans('niva-backend.title') , array('Attr.EnableID' => true))}}</strong>
-                                                        <input type="text" name="about_title" class="form-control" value="{{$setting->about_title}}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <strong>{{clean( trans('niva-backend.subtitle') , array('Attr.EnableID' => true))}}</strong>
-                                                        <input type="text" name="about_subtitle" class="form-control" value="{{$setting->about_subtitle}}">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <strong>{{clean( trans('niva-backend.description') , array('Attr.EnableID' => true))}}</strong>
-                                                <textarea name="about_description" class="form-control" rows="15">{{clean( $setting->about_description , array('Attr.EnableID' => true))}}</textarea>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <strong>{{clean( trans('niva-backend.button_text') , array('Attr.EnableID' => true))}}</strong>
-                                                        <input type="text" name="about_buttontext" class="form-control" value="{{$setting->about_buttontext}}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <strong>{{clean( trans('niva-backend.button_link') , array('Attr.EnableID' => true))}}</strong>
-                                                        <input type="text" name="about_buttonlink" class="form-control" value="{{$setting->about_buttonlink}}">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <p> 
-
-                                                        <strong>{{clean( trans('niva-backend.photo') , array('Attr.EnableID' => true))}}</strong> <span>{{clean( trans('niva-backend.upload_image') , array('Attr.EnableID' => true))}} <a target="_blank" href="{{route('media.create') . '?language=' . request()->input('language')}}"> {{clean( trans('niva-backend.here') , array('Attr.EnableID' => true))}} </a> {{clean( trans('niva-backend.then_copy_url') , array('Attr.EnableID' => true))}} <a target="_blank" href="{{route('media.index'). '?language=' . request()->input('language')}}"> {{clean( trans('niva-backend.here') , array('Attr.EnableID' => true))}} </a></span>
-
-                                                        </p>
-
-                                                        @if($setting->about_image1) 
-                                                        <img style="max-height: 80px" class="img-fluid" src="{{$setting->about_image1}}" />
-                                                        @endif
-
-                                                        <br>
-
-                                                        <input type="text" name="about_image1" class="form-control" value="{{$setting->about_image1}}">
-
-                                                        <p class="mt-3">{{clean( trans('niva-backend.tooltip_text') , array('Attr.EnableID' => true))}} 1</p>
-                                                        <input type="text" name="about_image1_titlu1" class="form-control" value="{{$setting->about_image1_titlu1}}">
-
-                                                        <p class="mt-3">{{clean( trans('niva-backend.tooltip_text') , array('Attr.EnableID' => true))}} 2</p>
-                                                        <input type="text" name="about_image1_titlu2" class="form-control" value="{{$setting->about_image1_titlu2}}">
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <p> 
-
-                                                        <strong>{{clean( trans('niva-backend.photo') , array('Attr.EnableID' => true))}}</strong> <span>{{clean( trans('niva-backend.upload_image') , array('Attr.EnableID' => true))}} <a target="_blank" href="{{route('media.create') . '?language=' . request()->input('language')}}"> {{clean( trans('niva-backend.here') , array('Attr.EnableID' => true))}} </a> {{clean( trans('niva-backend.then_copy_url') , array('Attr.EnableID' => true))}} <a target="_blank" href="{{route('media.index'). '?language=' . request()->input('language')}}"> {{clean( trans('niva-backend.here') , array('Attr.EnableID' => true))}} </a></span>
-
-                                                        </p>
-                                                        @if($setting->about_image1) 
-                                                        <img style="max-height: 80px" class="img-fluid" src="{{$setting->about_image2}}" />
-                                                        @endif
-                                                        <input type="text" name="about_image2" class="form-control" value="{{$setting->about_image2}}">
-
-                                                        <p class="mt-3">{{clean( trans('niva-backend.tooltip_text') , array('Attr.EnableID' => true))}} 1</p>
-                                                        <input type="text" name="about_image2_titlu1" class="form-control" value="{{$setting->about_image2_titlu1}}">
-
-                                                        <p class="mt-3">{{clean( trans('niva-backend.tooltip_text') , array('Attr.EnableID' => true))}} 2</p>
-                                                        <input type="text" name="about_image2_titlu2" class="form-control" value="{{$setting->about_image2_titlu2}}">
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <p> 
-
-                                                        <strong>{{clean( trans('niva-backend.photo') , array('Attr.EnableID' => true))}}</strong> <span>{{clean( trans('niva-backend.upload_image') , array('Attr.EnableID' => true))}} <a target="_blank" href="{{route('media.create') . '?language=' . request()->input('language')}}"> {{clean( trans('niva-backend.here') , array('Attr.EnableID' => true))}} </a> {{clean( trans('niva-backend.then_copy_url') , array('Attr.EnableID' => true))}} <a target="_blank" href="{{route('media.index'). '?language=' . request()->input('language')}}"> {{clean( trans('niva-backend.here') , array('Attr.EnableID' => true))}} </a></span>
-
-                                                        </p>
-                                                        @if($setting->about_image1) 
-                                                        <img style="max-height: 80px" class="img-fluid" src="{{$setting->about_image3}}" />
-                                                        @endif
-                                                        <input type="text" name="about_image3" class="form-control" value="{{$setting->about_image3}}">
-
-                                                        <p class="mt-3">{{clean( trans('niva-backend.tooltip_text') , array('Attr.EnableID' => true))}} 1</p>
-                                                        <input type="text" name="about_image3_titlu1" class="form-control" value="{{$setting->about_image3_titlu1}}">
-
-                                                        <p class="mt-3">{{clean( trans('niva-backend.tooltip_text') , array('Attr.EnableID' => true))}} 2</p>
-                                                        <input type="text" name="about_image3_titlu2" class="form-control" value="{{$setting->about_image3_titlu2}}">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <strong>{{clean( trans('niva-backend.years_experience_number') , array('Attr.EnableID' => true))}}</strong>
-                                                        <input type="text" name="about_yearstitle" class="form-control" value="{{$setting->about_yearstitle}}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <strong>{{clean( trans('niva-backend.years_experience_text') , array('Attr.EnableID' => true))}}</strong>
-                                                        <input type="text" name="about_yearstext" class="form-control" value="{{$setting->about_yearstext}}">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>  
-
-                                    <div class="row">
-                                        <div class="col-xs-12 col-sm-12 col-md-12 text-right">
-                                            <button type="submit" class="btn btn-primary">{{clean( trans('niva-backend.update') , array('Attr.EnableID' => true))}}</button>
-                                        </div>
-                                    </div>
-
-                                </form>
-                            </div>
-                        </div>
-                        <!-- about -->
-
-                        <!-- services -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-dark">{{clean( trans('niva-backend.section_4_services') , array('Attr.EnableID' => true))}}</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="mb-3">
-                                    <a class="btn btn-primary" href="{{ route('service.index') . '?language=' . request()->input('language')}}">{{clean( trans('niva-backend.view_all') , array('Attr.EnableID' => true))}}</a>
-                                    <a class="btn btn-primary" href="{{ route('service.create') . '?language=' . request()->input('language')}}">{{clean( trans('niva-backend.create') , array('Attr.EnableID' => true))}}</a>
-                                </div>
-                                <form action="{{route('home-setting.update', $setting->id)}}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    @method('PUT')
-
-                                    <div class="row">
-                                        <div class="col-xs-12 col-sm-12 col-md-12">
-                                            <div class="form-group">
-                                                <strong>{{clean( trans('niva-backend.title') , array('Attr.EnableID' => true))}}</strong>
-                                                <input type="text" name="services_title" class="form-control" value="{{$setting->services_title}}">
-                                            </div>
-                                            <div class="form-group">
-                                                <strong>{{clean( trans('niva-backend.description') , array('Attr.EnableID' => true))}}</strong>
-                                                <textarea name="sevices_text" class="form-control" rows="6">{{clean( $setting->sevices_text , array('Attr.EnableID' => true))}}</textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-xs-12 col-sm-12 col-md-12 text-right">
-                                            <button type="submit" class="btn btn-primary">{{clean( trans('niva-backend.update') , array('Attr.EnableID' => true))}}</button>
-                                        </div>
-                                    </div>
-
-                                </form>
-
-                            </div>
-                        </div>
-                        <!-- services -->
-
-                        <!-- fun facts -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-dark">{{clean( trans('niva-backend.section_2_fun_facts') , array('Attr.EnableID' => true))}}</h6>
-                            </div>
-                            <div class="card-body">
-                                <form action="{{route('home-setting.update', $setting->id)}}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    @method('PUT')
-
-                                    <div class="row">
-                               
-                                       
-                                       <div class="col-xs-12 col-sm-12 col-md-12">
-                                            
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <strong>{{clean( trans('niva-backend.title') , array('Attr.EnableID' => true))}}</strong>
-                                                        <input type="text" name="fun_title" class="form-control" value="{{$setting->fun_title}}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <strong>{{clean( trans('niva-backend.description') , array('Attr.EnableID' => true))}}</strong>
-                                                        <input type="text" name="fun_description" class="form-control" value="{{$setting->fun_description}}">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <strong>{{clean( trans('niva-backend.box_icon') , array('Attr.EnableID' => true))}} <a target="_blank" href="https://fontawesome.com/">{{clean( trans('niva-backend.here') , array('Attr.EnableID' => true))}}</a></strong>
-                                                        <input type="text" name="count_icon1" class="form-control" value="{{$setting->count_icon1}}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <strong>{{clean( trans('niva-backend.box_icon') , array('Attr.EnableID' => true))}} 2</strong>
-                                                        <input type="text" name="count_icon2" class="form-control" value="{{$setting->count_icon2}}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <strong>{{clean( trans('niva-backend.box_icon') , array('Attr.EnableID' => true))}} 3</strong>
-                                                        <input type="text" name="count_icon3" class="form-control" value="{{$setting->count_icon3}}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <strong>{{clean( trans('niva-backend.box_icon') , array('Attr.EnableID' => true))}} 4</strong>
-                                                        <input type="text" name="count_icon4" class="form-control" value="{{$setting->count_icon4}}">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <strong>{{clean( trans('niva-backend.count_number_1') , array('Attr.EnableID' => true))}}</strong>
-                                                        <input type="text" name="count_number1" class="form-control" value="{{$setting->count_number1}}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <strong>{{clean( trans('niva-backend.count_number_2') , array('Attr.EnableID' => true))}}</strong>
-                                                        <input type="text" name="count_number2" class="form-control" value="{{$setting->count_number2}}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <strong>{{clean( trans('niva-backend.count_number_3') , array('Attr.EnableID' => true))}}</strong>
-                                                        <input type="text" name="count_number3" class="form-control" value="{{$setting->count_number3}}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <strong>{{clean( trans('niva-backend.count_number_4') , array('Attr.EnableID' => true))}}</strong>
-                                                        <input type="text" name="count_number4" class="form-control" value="{{$setting->count_number4}}">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <strong>{{clean( trans('niva-backend.count_text_1') , array('Attr.EnableID' => true))}}</strong>
-                                                        <input type="text" name="count_description1" class="form-control" value="{{$setting->count_description1}}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <strong>{{clean( trans('niva-backend.count_text_2') , array('Attr.EnableID' => true))}}</strong>
-                                                        <input type="text" name="count_description2" class="form-control" value="{{$setting->count_description2}}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <strong>{{clean( trans('niva-backend.count_text_3') , array('Attr.EnableID' => true))}}</strong>
-                                                        <input type="text" name="count_description3" class="form-control" value="{{$setting->count_description3}}">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <strong>{{clean( trans('niva-backend.count_text_4') , array('Attr.EnableID' => true))}}</strong>
-                                                        <input type="text" name="count_description4" class="form-control" value="{{$setting->count_description4}}">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                        <div class="col-xs-12 col-sm-12 col-md-12 text-right">
-                                            <button type="submit" class="btn btn-primary">{{clean( trans('niva-backend.update') , array('Attr.EnableID' => true))}}</button>
-                                        </div>
-                                    </div>
-
-                                </form>
-                            </div>
-                        </div>
-                        <!-- fun facts -->
-
-                        <!-- portfolio -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-dark">{{clean( trans('niva-backend.section_5_portfolio') , array('Attr.EnableID' => true))}}</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="mb-3">
-                                    <a class="btn btn-primary" href="{{ route('project.index') . '?language=' . request()->input('language')}}">{{clean( trans('niva-backend.view_all') , array('Attr.EnableID' => true))}}</a>
-                                    <a class="btn btn-primary" href="{{ route('project.create') . '?language=' . request()->input('language')}}">{{clean( trans('niva-backend.create') , array('Attr.EnableID' => true))}}</a>
-                                </div>
-                                <form action="{{route('home-setting.update', $setting->id)}}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    @method('PUT')
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <strong>{{clean( trans('niva-backend.title') , array('Attr.EnableID' => true))}}</strong>
-                                                <input type="text" name="projects_title" class="form-control" value="{{$setting->projects_title}}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <strong>{{clean( trans('niva-backend.subtitle') , array('Attr.EnableID' => true))}}</strong>
-                                                <input type="text" name="projects_subtitle" class="form-control" value="{{$setting->projects_subtitle}}">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-xs-12 col-sm-12 col-md-12 text-right">
-                                            <button type="submit" class="btn btn-primary">{{clean( trans('niva-backend.update') , array('Attr.EnableID' => true))}}</button>
-                                        </div>
-                                    </div>
-
-                                </form>
-
-                            </div>
-                        </div>
-                        <!-- portfolio -->
-
-                        <!-- testimonial -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-dark">{{clean( trans('niva-backend.section_6_testimonials') , array('Attr.EnableID' => true))}}</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="mb-3">
-                                    <a class="btn btn-primary" href="{{ route('testimonial.index') . '?language=' . request()->input('language')}}">{{clean( trans('niva-backend.view_all') , array('Attr.EnableID' => true))}}</a>
-                                    <a class="btn btn-primary" href="{{ route('testimonial.create') . '?language=' . request()->input('language')}}">{{clean( trans('niva-backend.create') , array('Attr.EnableID' => true))}}</a>
-                                </div>
-
-                                <form action="{{route('home-setting.update', $setting->id)}}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    @method('PUT')
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <strong>{{clean( trans('niva-backend.title') , array('Attr.EnableID' => true))}}</strong>
-                                                <input type="text" name="testimonial_title" class="form-control" value="{{$setting->testimonial_title}}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <strong>{{clean( trans('niva-backend.subtitle') , array('Attr.EnableID' => true))}}</strong>
-                                                <input type="text" name="testimonial_subtitle" class="form-control" value="{{$setting->testimonial_subtitle}}">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-xs-12 col-sm-12 col-md-12 text-right">
-                                            <button type="submit" class="btn btn-primary">{{clean( trans('niva-backend.update') , array('Attr.EnableID' => true))}}</button>
-                                        </div>
-                                    </div>
-
-                                </form>
-                            </div>
-                        </div>
-                        <!-- testimonial -->
-
-                        <!-- blog -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-dark">{{clean( trans('niva-backend.section_7_blog') , array('Attr.EnableID' => true))}}</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="mb-3">
-                                    <a class="btn btn-primary" href="{{ route('post.index') . '?language=' . request()->input('language')}}">{{clean( trans('niva-backend.view_all') , array('Attr.EnableID' => true))}}</a>
-                                    <a class="btn btn-primary" href="{{ route('post.create') . '?language=' . request()->input('language')}}">{{clean( trans('niva-backend.create') , array('Attr.EnableID' => true))}}</a>
-                                </div>
-                                <form action="{{route('home-setting.update', $setting->id)}}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    @method('PUT')
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <strong>{{clean( trans('niva-backend.title') , array('Attr.EnableID' => true))}}</strong>
-                                                <input type="text" name="blog_title" class="form-control" value="{{$setting->blog_title}}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <strong>{{clean( trans('niva-backend.subtitle') , array('Attr.EnableID' => true))}}</strong>
-                                                <input type="text" name="blog_subtitle" class="form-control" value="{{$setting->blog_subtitle}}">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-xs-12 col-sm-12 col-md-12 text-right">
-                                            <button type="submit" class="btn btn-primary">{{clean( trans('niva-backend.update') , array('Attr.EnableID' => true))}}</button>
-                                        </div>
-                                    </div>
-
-                                </form>
-
-                            </div>
-                        </div>
-                        <!-- blog -->
-
-                        <!-- SEO -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-dark">{{clean( trans('niva-backend.seo') , array('Attr.EnableID' => true))}}</h6>
-                            </div>
-                            <div class="card-body">
-                                <form action="{{route('home-setting.update', $setting->id)}}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    @method('PUT')
-
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <strong>{{clean( trans('niva-backend.meta_title') , array('Attr.EnableID' => true))}}</strong>
-                                                <input type="text" name="meta_title" class="form-control" value="{{$setting->meta_title}}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <strong>{{clean( trans('niva-backend.meta_description') , array('Attr.EnableID' => true))}}</strong>
-                                                <input type="text" name="meta_description" class="form-control" value="{{$setting->meta_description}}">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-xs-12 col-sm-12 col-md-12 text-right">
-                                            <button type="submit" class="btn btn-primary">{{clean( trans('niva-backend.update') , array('Attr.EnableID' => true))}}</button>
-                                        </div>
-                                    </div>
-
-                                </form>
-
-                            </div>
-                        </div>
-                        <!-- SEO -->
-
-                		
-                	</div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: About Section -->
+        <div class="col-12">
+            <div class="card shadow border-0">
+                <div class="card-header py-3 bg-white border-0">
+                    <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-id-card me-2"></i> {{clean( trans('niva-backend.section_3_about') )}}</h6>
                 </div>
+                <div class="card-body">
+                    <form action="{{route('home-setting.update', $setting->id)}}" method="POST">
+                        @csrf @method('PUT')
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Título</label>
+                                <input type="text" name="about_title" class="form-control" value="{{$setting->about_title}}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Subtítulo</label>
+                                <input type="text" name="about_subtitle" class="form-control" value="{{$setting->about_subtitle}}">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-bold">Descrição</label>
+                                <textarea name="about_description" class="form-control summernote" rows="10">{{$setting->about_description}}</textarea>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Texto do Botão</label>
+                                <input type="text" name="about_buttontext" class="form-control" value="{{$setting->about_buttontext}}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Link do Botão</label>
+                                <input type="text" name="about_buttonlink" class="form-control" value="{{$setting->about_buttonlink}}">
+                            </div>
+                        </div>
 
+                        <!-- Tooltips / Floating Images -->
+                        <div class="row g-4 mt-4">
+                            @for ($i = 1; $i <= 3; $i++)
+                            @php $imgField = "about_image$i"; $tit1Field = "about_image{$i}_titlu1"; $tit2Field = "about_image{$i}_titlu2"; @endphp
+                            <div class="col-md-4">
+                                <div class="bg-light p-3 rounded-4 border">
+                                    <label class="form-label small fw-bold">Imagem Flutuante {{$i}}</label>
+                                    @if($setting->$imgField)
+                                    <img src="{{$setting->$imgField}}" class="img-fluid rounded mb-2 shadow-sm d-block mx-auto" style="max-height: 60px;">
+                                    @endif
+                                    <input type="text" name="{{$imgField}}" class="form-control form-control-sm mb-2" value="{{$setting->$imgField}}" placeholder="URL da Imagem">
+                                    <input type="text" name="{{$tit1Field}}" class="form-control form-control-sm mb-1" value="{{$setting->$tit1Field}}" placeholder="Texto 1">
+                                    <input type="text" name="{{$tit2Field}}" class="form-control form-control-sm" value="{{$setting->$tit2Field}}" placeholder="Texto 2">
+                                </div>
+                            </div>
+                            @endfor
+                        </div>
 
+                        <div class="row mt-4">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Anos de Experiência (Número)</label>
+                                <input type="text" name="about_yearstitle" class="form-control" value="{{$setting->about_yearstitle}}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Texto de Experiência</label>
+                                <input type="text" name="about_yearstext" class="form-control" value="{{$setting->about_yearstext}}">
+                            </div>
+                        </div>
 
+                        <div class="text-end mt-4 pt-3 border-top">
+                            <button type="submit" class="btn btn-primary shadow-sm px-5">Atualizar Seção Sobre</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: Fun Facts -->
+        <div class="col-12">
+            <div class="card shadow border-0">
+                <div class="card-header py-3 bg-white border-0">
+                    <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-grin-stars me-2"></i> {{clean( trans('niva-backend.section_2_fun_facts') )}}</h6>
+                </div>
+                <div class="card-body">
+                    <form action="{{route('home-setting.update', $setting->id)}}" method="POST">
+                        @csrf @method('PUT')
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Título Principal</label>
+                                <input type="text" name="fun_title" class="form-control" value="{{$setting->fun_title}}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">Descrição Curta</label>
+                                <input type="text" name="fun_description" class="form-control" value="{{$setting->fun_description}}">
+                            </div>
+                        </div>
+
+                        <div class="row g-3">
+                            @for ($i = 1; $i <= 4; $i++)
+                            @php $iconField = "count_icon$i"; $numField = "count_number$i"; $descField = "count_description$i"; @endphp
+                            <div class="col-md-3">
+                                <div class="p-3 border rounded-4 text-center bg-light h-100">
+                                    <div class="mb-2"><i class="{{$setting->$iconField}} fa-2x text-primary opacity-50"></i></div>
+                                    <label class="form-label small fw-bold">Ícone {{$i}}</label>
+                                    <input type="text" name="{{$iconField}}" class="form-control form-control-sm mb-2" value="{{$setting->$iconField}}">
+                                    <label class="form-label small fw-bold">Número</label>
+                                    <input type="text" name="{{$numField}}" class="form-control form-control-sm mb-2" value="{{$setting->$numField}}">
+                                    <label class="form-label small fw-bold">Texto</label>
+                                    <input type="text" name="{{$descField}}" class="form-control form-control-sm" value="{{$setting->$descField}}">
+                                </div>
+                            </div>
+                            @endfor
+                        </div>
+
+                        <div class="text-end mt-4">
+                            <button type="submit" class="btn btn-primary shadow-sm px-5">Atualizar Estatísticas</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: Services -->
+        <div class="col-md-6">
+            <div class="card shadow border-0 h-100">
+                <div class="card-header py-3 bg-white border-0 d-flex justify-content-between align-items-center">
+                    <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-concierge-bell me-2"></i> {{clean( trans('niva-backend.section_4_services') )}}</h6>
+                    <a class="btn btn-sm btn-outline-primary border-0" href="{{ route('service.index') . '?language=' . request()->input('language')}}"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+                <div class="card-body">
+                    <form action="{{route('home-setting.update', $setting->id)}}" method="POST">
+                        @csrf @method('PUT')
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Título da Seção</label>
+                            <input type="text" name="services_title" class="form-control" value="{{$setting->services_title}}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Descrição</label>
+                            <textarea name="sevices_text" class="form-control" rows="4">{{$setting->sevices_text}}</textarea>
+                        </div>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary btn-sm px-4">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: Portfolio -->
+        <div class="col-md-6">
+            <div class="card shadow border-0 h-100">
+                <div class="card-header py-3 bg-white border-0 d-flex justify-content-between align-items-center">
+                    <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-briefcase me-2"></i> {{clean( trans('niva-backend.section_5_portfolio') )}}</h6>
+                    <a class="btn btn-sm btn-outline-primary border-0" href="{{ route('project.index') . '?language=' . request()->input('language')}}"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+                <div class="card-body">
+                    <form action="{{route('home-setting.update', $setting->id)}}" method="POST">
+                        @csrf @method('PUT')
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Título da Seção</label>
+                            <input type="text" name="projects_title" class="form-control" value="{{$setting->projects_title}}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Subtítulo</label>
+                            <input type="text" name="projects_subtitle" class="form-control" value="{{$setting->projects_subtitle}}">
+                        </div>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary btn-sm px-4">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 6: Testimonials & Blog Titles -->
+        <div class="col-lg-6">
+            <div class="card shadow border-0">
+                <div class="card-header py-3 bg-white border-0">
+                    <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-quote-left me-2"></i> Depoimentos</h6>
+                </div>
+                <div class="card-body">
+                    <form action="{{route('home-setting.update', $setting->id)}}" method="POST">
+                        @csrf @method('PUT')
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <label class="form-label small fw-bold">Título</label>
+                                <input type="text" name="testimonial_title" class="form-control form-control-sm" value="{{$setting->testimonial_title}}">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label small fw-bold">Subtítulo</label>
+                                <input type="text" name="testimonial_subtitle" class="form-control form-control-sm" value="{{$setting->testimonial_subtitle}}">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-sm btn-primary mt-3 w-100">Atualizar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card shadow border-0">
+                <div class="card-header py-3 bg-white border-0">
+                    <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-newspaper me-2"></i> Seção Blog</h6>
+                </div>
+                <div class="card-body">
+                    <form action="{{route('home-setting.update', $setting->id)}}" method="POST">
+                        @csrf @method('PUT')
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <label class="form-label small fw-bold">Título</label>
+                                <input type="text" name="blog_title" class="form-control form-control-sm" value="{{$setting->blog_title}}">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label small fw-bold">Subtítulo</label>
+                                <input type="text" name="blog_subtitle" class="form-control form-control-sm" value="{{$setting->blog_subtitle}}">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-sm btn-primary mt-3 w-100">Atualizar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEO Section -->
+        <div class="col-12 mt-4">
+            <div class="card shadow border-0 text-bg-primary">
+                <div class="card-header py-3 border-0 bg-transparent">
+                    <h6 class="m-0 font-weight-bold text-white"><i class="fas fa-search me-2"></i> SEO Principal da Home</h6>
+                </div>
+                <div class="card-body">
+                    <form action="{{route('home-setting.update', $setting->id)}}" method="POST">
+                        @csrf @method('PUT')
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold text-white">Meta Título</label>
+                                <input type="text" name="meta_title" class="form-control bg-white bg-opacity-10 text-white border-0" value="{{$setting->meta_title}}">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold text-white">Meta Descrição</label>
+                                <input type="text" name="meta_description" class="form-control bg-white bg-opacity-10 text-white border-0" value="{{$setting->meta_description}}">
+                            </div>
+                        </div>
+                        <div class="text-end mt-4">
+                            <button type="submit" class="btn btn-light shadow-sm px-5 fw-bold">Salvar SEO</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
-<!-- /.container-fluid -->
 
+@stop
 
-
-
-@endsection
+@section('styles')
+<style>
+    [data-bs-theme="dark"] .bg-white { background-color: transparent !important; }
+    .card { transition: transform 0.2s; }
+    .card:hover { transform: translateY(-2px); }
+</style>
+@stop

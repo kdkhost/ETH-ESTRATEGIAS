@@ -1,126 +1,123 @@
 @extends('layouts.admin')
 
 @section('content')
-
-<!-- Begin Page Content -->
 <div class="container-fluid">
-
-
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">{{clean( trans('niva-backend.all_clients') , array('Attr.EnableID' => true))}}</h1>
-
-    <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">{{clean( trans('niva-backend.all_clients') , array('Attr.EnableID' => true))}}</h6>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-
-                <a href="{{route('about-setting.edit')}}" class="btn btn-primary btn-back">{{clean( trans('niva-backend.back_aboutpage') , array('Attr.EnableID' => true))}}</a>
-                <a href="{{route('contact-setting.edit')}}" class="btn btn-primary btn-back">{{clean( trans('niva-backend.back_contact_page') , array('Attr.EnableID' => true))}}</a>
-                <a href="{{route('client.create')}}" class="btn btn-primary btn-back">{{clean( trans('niva-backend.create') , array('Attr.EnableID' => true))}}</a>
-
-                @if ($message = Session::get('client_success'))
-                    <div class="alert alert-success alert-block">
-                        <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>    
-                        <strong>{{ $message }}</strong>
-                    </div>
-                @endif
-               
-
-                <form action="{{route('delete.client')}}" method="POST" class="form-inline">
-                @csrf
-                @method('DELETE')
-                <div class="form-group">
-                    <select name="checkbox_array" id="" class="form-control">
-                        <option value="">{{clean( trans('niva-backend.delete') , array('Attr.EnableID' => true))}}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <input type="submit" name="delete_all" class="btn btn-primary">
-                </div>
-
-
-
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th><input type="checkbox" id="options"></th>
-                            <th>{{clean( trans('niva-backend.photo') , array('Attr.EnableID' => true))}}</th>
-                            <th>{{clean( trans('niva-backend.company_name') , array('Attr.EnableID' => true))}}</th>
-                            <th>{{clean( trans('niva-backend.company_link') , array('Attr.EnableID' => true))}}</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th><input type="checkbox" id="options1"></th>
-                            <th>{{clean( trans('niva-backend.photo') , array('Attr.EnableID' => true))}}</th>
-                            <th>{{clean( trans('niva-backend.company_name') , array('Attr.EnableID' => true))}}</th>
-                            <th>{{clean( trans('niva-backend.company_link') , array('Attr.EnableID' => true))}}</th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        @if($clients)
-                            @foreach($clients as $client)
-                                <tr>
-                                    <td><input class="checkboxes" type="checkbox" name="checkbox_array[]" value="{{$client->id}}"></td>
-                                    <td><img height="100" src="{{$client->photo ? '/public/images/media/' . $client->photo->file : '/public/img/200x200.png'}}" alt="">
-                                    <p class="mb-0 mt-2"><a href="{{ route('client.edit', $client->id) }}">{{clean( trans('niva-backend.edit') , array('Attr.EnableID' => true))}}</a></p>
-                                    </td>
-
-                                    <td data-label="link">{{$client->company_name}}</td>
-                                    <td data-label="link">{{$client->company_link}}</td>
-                                </tr>
-                             @endforeach
-                        @endif
-
-
-                        
-                    </tbody>
-                </table>
-
-                </form>
-
-            </div>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">{{clean( trans('niva-backend.section_clients') )}}</h1>
+        <div class="d-flex gap-2">
+            <a href="{{route('home-setting.edit') . '?language=' . request()->input('language')}}" class="btn btn-light shadow-sm btn-sm">
+                <i class="fas fa-home fa-sm me-1"></i> Voltar Home
+            </a>
+            <a href="{{route('client.create') . '?language=' . request()->input('language')}}" class="btn btn-primary shadow-sm btn-sm">
+                <i class="fas fa-plus fa-sm me-1"></i> Novo Cliente
+            </a>
         </div>
     </div>
 
-</div>
-<!-- /.container-fluid -->
+    <div class="card shadow mb-4 border-0">
+        <div class="card-header py-3 bg-white border-0 d-flex justify-content-between align-items-center">
+            <h6 class="m-0 font-weight-bold text-primary">{{clean( trans('niva-backend.section_clients') )}}</h6>
+            @if (!empty($langs))
+                <select name="language" class="form-select form-select-sm language-control" style="width: 150px;" onchange="window.location='{{url()->current() . '?language='}}'+this.value">
+                    <option value="" selected disabled>{{clean( trans('niva-backend.select_language') )}}</option>
+                    @foreach ($langs as $lang)
+                        <option value="{{$lang->code}}" {{$lang->code == request()->input('language') ? 'selected' : ''}}>{{$lang->name}}</option>
+                    @endforeach
+                </select>
+            @endif
+        </div>
+        <div class="card-body">
+            <form action="{{route('delete.client')}}" method="POST" id="delete-clients-form">
+                @csrf
+                @method('DELETE')
 
+                <div class="d-flex align-items-center mb-4">
+                    <select name="checkbox_array" class="form-select form-select-sm me-2" style="width: 150px;">
+                        <option value="">{{clean( trans('niva-backend.delete') )}}</option>
+                    </select>
+                    <button type="submit" name="delete_all" class="btn btn-danger btn-sm shadow-sm">
+                        <i class="fas fa-trash-alt me-1"></i> Aplicar
+                    </button>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle border-0" id="dataTable" width="100%" cellspacing="0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th class="border-0"><input type="checkbox" id="options" class="form-check-input"></th>
+                                <th class="border-0">{{clean( trans('niva-backend.photo') )}}</th>
+                                <th class="border-0">Nome do Cliente</th>
+                                <th class="border-0">Link / Site</th>
+                                <th class="border-0 text-end">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if($clients)
+                                @foreach($clients as $client)
+                                    <tr>
+                                        <td><input class="checkboxes form-check-input" type="checkbox" name="checkbox_array[]" value="{{$client->id}}"></td>
+                                        <td>
+                                            <div class="bg-light p-2 rounded border d-inline-block shadow-sm">
+                                                <img width="100" style="object-fit: contain; height: 40px;" src="{{$client->photo ? asset('images/media/' . $client->photo->file) : asset('img/200x200.png')}}" alt="Logo">
+                                            </div>
+                                        </td>
+                                        <td class="fw-bold">{{$client->company_name}}</td>
+                                        <td>
+                                            @if($client->company_link)
+                                                <a href="{{$client->company_link}}" target="_blank" class="text-decoration-none small">
+                                                    <i class="fas fa-external-link-alt me-1"></i> {{Str::limit($client->company_link, 30)}}
+                                                </a>
+                                            @else
+                                                <span class="text-muted small">Nenhum link</span>
+                                            @endif
+                                        </td>
+                                        <td class="text-end">
+                                            <a href="{{ route('client.edit', $client->id) . '?language=' . request()->input('language')}}" class="btn btn-sm btn-outline-primary border-0 shadow-none">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                 @endforeach
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @stop
 
 @section('footer')
-    <script>
-        $(document).ready(function(){
-            $('#options').click(function(){
-                if(this.checked){
-                    $('.checkboxes').each(function(){
-                        this.checked = true;
-                        jQuery('#options1').prop('checked', true);
-                    });
-                }else {
-                    $('.checkboxes').each(function(){
-                        this.checked = false;
-                        jQuery('#options1').prop('checked', false);
-                    });
-                }
-            });
-            $('#options1').click(function(){
-                if(this.checked){
-                    $('.checkboxes').each(function(){
-                        this.checked = true;
-                        jQuery('#options').prop('checked', true);
-                    });
-                }else {
-                    $('.checkboxes').each(function(){
-                        this.checked = false;
-                        jQuery('#options').prop('checked', false);
-                    });
+<script>
+    $(document).ready(function() {
+        $('#options').click(function() {
+            $('.checkboxes').prop('checked', this.checked);
+        });
+
+        $('#delete-clients-form').on('submit', function(e) {
+            if ($('.checkboxes:checked').length === 0) {
+                e.preventDefault();
+                showToasty('Selecione pelo menos um cliente para excluir.', 'error');
+                return;
+            }
+
+            e.preventDefault();
+            Swal.fire({
+                title: 'Tem certeza?',
+                text: "Os logos dos clientes selecionados serão excluídos permanentemente!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#0d6efd',
+                confirmButtonText: 'Sim, excluir!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
                 }
             });
         });
-    </script>
+    });
+</script>
 @stop

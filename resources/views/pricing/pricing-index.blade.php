@@ -1,113 +1,115 @@
 @extends('layouts.admin')
 
 @section('content')
-
-<!-- Begin Page Content -->
 <div class="container-fluid">
-
-
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">{{clean( trans('niva-backend.all_pricings') , array('Attr.EnableID' => true))}}</h1>
-
-    <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">{{clean( trans('niva-backend.all_pricings') , array('Attr.EnableID' => true))}}</h6>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-
-
-               <div class="row">
-                    <div class="col-lg-6">
-                        <a href="{{route('pricing.create') . '?language=' . request()->input('language')}}" class="btn btn-primary btn-back">{{clean( trans('niva-backend.create') , array('Attr.EnableID' => true))}}</a>
-                        <a href="{{route('pricing-setting.edit') . '?language=' . request()->input('language')}}" class="btn btn-primary btn-back">{{clean( trans('niva-backend.back_pricingpage') , array('Attr.EnableID' => true))}}</a>
-                    </div>
-
-                    <div class="col-lg-6 text-right">
-                        @if (!empty($langs))
-                            <select name="language" class="form-control language-control" onchange="window.location='{{url()->current() . '?language='}}'+this.value">
-                                <option value="" selected disabled>{{clean( trans('niva-backend.select_language') , array('Attr.EnableID' => true))}}</option>
-                                @foreach ($langs as $lang)
-                                    <option value="{{$lang->code}}" {{$lang->code == request()->input('language') ? 'selected' : ''}}>{{$lang->name}}</option>
-                                @endforeach
-                            </select>
-                        @endif
-                    </div>
-                </div>
-
-
-                @if ($message = Session::get('pricing_success'))
-                    <div class="alert alert-success alert-block">
-                        <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>    
-                        <strong>{{ $message }}</strong>
-                    </div>
-                @endif
-               
-
-                <form action="{{route('delete.pricing')}}" method="POST" class="form-inline">
-                @csrf
-                @method('DELETE')
-                <div class="form-group">
-                    <select name="checkbox_array" id="" class="form-control">
-                        <option value="">{{clean( trans('niva-backend.delete') , array('Attr.EnableID' => true))}}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <input type="submit" name="delete_all" class="btn btn-primary">
-                </div>
-
-
-
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th><input type="checkbox" id="options"></th>
-                            <th>{{clean( trans('niva-backend.title') , array('Attr.EnableID' => true))}}</th>
-                            <th>{{clean( trans('niva-backend.description') , array('Attr.EnableID' => true))}}</th>
-                            <th>{{clean( trans('niva-backend.button_text') , array('Attr.EnableID' => true))}}</th>
-                            <th>{{clean( trans('niva-backend.button_link') , array('Attr.EnableID' => true))}}</th>  
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th><input type="checkbox" id="options1"></th>
-                            <th>{{clean( trans('niva-backend.title') , array('Attr.EnableID' => true))}}</th>
-                            <th>{{clean( trans('niva-backend.description') , array('Attr.EnableID' => true))}}</th>
-                            <th>{{clean( trans('niva-backend.button_text') , array('Attr.EnableID' => true))}}</th>
-                            <th>{{clean( trans('niva-backend.button_link') , array('Attr.EnableID' => true))}}</th>  
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        @if($pricings)
-                            @foreach($pricings as $pricing)
-                                <tr>
-                                    <td><input class="checkboxes" type="checkbox" name="checkbox_array[]" value="{{$pricing->id}}"></td>
-                                    <td class="pricing-title-dash">{!!$pricing->title!!}
-                                    <p class="mb-0 mt-2"><a href="{{ route('pricing.edit', $pricing->id)  . '?language=' . request()->input('language')}}">{{clean( trans('niva-backend.edit') , array('Attr.EnableID' => true))}}</a></p>
-                                    </td>
-
-                                    <td class="pricing-desc-dash" data-label="link">{!!$pricing->description!!}</td>
-                                    <td data-label="link">{!!$pricing->button_text!!}</td>
-                                    <td data-label="link">{{$pricing->button_link}}</td>
-                                </tr>
-                             @endforeach
-                        @endif
-
-
-                        
-                    </tbody>
-                </table>
-
-                </form>
-
-            </div>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">{{clean( trans('niva-backend.pricing_settings') )}}</h1>
+        <div class="d-flex gap-2">
+            <a href="{{route('home-setting.edit') . '?language=' . request()->input('language')}}" class="btn btn-light shadow-sm btn-sm">
+                <i class="fas fa-home fa-sm me-1"></i> Voltar Home
+            </a>
+            <a href="{{route('pricing.create') . '?language=' . request()->input('language')}}" class="btn btn-primary shadow-sm btn-sm">
+                <i class="fas fa-plus fa-sm me-1"></i> Nova Tabela
+            </a>
         </div>
     </div>
 
-</div>
-<!-- /.container-fluid -->
+    <div class="card shadow mb-4 border-0">
+        <div class="card-header py-3 bg-white border-0 d-flex justify-content-between align-items-center">
+            <h6 class="m-0 font-weight-bold text-primary">Tabelas de Preços</h6>
+            @if (!empty($langs))
+                <select name="language" class="form-select form-select-sm language-control" style="width: 150px;" onchange="window.location='{{url()->current() . '?language='}}'+this.value">
+                    <option value="" selected disabled>{{clean( trans('niva-backend.select_language') )}}</option>
+                    @foreach ($langs as $lang)
+                        <option value="{{$lang->code}}" {{$lang->code == request()->input('language') ? 'selected' : ''}}>{{$lang->name}}</option>
+                    @endforeach
+                </select>
+            @endif
+        </div>
+        <div class="card-body">
+            <form action="{{route('delete.pricing')}}" method="POST" id="delete-pricing-form">
+                @csrf
+                @method('DELETE')
 
+                <div class="d-flex align-items-center mb-4">
+                    <select name="checkbox_array" class="form-select form-select-sm me-2" style="width: 150px;">
+                        <option value="">{{clean( trans('niva-backend.delete') )}}</option>
+                    </select>
+                    <button type="submit" name="delete_all" class="btn btn-danger btn-sm shadow-sm">
+                        <i class="fas fa-trash-alt me-1"></i> Aplicar
+                    </button>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle border-0" id="dataTable" width="100%" cellspacing="0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th class="border-0"><input type="checkbox" id="options" class="form-check-input"></th>
+                                <th class="border-0">Título do Plano</th>
+                                <th class="border-0">Preço</th>
+                                <th class="border-0">Recorrência</th>
+                                <th class="border-0 text-end">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if($pricings)
+                                @foreach($pricings as $pricing)
+                                    <tr>
+                                        <td><input class="checkboxes form-check-input" type="checkbox" name="checkbox_array[]" value="{{$pricing->id}}"></td>
+                                        <td class="fw-bold">{{$pricing->title}}</td>
+                                        <td>
+                                            <span class="text-primary fw-bold">{{$pricing->price}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-info-subtle text-info border border-info">{{$pricing->currency}}</span>
+                                        </td>
+                                        <td class="text-end">
+                                            <a href="{{ route('pricing.edit', $pricing->id) . '?language=' . request()->input('language')}}" class="btn btn-sm btn-outline-primary border-0 shadow-none">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                 @endforeach
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @stop
 
+@section('footer')
+<script>
+    $(document).ready(function() {
+        $('#options').click(function() {
+            $('.checkboxes').prop('checked', this.checked);
+        });
+
+        $('#delete-pricing-form').on('submit', function(e) {
+            if ($('.checkboxes:checked').length === 0) {
+                e.preventDefault();
+                showToasty('Selecione pelo menos uma tabela para excluir.', 'error');
+                return;
+            }
+
+            e.preventDefault();
+            Swal.fire({
+                title: 'Tem certeza?',
+                text: "As tabelas de preços selecionadas serão excluídas permanentemente!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#0d6efd',
+                confirmButtonText: 'Sim, excluir!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            });
+        });
+    });
+</script>
+@stop
