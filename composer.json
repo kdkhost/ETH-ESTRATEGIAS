@@ -25,6 +25,13 @@
         "spatie/laravel-cookie-consent": "^3.0",
         "unisharp/laravel-filemanager": "^2.8"
     },
+    "conflict": {
+        "symfony/clock": ">=8.0",
+        "symfony/console": ">=8.0",
+        "symfony/routing": ">=8.0",
+        "symfony/http-foundation": ">=8.0",
+        "symfony/http-kernel": ">=8.0"
+    },
     "require-dev": {
         "spatie/laravel-ignition": "^2.4",
         "fakerphp/faker": "^1.23",
