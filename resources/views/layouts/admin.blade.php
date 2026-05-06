@@ -57,6 +57,62 @@
         .filepond--root { font-family: 'Inter', sans-serif; border-radius: 1rem; }
         .filepond--panel-root { background-color: #f1f5f9; border: 2px dashed #cbd5e1; }
         [data-bs-theme="dark"] .filepond--panel-root { background-color: #1e293b; border-color: #475569; }
+
+        /* Dashboard Gourmet Boxes (AdminLTE 4 Premium Style) */
+        .gourmet-box {
+            border-radius: 1.25rem !important;
+            border: none !important;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05) !important;
+            color: #fff !important;
+        }
+        .gourmet-box:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
+        }
+        .gourmet-box .inner { padding: 1.25rem !important; position: relative; z-index: 2; }
+        .gourmet-box .inner h3 { font-size: 1.8rem !important; font-weight: 800 !important; margin-bottom: 2px !important; letter-spacing: -1px; }
+        .gourmet-box .inner p { font-size: 0.85rem !important; font-weight: 500; opacity: 0.9; text-transform: uppercase; letter-spacing: 0.5px; }
+        
+        .gourmet-box .icon {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            z-index: 1;
+            font-size: 60px;
+            opacity: 0.15;
+            transition: all 0.4s ease;
+        }
+        .gourmet-box:hover .icon { transform: scale(1.15) rotate(-5deg); opacity: 0.25; }
+        
+        .gourmet-box .small-box-footer {
+            background: rgba(0,0,0,0.15) !important;
+            padding: 8px !important;
+            text-transform: uppercase;
+            font-size: 0.65rem !important;
+            letter-spacing: 1.2px;
+            font-weight: 700;
+            display: block;
+            text-align: center;
+            color: rgba(255,255,255,0.9) !important;
+            text-decoration: none;
+            transition: background 0.3s;
+            position: relative;
+            z-index: 3;
+        }
+        .gourmet-box .small-box-footer:hover { background: rgba(0,0,0,0.25) !important; color: #fff !important; }
+
+        /* Premium Gradients */
+        .bg-gourmet-blue { background: linear-gradient(135deg, #0d6efd 0%, #004ecb 100%) !important; }
+        .bg-gourmet-green { background: linear-gradient(135deg, #198754 0%, #10633d 100%) !important; }
+        .bg-gourmet-cyan { background: linear-gradient(135deg, #0dcaf0 0%, #0aa2c0 100%) !important; }
+        .bg-gourmet-orange { background: linear-gradient(135deg, #fd7e14 0%, #d9680b 100%) !important; }
+        .bg-gourmet-red { background: linear-gradient(135deg, #dc3545 0%, #a71d2a 100%) !important; }
+        .bg-gourmet-indigo { background: linear-gradient(135deg, #6610f2 0%, #4b08af 100%) !important; }
+        .bg-gourmet-purple { background: linear-gradient(135deg, #6f42c1 0%, #522e8c 100%) !important; }
+        .bg-gourmet-pink { background: linear-gradient(135deg, #d63384 0%, #a61a5e 100%) !important; }
     </style>
 </head>
 

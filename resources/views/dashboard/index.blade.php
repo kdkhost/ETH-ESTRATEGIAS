@@ -74,15 +74,15 @@
     <div class="row g-3 mt-1">
         <!-- Blog Posts -->
         <div class="col-xl-3 col-lg-4 col-sm-6">
-            <div class="small-box text-bg-primary shadow-sm border-0 rounded-4 overflow-hidden">
-                <div class="inner p-3">
-                    <h3 class="fw-bold mb-0" style="font-size: 1.75rem;">{{$post_number}}</h3>
-                    <p class="mb-0 opacity-75 small">{{clean( trans('niva-backend.posts') )}}</p>
+            <div class="small-box gourmet-box bg-gourmet-blue">
+                <div class="inner">
+                    <h3>{{$post_number}}</h3>
+                    <p>{{clean( trans('niva-backend.posts') )}}</p>
                 </div>
-                <div class="icon opacity-25">
-                    <i class="fas fa-newspaper" style="font-size: 50px; top: 15px;"></i>
+                <div class="icon">
+                    <i class="fas fa-newspaper"></i>
                 </div>
-                <a href="{{route('post.index')}}" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-100-hover py-1 bg-dark bg-opacity-10 text-center d-block small">
+                <a href="{{route('post.index')}}" class="small-box-footer">
                     Gerenciar <i class="fas fa-arrow-circle-right ms-1"></i>
                 </a>
             </div>
@@ -90,15 +90,15 @@
 
         <!-- Projects -->
         <div class="col-xl-3 col-lg-4 col-sm-6">
-            <div class="small-box text-bg-success shadow-sm border-0 rounded-4 overflow-hidden">
-                <div class="inner p-3">
-                    <h3 class="fw-bold mb-0" style="font-size: 1.75rem;">{{$project_number}}</h3>
-                    <p class="mb-0 opacity-75 small">{{clean( trans('niva-backend.projects') )}}</p>
+            <div class="small-box gourmet-box bg-gourmet-green">
+                <div class="inner">
+                    <h3>{{$project_number}}</h3>
+                    <p>{{clean( trans('niva-backend.projects') )}}</p>
                 </div>
-                <div class="icon opacity-25">
-                    <i class="fas fa-briefcase" style="font-size: 50px; top: 15px;"></i>
+                <div class="icon">
+                    <i class="fas fa-briefcase"></i>
                 </div>
-                <a href="{{route('project.index')}}" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-100-hover py-1 bg-dark bg-opacity-10 text-center d-block small">
+                <a href="{{route('project.index')}}" class="small-box-footer">
                     Gerenciar <i class="fas fa-arrow-circle-right ms-1"></i>
                 </a>
             </div>
@@ -106,15 +106,15 @@
 
         <!-- Services -->
         <div class="col-xl-3 col-lg-4 col-sm-6">
-            <div class="small-box text-bg-info shadow-sm border-0 rounded-4 overflow-hidden text-white">
-                <div class="inner p-3">
-                    <h3 class="fw-bold mb-0 text-white" style="font-size: 1.75rem;">{{$service_number}}</h3>
-                    <p class="mb-0 opacity-75 text-white small">{{clean( trans('niva-backend.services') )}}</p>
+            <div class="small-box gourmet-box bg-gourmet-cyan">
+                <div class="inner">
+                    <h3>{{$service_number}}</h3>
+                    <p>{{clean( trans('niva-backend.services') )}}</p>
                 </div>
-                <div class="icon opacity-25 text-white">
-                    <i class="fas fa-concierge-bell" style="font-size: 50px; top: 15px;"></i>
+                <div class="icon">
+                    <i class="fas fa-concierge-bell"></i>
                 </div>
-                <a href="{{route('service.index')}}" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-100-hover py-1 bg-dark bg-opacity-10 text-center d-block small">
+                <a href="{{route('service.index')}}" class="small-box-footer">
                     Gerenciar <i class="fas fa-arrow-circle-right ms-1"></i>
                 </a>
             </div>
@@ -122,15 +122,15 @@
 
         <!-- Testimonials -->
         <div class="col-xl-3 col-lg-4 col-sm-6">
-            <div class="small-box text-bg-warning shadow-sm border-0 rounded-4 overflow-hidden text-white">
-                <div class="inner p-3">
-                    <h3 class="fw-bold mb-0 text-white" style="font-size: 1.75rem;">{{$testimonial_number}}</h3>
-                    <p class="mb-0 opacity-75 text-white small">{{clean( trans('niva-backend.testimonials') )}}</p>
+            <div class="small-box gourmet-box bg-gourmet-orange">
+                <div class="inner">
+                    <h3>{{$testimonial_number}}</h3>
+                    <p>{{clean( trans('niva-backend.testimonials') )}}</p>
                 </div>
-                <div class="icon opacity-25 text-white">
-                    <i class="fas fa-comment-dots" style="font-size: 50px; top: 15px;"></i>
+                <div class="icon">
+                    <i class="fas fa-comment-dots"></i>
                 </div>
-                <a href="{{route('testimonial.index')}}" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-100-hover py-1 bg-dark bg-opacity-10 text-center d-block small">
+                <a href="{{route('testimonial.index')}}" class="small-box-footer">
                     Gerenciar <i class="fas fa-arrow-circle-right ms-1"></i>
                 </a>
             </div>
@@ -138,15 +138,15 @@
 
         <!-- Team Members -->
         <div class="col-xl-3 col-lg-4 col-sm-6">
-            <div class="small-box text-bg-danger shadow-sm border-0 rounded-4 overflow-hidden">
-                <div class="inner p-3">
-                    <h3 class="fw-bold mb-0" style="font-size: 1.75rem;">{{$member_number}}</h3>
-                    <p class="mb-0 opacity-75 small">{{clean( trans('niva-backend.members') )}}</p>
+            <div class="small-box gourmet-box bg-gourmet-red">
+                <div class="inner">
+                    <h3>{{$member_number}}</h3>
+                    <p>{{clean( trans('niva-backend.members') )}}</p>
                 </div>
-                <div class="icon opacity-25">
-                    <i class="fas fa-users" style="font-size: 50px; top: 15px;"></i>
+                <div class="icon">
+                    <i class="fas fa-users"></i>
                 </div>
-                <a href="{{route('member.index')}}" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-100-hover py-1 bg-dark bg-opacity-10 text-center d-block small">
+                <a href="{{route('member.index')}}" class="small-box-footer">
                     Gerenciar <i class="fas fa-arrow-circle-right ms-1"></i>
                 </a>
             </div>
@@ -154,20 +154,21 @@
 
         <!-- Clients -->
         <div class="col-xl-3 col-lg-4 col-sm-6">
-            <div class="small-box text-bg-indigo shadow-sm border-0 rounded-4 overflow-hidden text-white" style="background-color: #6610f2 !important;">
-                <div class="inner p-3">
-                    <h3 class="fw-bold mb-0 text-white" style="font-size: 1.75rem;">{{$client_number}}</h3>
-                    <p class="mb-0 opacity-75 text-white small">{{clean( trans('niva-backend.clients') )}}</p>
+            <div class="small-box gourmet-box bg-gourmet-indigo">
+                <div class="inner">
+                    <h3>{{$client_number}}</h3>
+                    <p>{{clean( trans('niva-backend.clients') )}}</p>
                 </div>
-                <div class="icon opacity-25 text-white">
-                    <i class="fas fa-handshake" style="font-size: 50px; top: 15px;"></i>
+                <div class="icon">
+                    <i class="fas fa-handshake"></i>
                 </div>
-                <a href="{{route('client.index')}}" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-100-hover py-1 bg-dark bg-opacity-10 text-center d-block small">
+                <a href="{{route('client.index')}}" class="small-box-footer">
                     Gerenciar <i class="fas fa-arrow-circle-right ms-1"></i>
                 </a>
             </div>
         </div>
     </div>
+
 
 
 
