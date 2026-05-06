@@ -91,25 +91,26 @@
     </div>
 </div>
 @stop
-
 @section('footer')
 <script>
     $(document).ready(function() {
+        // Selecionar todos os checkboxes
         $('#options').click(function() {
             $('.checkboxes').prop('checked', this.checked);
         });
 
-        $('#delete-pages-form').on('submit', function(e) {
+        // Exclusao em LOTE
+        $('[id$="-form"]').not('.single-delete-form').on('submit', function(e) {
             if ($('.checkboxes:checked').length === 0) {
                 e.preventDefault();
-                showToasty('Selecione pelo menos uma página para excluir.', 'error');
+                showToasty('Selecione pelo menos um item para excluir.', 'error');
                 return;
             }
-
             e.preventDefault();
+            let form = this;
             Swal.fire({
                 title: 'Tem certeza?',
-                text: "As páginas selecionadas serão excluídas permanentemente!",
+                text: "Os itens selecionados serao excluidos permanentemente!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',
@@ -118,14 +119,29 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    $('<input>').attr({type: 'hidden', name: 'delete_all', value: '1'}).appendTo(this);
-                    this.submit();
+                    $('<input>').attr({type: 'hidden', name: 'delete_all', value: '1'}).appendTo($(form));
+                    form.submit();
                 }
+            });
+        });
+
+        // Exclusao INDIVIDUAL com SweetAlert
+        $(document).on('submit', '.single-delete-form', function(e) {
+            e.preventDefault();
+            let form = this;
+            Swal.fire({
+                title: 'Confirmar exclusao?',
+                text: "Este item sera excluido permanentemente.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Sim, excluir!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) { form.submit(); }
             });
         });
     });
 </script>
 @stop
-
-
-
