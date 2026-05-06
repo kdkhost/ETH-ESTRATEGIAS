@@ -86,26 +86,22 @@ class LanguageController extends Controller
         return back()->with('language_success','Language updated successfully!');
     }
 
-    public function delete_language(Request $request, Language $language) {
+    public function destroy(Language $language)
+    {
+        $language->delete();
+        return back()->with('language_success', 'Idioma excluído com sucesso!');
+    }
 
-
+    public function delete_language(Request $request) {
         if(isset($request->delete_all) && !empty($request->checkbox_array)) {
             $languages = Language::findOrFail($request->checkbox_array);
             foreach ($languages as $language) {
                 $language->delete();
             }
-            return back()->with('languages_success','Language/s deleted successfully!');
+            return back()->with('language_success','Idioma(s) excluído(s) com sucesso!');
         } else {
             return back();
         }
-
-        $languages = Language::findOrFail($request->checkbox_array);
-        foreach ($languages as $language) {
-            $language->delete();
-        }
-
-        return back();
-        //return 'works';
     }
 
 

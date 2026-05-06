@@ -67,9 +67,18 @@
                                             {{Str::limit($testimonial->description, 120)}}
                                         </td>
                                         <td class="text-end">
-                                            <a href="{{ route('testimonial.edit', $testimonial->id) . '?language=' . request()->input('language')}}" class="btn btn-sm btn-outline-primary border-0 shadow-none">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
+                                            <div class="d-flex justify-content-end gap-1">
+                                                <a href="{{ route('testimonial.edit', $testimonial->id) . '?language=' . request()->input('language')}}" class="btn btn-sm btn-outline-primary border-0 shadow-none">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <form action="{{ route('testimonial.destroy', $testimonial->id) }}" method="POST" class="d-inline single-delete-form">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger border-0 shadow-none">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                  @endforeach

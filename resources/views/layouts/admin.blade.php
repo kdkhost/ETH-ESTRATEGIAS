@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="https://unpkg.com/filepond/dist/filepond.css">
     <link rel="stylesheet" href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css">
+    <link rel="stylesheet" href="https://unpkg.com/filepond-plugin-file-poster/dist/filepond-plugin-file-poster.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css">
     
     <!-- Custom Premium CSS -->
@@ -36,6 +37,24 @@
         .sidebar-brand { height: 65px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
         .app-header { border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
         .nav-treeview > .nav-item > .nav-link { padding-left: 2.5rem; }
+        
+        /* Botões Padronizados Premium */
+        .btn-primary { background: linear-gradient(135deg, #0d6efd 0%, #004ecb 100%); border: none; box-shadow: 0 4px 10px rgba(13, 110, 253, 0.2); transition: all 0.3s; }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 15px rgba(13, 110, 253, 0.3); }
+        .btn-success { background: linear-gradient(135deg, #198754 0%, #10633d 100%); border: none; }
+        .btn-danger { background: linear-gradient(135deg, #dc3545 0%, #a71d2a 100%); border: none; }
+        .btn-warning { background: linear-gradient(135deg, #ffc107 0%, #d39e00 100%); border: none; color: #fff !important; }
+        
+        /* Summernote Premium Adjustments */
+        .note-editor { border-radius: 0.75rem !important; border: 1px solid rgba(0,0,0,0.1) !important; overflow: hidden; background: #fff !important; }
+        .note-toolbar { background: #f8f9fa !important; border-bottom: 1px solid rgba(0,0,0,0.05) !important; }
+        [data-bs-theme="dark"] .note-editor { background: #2b3035 !important; color: #fff; }
+        [data-bs-theme="dark"] .note-editable { background: #1e293b !important; color: #fff; }
+
+        /* FilePond Premium Customization */
+        .filepond--root { font-family: 'Inter', sans-serif; border-radius: 1rem; }
+        .filepond--panel-root { background-color: #f1f5f9; border: 2px dashed #cbd5e1; }
+        [data-bs-theme="dark"] .filepond--panel-root { background-color: #1e293b; border-color: #475569; }
     </style>
 </head>
 
@@ -295,6 +314,8 @@
     
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
     <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-file-encode/dist/filepond-plugin-file-encode.js"></script>
     <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
     <script src="https://unpkg.com/jquery-filepond/filepond.jquery.js"></script>
 
@@ -304,23 +325,59 @@
         // Setup Ajax CSRF
         $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
 
-        // Global Summernote
+        // Global Summernote Premium
         $(document).ready(function() {
             if ($('.summernote').length > 0) {
                 $('.summernote').summernote({
                     height: 350,
                     lang: 'pt-BR',
+                    placeholder: 'Comece a escrever seu conteúdo premium...',
+                    dialogsInBody: true,
                     toolbar: [
                         ['style', ['style']],
-                        ['font', ['bold', 'underline', 'clear']],
+                        ['font', ['bold', 'underline', 'clear', 'strikethrough', 'superscript', 'subscript']],
+                        ['fontname', ['fontname']],
+                        ['fontsize', ['fontsize']],
                         ['color', ['color']],
                         ['para', ['ul', 'ol', 'paragraph']],
                         ['table', ['table']],
-                        ['insert', ['link', 'picture', 'video']],
+                        ['insert', ['link', 'picture', 'video', 'hr']],
                         ['view', ['fullscreen', 'codeview', 'help']]
                     ]
                 });
             }
+        });
+
+        // Global FilePond Premium Config
+        FilePond.registerPlugin(
+            FilePondPluginImagePreview,
+            FilePondPluginFileValidateType,
+            FilePondPluginFileValidateSize,
+            FilePondPluginFileEncode
+        );
+
+        FilePond.setOptions({
+            labelIdle: 'Arrasta e solta seus arquivos ou <span class="filepond--label-action">Procure</span>',
+            labelFileWaitingForSize: 'Aguardando tamanho',
+            labelFileSizeNotAvailable: 'Tamanho não disponível',
+            labelFileLoading: 'Carregando',
+            labelFileLoadError: 'Erro ao carregar',
+            labelFileProcessing: 'Enviando...',
+            labelFileProcessingComplete: 'Envio concluído',
+            labelFileProcessingAborted: 'Envio cancelado',
+            labelFileProcessingError: 'Erro no envio',
+            labelFileProcessingRevertError: 'Erro ao reverter',
+            labelTapToCancel: 'Toque para cancelar',
+            labelTapToRetry: 'Toque para tentar novamente',
+            labelTapToUndo: 'Toque para desfazer',
+            labelButtonRemoveItem: 'Remover',
+            labelButtonAbortItemLoad: 'Abortar',
+            labelButtonRetryItemLoad: 'Tentar novamente',
+            labelButtonAbortItemProcessing: 'Cancelar',
+            labelButtonUndoItemProcessing: 'Desfazer',
+            labelButtonRetryItemProcessing: 'Tentar novamente',
+            labelButtonProcessItem: 'Enviar',
+            credits: false
         });
 
         // Global Notification
@@ -349,6 +406,25 @@
             if (theme === 'dark') { themeIcon.classList.replace('fa-moon', 'fa-sun'); } 
             else { themeIcon.classList.replace('fa-sun', 'fa-moon'); }
         }
+
+        // Global Single Delete Confirmation
+        $(document).on('submit', '.single-delete-form', function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Tem certeza?',
+                text: "Esta ação excluirá permanentemente este item!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#dc3545',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Sim, excluir!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            });
+        });
     </script>
 
     @yield('footer')

@@ -86,26 +86,22 @@ class MemberController extends Controller
         return back()->with('member_success','Member updated successfully!');
     }
 
-    public function delete_member(Request $request, Member $member) {
+    public function destroy(Member $member)
+    {
+        $member->delete();
+        return back()->with('member_success', 'Membro excluído com sucesso!');
+    }
 
-
+    public function delete_member(Request $request) {
         if(isset($request->delete_all) && !empty($request->checkbox_array)) {
             $members = Member::findOrFail($request->checkbox_array);
             foreach ($members as $member) {
                 $member->delete();
             }
-            return back()->with('members_success','Member/s deleted successfully!');
+            return back()->with('member_success','Membro(s) excluído(s) com sucesso!');
         } else {
             return back();
         }
-
-        $members = Member::findOrFail($request->checkbox_array);
-        foreach ($members as $member) {
-            $member->delete();
-        }
-
-        return back();
-        //return 'works';
     }
 
 

@@ -75,26 +75,22 @@ class MenuController extends Controller
         return back()->with('menu_success','Menu updated successfully!');
     }
 
-    public function delete_menu(Request $request, Menu $menu) {
+    public function destroy(Menu $menu)
+    {
+        $menu->delete();
+        return back()->with('menu_success', 'Menu excluído com sucesso!');
+    }
 
-
+    public function delete_menu(Request $request) {
         if(isset($request->delete_all) && !empty($request->checkbox_array)) {
             $menus = Menu::findOrFail($request->checkbox_array);
             foreach ($menus as $menu) {
                 $menu->delete();
             }
-            return back()->with('menus_success','Menu/s deleted successfully!');
+            return back()->with('menu_success','Menu(s) excluído(s) com sucesso!');
         } else {
             return back();
         }
-
-        $menus = Menu::findOrFail($request->checkbox_array);
-        foreach ($menus as $menu) {
-            $menu->delete();
-        }
-
-        return back()->with('menu_success','Menu deleted successfully!');;
-        //return 'works';
     }
 
 

@@ -66,9 +66,18 @@
                                         <td class="fw-bold">{{$service->title}}</td>
                                         <td class="text-muted small" style="max-width: 300px;">{{Str::limit($service->description, 100)}}</td>
                                         <td class="text-end">
-                                            <a href="{{ route('service.edit', $service->id) . '?language=' . request()->input('language')}}" class="btn btn-sm btn-outline-primary border-0 shadow-none">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
+                                            <div class="d-flex justify-content-end gap-1">
+                                                <a href="{{ route('service.edit', $service->id) . '?language=' . request()->input('language')}}" class="btn btn-sm btn-outline-primary border-0 shadow-none">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <form action="{{ route('service.destroy', $service->id) }}" method="POST" class="d-inline single-delete-form">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger border-0 shadow-none">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                  @endforeach

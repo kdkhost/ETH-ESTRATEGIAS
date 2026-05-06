@@ -65,9 +65,20 @@
                                             </span>
                                         </td>
                                         <td class="text-end">
-                                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-outline-primary border-0 shadow-none">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
+                                            <div class="d-flex justify-content-end gap-1">
+                                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-outline-primary border-0 shadow-none">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                @if($user->id != auth()->id())
+                                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline single-delete-form">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-sm btn-outline-danger border-0 shadow-none">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                            </div>
                                         </td>
                                     </tr>
                                  @endforeach

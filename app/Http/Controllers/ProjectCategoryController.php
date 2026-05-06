@@ -70,26 +70,22 @@ class ProjectCategoryController extends Controller
         return back()->with('category_success','Category updated successfully!');
     }
 
-    public function delete_project_category(Request $request, ProjectCategory $category) {
+    public function destroy(ProjectCategory $project_category)
+    {
+        $project_category->delete();
+        return back()->with('category_success', 'Categoria excluída com sucesso!');
+    }
 
-
+    public function delete_project_category(Request $request) {
         if(isset($request->delete_all) && !empty($request->checkbox_array)) {
             $categories = ProjectCategory::findOrFail($request->checkbox_array);
             foreach ($categories as $category) {
                 $category->delete();
             }
-            return back()->with('category_success','Category/s deleted successfully!');
+            return back()->with('category_success','Categoria(s) excluída(s) com sucesso!');
         } else {
             return back();
         }
-
-        $categories = ProjectCategory::findOrFail($request->checkbox_array);
-        foreach ($categories as $category) {
-            $category->delete();
-        }
-
-        return back();
-        //return 'works';
     }
 
 

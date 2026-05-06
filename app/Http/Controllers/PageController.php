@@ -145,26 +145,22 @@ class PageController extends Controller
         return back()->with('page_success','Page updated successfully!');
     }
 
-    public function delete_page(Request $request, Page $page) {
+    public function destroy(Page $page)
+    {
+        $page->delete();
+        return back()->with('page_success', 'Página excluída com sucesso!');
+    }
 
-
+    public function delete_page(Request $request) {
         if(isset($request->delete_all) && !empty($request->checkbox_array)) {
             $pages = Page::findOrFail($request->checkbox_array);
             foreach ($pages as $page) {
                 $page->delete();
             }
-            return back()->with('pages_success','Page/s deleted successfully!');
+            return back()->with('page_success','Página(s) excluída(s) com sucesso!');
         } else {
             return back();
         }
-
-        $pages = Page::findOrFail($request->checkbox_array);
-        foreach ($pages as $page) {
-            $page->delete();
-        }
-
-        return back();
-        //return 'works';
     }
 
     // Show a page by slug

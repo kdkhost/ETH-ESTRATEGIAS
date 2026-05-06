@@ -99,26 +99,22 @@ class ServiceController extends Controller
         return back()->with('service_success','Service updated successfully!');
     }
 
-    public function delete_service(Request $request, Service $service) {
+    public function destroy(Service $service)
+    {
+        $service->delete();
+        return back()->with('service_success', 'Serviço excluído com sucesso!');
+    }
 
-
+    public function delete_service(Request $request) {
         if(isset($request->delete_all) && !empty($request->checkbox_array)) {
             $services = Service::findOrFail($request->checkbox_array);
             foreach ($services as $service) {
                 $service->delete();
             }
-            return back()->with('services_success','Service/s deleted successfully!');
+            return back()->with('service_success','Serviço(s) excluído(s) com sucesso!');
         } else {
             return back();
         }
-
-        $services = Service::findOrFail($request->checkbox_array);
-        foreach ($services as $service) {
-            $service->delete();
-        }
-
-        return back();
-        //return 'works';
     }
 
 

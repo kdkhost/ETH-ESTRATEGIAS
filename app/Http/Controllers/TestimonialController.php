@@ -76,26 +76,22 @@ class TestimonialController extends Controller
         return back()->with('testimonial_success','Testimonial updated successfully!');
     }
 
-    public function delete_testimonial(Request $request, Testimonial $testimonial) {
+    public function destroy(Testimonial $testimonial)
+    {
+        $testimonial->delete();
+        return back()->with('testimonial_success', 'Depoimento excluído com sucesso!');
+    }
 
-
+    public function delete_testimonial(Request $request) {
         if(isset($request->delete_all) && !empty($request->checkbox_array)) {
             $testimonials = Testimonial::findOrFail($request->checkbox_array);
             foreach ($testimonials as $testimonial) {
                 $testimonial->delete();
             }
-            return back()->with('testimonials_success','Testimonial/s deleted successfully!');
+            return back()->with('testimonial_success','Depoimento(s) excluído(s) com sucesso!');
         } else {
-            return redirect('/admin/testimonial');
+            return back();
         }
-
-        $testimonials = Testimonial::findOrFail($request->checkbox_array);
-        foreach ($testimonials as $testimonial) {
-            $testimonial->delete();
-        }
-
-        return back();
-        //return 'works';
     }
 
 

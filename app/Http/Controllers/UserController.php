@@ -133,32 +133,24 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        if($user->id == auth()->id()){
+            return back()->with('user_error', 'Você não pode excluir a si mesmo!');
+        }
         $user->delete();
-
-        return redirect('/admin/users');
+        return back()->with('user_success', 'Usuário excluído com sucesso!');
     }
 
-    public function delete_users(Request $request, User $user) {
-
-
+    public function delete_users(Request $request) {
         if(isset($request->delete_all) && !empty($request->checkbox_array)) {
             $users = User::findOrFail($request->checkbox_array);
             foreach ($users as $user) {
-                if($user->id != $request->current_user){
+                if($user->id != auth()->id()){
                     $user->delete();
                 }
             }
-            return back()->with('user_success','User/s deleted successfully! The current user can\'t be deleted!');
+            return back()->with('user_success','Usuário(s) excluído(s) com sucesso! (Auto-exclusão não permitida)');
         } else {
-            return redirect('/admin/users');
+            return back();
         }
-
-        $users = User::findOrFail($request->checkbox_array);
-        foreach ($users as $user) {
-            $user->delete();
-        }
-
-        return redirect('/admin/users');
-        //return 'works';
     }
 }

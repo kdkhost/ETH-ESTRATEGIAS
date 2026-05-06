@@ -75,26 +75,22 @@ class CategoryController extends Controller
         return back()->with('category_success','Category updated successfully!');
     }
 
-    public function delete_category(Request $request, Category $category) {
+    public function destroy(Category $category)
+    {
+        $category->delete();
+        return back()->with('category_success', 'Categoria excluída com sucesso!');
+    }
 
-
+    public function delete_category(Request $request) {
         if(isset($request->delete_all) && !empty($request->checkbox_array)) {
             $categories = Category::findOrFail($request->checkbox_array);
             foreach ($categories as $category) {
                 $category->delete();
             }
-            return back()->with('category_success','Category/s deleted successfully!');
+            return back()->with('category_success','Categoria(s) excluída(s) com sucesso!');
         } else {
             return back();
         }
-
-        $categories = Category::findOrFail($request->checkbox_array);
-        foreach ($categories as $category) {
-            $category->delete();
-        }
-
-        return back();
-        //return 'works';
     }
 
 

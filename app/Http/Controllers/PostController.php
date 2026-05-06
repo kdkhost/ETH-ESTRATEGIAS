@@ -118,26 +118,22 @@ class PostController extends Controller
         return back()->with('post_success','Post updated successfully!');
     }
 
-    public function delete_post(Request $request, Post $post) {
+    public function destroy(Post $post)
+    {
+        $post->delete();
+        return back()->with('post_success', 'Post excluído com sucesso!');
+    }
 
-
+    public function delete_post(Request $request) {
         if(isset($request->delete_all) && !empty($request->checkbox_array)) {
             $posts = Post::findOrFail($request->checkbox_array);
             foreach ($posts as $post) {
                 $post->delete();
             }
-            return back()->with('posts_success','Post/s deleted successfully!');
+            return back()->with('post_success','Post(s) excluído(s) com sucesso!');
         } else {
             return back();
         }
-
-        $posts = Post::findOrFail($request->checkbox_array);
-        foreach ($posts as $post) {
-            $post->delete();
-        }
-
-        return back();
-        //return 'works';
     }
 
     // Show a page by slug

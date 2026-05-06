@@ -83,26 +83,22 @@ class PricingController extends Controller
         return back()->with('pricing_success','Pricing updated successfully!');
     }
 
-    public function delete_pricing(Request $request, Pricing $pricing) {
+    public function destroy(Pricing $pricing)
+    {
+        $pricing->delete();
+        return back()->with('pricing_success', 'Preço excluído com sucesso!');
+    }
 
-
+    public function delete_pricing(Request $request) {
         if(isset($request->delete_all) && !empty($request->checkbox_array)) {
             $pricings = Pricing::findOrFail($request->checkbox_array);
             foreach ($pricings as $pricing) {
                 $pricing->delete();
             }
-            return back()->with('pricings_success','Pricing/s deleted successfully!');
+            return back()->with('pricing_success','Preço(s) excluído(s) com sucesso!');
         } else {
             return back();
         }
-
-        $pricings = Pricing::findOrFail($request->checkbox_array);
-        foreach ($pricings as $pricing) {
-            $pricing->delete();
-        }
-
-        return back();
-        //return 'works';
     }
 
 

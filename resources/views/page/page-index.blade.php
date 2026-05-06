@@ -27,7 +27,7 @@
             @endif
         </div>
         <div class="card-body">
-            <form action="{{route('delete.pages')}}" method="POST" id="delete-pages-form">
+            <form action="{{route('delete.page')}}" method="POST" id="delete-pages-form">
                 @csrf
                 @method('DELETE')
 
@@ -35,7 +35,7 @@
                     <select name="checkbox_array" class="form-select form-select-sm me-2" style="width: 150px;">
                         <option value="">{{clean( trans('niva-backend.delete') )}}</option>
                     </select>
-                    <button type="submit" name="delete_all" class="btn btn-danger btn-sm shadow-sm">
+                    <button type="submit" name="delete_all" class="btn btn-danger btn-sm px-4 shadow-sm rounded-pill">
                         <i class="fas fa-trash-alt me-1"></i> Aplicar
                     </button>
                 </div>
@@ -64,9 +64,18 @@
                                             <code class="small text-primary">/{{$page->slug}}</code>
                                         </td>
                                         <td class="text-end">
-                                            <a href="{{ route('page.edit', $page->id) . '?language=' . request()->input('language')}}" class="btn btn-sm btn-outline-primary border-0 shadow-none">
-                                                <i class="fas fa-edit"></i>
-                                            </a>
+                                            <div class="d-flex justify-content-end gap-1">
+                                                <a href="{{ route('page.edit', $page->id) . '?language=' . request()->input('language')}}" class="btn btn-sm btn-outline-primary border-0 shadow-none">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <form action="{{ route('page.destroy', $page->id) }}" method="POST" class="d-inline single-delete-form">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger border-0 shadow-none">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                  @endforeach

@@ -98,26 +98,22 @@ class SliderController extends Controller
         return back()->with('slider_success','Slide updated successfully!');
     }
 
-    public function delete_slider(Request $request, Slider $slider) {
+    public function destroy(Slider $slider)
+    {
+        $slider->delete();
+        return back()->with('slider_success', 'Slide excluído com sucesso!');
+    }
 
-
+    public function delete_slider(Request $request) {
         if(isset($request->delete_all) && !empty($request->checkbox_array)) {
             $sliders = Slider::findOrFail($request->checkbox_array);
             foreach ($sliders as $slider) {
                 $slider->delete();
             }
-            return back()->with('sliders_success','Slider/s deleted successfully!');
+            return back()->with('slider_success','Slide(s) excluído(s) com sucesso!');
         } else {
             return back();
         }
-
-        $sliders = Slider::findOrFail($request->checkbox_array);
-        foreach ($sliders as $slider) {
-            $slider->delete();
-        }
-
-        return back();
-        //return 'works';
     }
 
 

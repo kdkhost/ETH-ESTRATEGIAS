@@ -86,26 +86,22 @@ class ClientController extends Controller
         return back()->with('client_success','Client updated successfully!');
     }
 
-    public function delete_client(Request $request, Client $client) {
+    public function destroy(Client $client)
+    {
+        $client->delete();
+        return back()->with('client_success', 'Cliente excluído com sucesso!');
+    }
 
-
+    public function delete_client(Request $request) {
         if(isset($request->delete_all) && !empty($request->checkbox_array)) {
             $clients = Client::findOrFail($request->checkbox_array);
             foreach ($clients as $client) {
                 $client->delete();
             }
-            return back()->with('clients_success','Client/s deleted successfully!');
+            return back()->with('client_success','Cliente(s) excluído(s) com sucesso!');
         } else {
             return back();
         }
-
-        $clients = Client::findOrFail($request->checkbox_array);
-        foreach ($clients as $client) {
-            $client->delete();
-        }
-
-        return back();
-        //return 'works';
     }
 
 

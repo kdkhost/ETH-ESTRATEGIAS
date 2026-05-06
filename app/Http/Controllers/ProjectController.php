@@ -116,26 +116,22 @@ class ProjectController extends Controller
         return back()->with('project_success','Project updated successfully!');
     }
 
-    public function delete_project(Request $request, Project $project) {
+    public function destroy(Project $project)
+    {
+        $project->delete();
+        return back()->with('project_success', 'Projeto excluído com sucesso!');
+    }
 
-
+    public function delete_project(Request $request) {
         if(isset($request->delete_all) && !empty($request->checkbox_array)) {
             $projects = Project::findOrFail($request->checkbox_array);
             foreach ($projects as $project) {
                 $project->delete();
             }
-            return back()->with('projects_success','Project/s deleted successfully!');
+            return back()->with('project_success','Projeto(s) excluído(s) com sucesso!');
         } else {
             return back();
         }
-
-        $projects = Project::findOrFail($request->checkbox_array);
-        foreach ($projects as $project) {
-            $project->delete();
-        }
-
-        return back();
-        //return 'works';
     }
 
     // Show a project by slug
