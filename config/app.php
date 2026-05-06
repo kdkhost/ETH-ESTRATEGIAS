@@ -182,8 +182,7 @@ return [
         Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
-
-
+        Spatie\CookieConsent\CookieConsentServiceProvider::class,
     ],
 
     /*
