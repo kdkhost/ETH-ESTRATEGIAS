@@ -28,6 +28,7 @@ class PostController extends Controller
 
         $langs = Language::all();
         $lang = Language::where('code', $request->language)->first();
+        if (!$lang) { $lang = \App\Models\Language::where('is_default', 1)->first() ?? \App\Models\Language::first(); }
         $lang_id = $lang->id;
 
         //return $lang;
@@ -46,6 +47,7 @@ class PostController extends Controller
 
         $langs = Language::all();
         $lang = Language::where('code', $request->language)->first();
+        if (!$lang) { $lang = \App\Models\Language::where('is_default', 1)->first() ?? \App\Models\Language::first(); }
         $lang_id = $lang->id;
 
         $categories = DB::select('select * from categories where language_id='.$lang_id);
@@ -83,6 +85,7 @@ class PostController extends Controller
     {
 
         $lang = Language::where('code', $request->language)->first();
+        if (!$lang) { $lang = \App\Models\Language::where('is_default', 1)->first() ?? \App\Models\Language::first(); }
         $lang_id = $lang->id;
 
         $categories = DB::select('select * from categories where language_id='.$lang_id);
@@ -172,3 +175,4 @@ class PostController extends Controller
 
 
 }
+

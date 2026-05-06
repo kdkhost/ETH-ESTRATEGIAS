@@ -19,6 +19,7 @@ class ServiceController extends Controller
 
         $langs = Language::all();
         $lang = Language::where('code', $request->language)->first();
+        if (!$lang) { $lang = \App\Models\Language::where('is_default', 1)->first() ?? \App\Models\Language::first(); }
         $lang_id = $lang->id;
 
         //return $lang;
@@ -120,3 +121,4 @@ class ServiceController extends Controller
 
 
 }
+
