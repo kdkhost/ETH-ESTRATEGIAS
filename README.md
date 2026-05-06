@@ -8,10 +8,16 @@ O **ETH Estratégias** é uma plataforma corporativa web gerenciável desenvolvi
 **Autor e Desenvolvedor:** Marcelo Brad RJ
 *Nenhuma parte deste código, interface, layout ou arquitetura pode ser reproduzida, copiada, distribuída ou vendida sem a autorização expressa do autor.*
 
-## Tecnologias Principais
-*   **Backend:** PHP 8.3/8.4, Laravel Framework
-*   **Frontend Público:** Blade Templates, Bootstrap 4, Vanilla JS/jQuery
-*   **Painel Administrativo:** AdminLTE 4, Bootstrap 5, SweetAlert2, FilePond, Summernote
+## Tecnologias e Funcionalidades Premium
+*   **Backend:** PHP 8.4+, Laravel 12 (Core otimizado)
+*   **Frontend Público:** Blade Templates, Otimização de Performance, SEO Nativo
+*   **Painel Administrativo (AdminLTE 4):** 
+    *   **Interface:** Design Moderno/Premium com suporte a **Dark/Light Mode**.
+    *   **Uploads:** Integração com **FilePond** (Drag & Drop, Progresso Animado).
+    *   **Editor:** **Summernote** com suporte a código e sanitização.
+    *   **Segurança:** Proteção CSRF, XSS (HTMLPurifier) e exclusão física de mídias.
+    *   **Interatividade:** **SweetAlert2** para confirmações e **Toasty Notify** para feedback.
+    *   **Gestão:** Sistema de deleção individual e em massa padronizado em todos os módulos.
 *   **Banco de Dados:** MySQL
 
 ## Licença
