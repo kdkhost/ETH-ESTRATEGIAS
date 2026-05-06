@@ -8,9 +8,9 @@
     </div>
 
     <!-- Quick Upload Section -->
-    <div class="card shadow border-0 mb-4 overflow-hidden">
+    <div class="card gourmet-card-light shadow-sm border-0 mb-4 overflow-hidden">
         <div class="card-header py-3 bg-white border-0 d-flex align-items-center">
-            <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-cloud-upload-alt me-2"></i> Upload Rápido Premium</h6>
+            <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-cloud-upload-alt me-2"></i> {{clean( trans('niva-backend.upload_media') )}} Premium</h6>
             <button class="btn btn-sm btn-outline-primary rounded-pill px-3 ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#uploadCollapse">
                 <i class="fas fa-chevron-down"></i>
             </button>
@@ -27,8 +27,9 @@
         </div>
     </div>
 
-    <div class="card shadow border-0">
+    <div class="card gourmet-card-light shadow-sm border-0">
         <div class="card-body p-4">
+
             <form action="{{route('delete.media')}}" method="post" id="delete-media-form">
                 @csrf
                 @method('DELETE')

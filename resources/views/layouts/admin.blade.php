@@ -58,51 +58,52 @@
         .filepond--panel-root { background-color: #f1f5f9; border: 2px dashed #cbd5e1; }
         [data-bs-theme="dark"] .filepond--panel-root { background-color: #1e293b; border-color: #475569; }
 
-        /* Dashboard Gourmet Boxes (AdminLTE 4 Premium Style) */
+        /* Dashboard Gourmet Boxes (AdminLTE 4 Premium Style) - Compact Version */
         .gourmet-box {
-            border-radius: 1.25rem !important;
+            border-radius: 1rem !important;
             border: none !important;
             transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             overflow: hidden;
             position: relative;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.05) !important;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05) !important;
             color: #fff !important;
+            min-height: 110px;
         }
         .gourmet-box:hover {
-            transform: translateY(-7px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1) !important;
         }
-        .gourmet-box .inner { padding: 1.25rem !important; position: relative; z-index: 2; }
-        .gourmet-box .inner h3 { font-size: 1.8rem !important; font-weight: 800 !important; margin-bottom: 2px !important; letter-spacing: -1px; }
-        .gourmet-box .inner p { font-size: 0.85rem !important; font-weight: 500; opacity: 0.9; text-transform: uppercase; letter-spacing: 0.5px; }
+        .gourmet-box .inner { padding: 1rem !important; position: relative; z-index: 2; }
+        .gourmet-box .inner h3 { font-size: 1.5rem !important; font-weight: 800 !important; margin-bottom: 0px !important; letter-spacing: -0.5px; }
+        .gourmet-box .inner p { font-size: 0.75rem !important; font-weight: 600; opacity: 0.85; text-transform: uppercase; letter-spacing: 0.3px; margin-bottom: 0; }
         
         .gourmet-box .icon {
             position: absolute;
-            top: 10px;
-            right: 15px;
+            top: 5px;
+            right: 10px;
             z-index: 1;
-            font-size: 60px;
-            opacity: 0.15;
+            font-size: 45px;
+            opacity: 0.12;
             transition: all 0.4s ease;
         }
-        .gourmet-box:hover .icon { transform: scale(1.15) rotate(-5deg); opacity: 0.25; }
+        .gourmet-box:hover .icon { transform: scale(1.1) rotate(-3deg); opacity: 0.2; }
         
         .gourmet-box .small-box-footer {
-            background: rgba(0,0,0,0.15) !important;
-            padding: 8px !important;
+            background: rgba(0,0,0,0.1) !important;
+            padding: 5px !important;
             text-transform: uppercase;
-            font-size: 0.65rem !important;
-            letter-spacing: 1.2px;
+            font-size: 0.6rem !important;
+            letter-spacing: 1px;
             font-weight: 700;
             display: block;
             text-align: center;
-            color: rgba(255,255,255,0.9) !important;
+            color: rgba(255,255,255,0.85) !important;
             text-decoration: none;
             transition: background 0.3s;
             position: relative;
             z-index: 3;
         }
-        .gourmet-box .small-box-footer:hover { background: rgba(0,0,0,0.25) !important; color: #fff !important; }
+        .gourmet-box .small-box-footer:hover { background: rgba(0,0,0,0.2) !important; color: #fff !important; }
 
         /* Premium Gradients */
         .bg-gourmet-blue { background: linear-gradient(135deg, #0d6efd 0%, #004ecb 100%) !important; }
@@ -588,7 +589,7 @@
             let btn = $(this);
             Swal.fire({
                 title: 'Limpar todos os caches?',
-                text: 'Config, rotas, views e application cache serão regenerados.',
+                text: 'Isso irá regenerar os arquivos de cache de rotas, configurações e views para máxima performance.',
                 icon: 'question',
                 showCancelButton: true,
                 confirmButtonColor: '#198754',
@@ -601,13 +602,20 @@
                     $.ajax({
                         url: '{{ route("system.optimize") }}',
                         type: 'GET',
+                        dataType: 'json',
                         headers: { 'X-Requested-With': 'XMLHttpRequest' },
-                        success: function() {
-                            showToasty('✅ Caches limpos e otimizados com sucesso!', 'success');
+                        success: function(response) {
+                            if(response.success) {
+                                showToasty(response.message, 'success');
+                            } else {
+                                showToasty('Aviso: ' + response.message, 'warning');
+                            }
                             btn.prop('disabled', false).html('<i class="fas fa-broom me-1"></i> Limpar Cache');
                         },
-                        error: function() {
-                            showToasty('Erro ao limpar cache.', 'error');
+                        error: function(xhr) {
+                            let errorMsg = 'Erro ao limpar cache.';
+                            if(xhr.responseJSON && xhr.responseJSON.message) errorMsg += ' Detalhes: ' + xhr.responseJSON.message;
+                            showToasty(errorMsg, 'error');
                             btn.prop('disabled', false).html('<i class="fas fa-broom me-1"></i> Limpar Cache');
                         }
                     });
@@ -621,17 +629,19 @@
             $.ajax({
                 url: '{{ route("system.optimize") }}',
                 type: 'GET',
+                dataType: 'json',
                 headers: { 'X-Requested-With': 'XMLHttpRequest' },
-                success: function() {
+                success: function(response) {
                     showToasty('✅ Cache de views limpo!', 'success');
                     btn.prop('disabled', false).html('<i class="fas fa-layer-group me-1"></i> Cache Views');
                 },
-                error: function() {
+                error: function(xhr) {
                     showToasty('Erro ao limpar cache de views.', 'error');
                     btn.prop('disabled', false).html('<i class="fas fa-layer-group me-1"></i> Cache Views');
                 }
             });
         });
+
 
         // Badge de visitas hoje (na navbar)
         $.ajax({

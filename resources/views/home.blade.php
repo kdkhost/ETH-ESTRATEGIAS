@@ -132,7 +132,7 @@
                             </div> 
             
                             <div class="paragraph-wrapper">
-                                <p class="paragraph">{{$service->description}}</p>
+                                <p class="paragraph">{!! clean($service->description) !!}</p>
                             </div>
 
                             <div class="project-button">

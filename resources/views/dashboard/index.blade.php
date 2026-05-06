@@ -8,75 +8,88 @@
         <div class="small text-muted">{{ now()->format('d/m/Y H:i') }}</div>
     </div>
 
-    <div class="row g-4">
+    <div class="row g-4 mb-5">
         <!-- Visitas Hoje -->
         <div class="col-xl-3 col-md-6">
-            <div class="card gourmet-card-light h-100">
-                <div class="card-body">
+            <div class="card gourmet-card-light h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="icon-shape bg-primary-subtle text-primary">
-                            <i class="fas fa-chart-line"></i>
+                        <div class="icon-shape bg-primary-subtle text-primary rounded-4" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-chart-line fa-lg"></i>
                         </div>
-                        <span class="badge bg-success-subtle text-success rounded-pill px-3">Hoje</span>
+                        <div class="text-end">
+                            <span class="badge bg-success-subtle text-success rounded-pill px-3 py-1 small fw-bold">Live</span>
+                        </div>
                     </div>
-                    <h3 id="dash-visits-count">--</h3>
-                    <p class="text-label mb-0">Visitas no Site</p>
+                    <div class="d-flex align-items-baseline gap-2">
+                        <h2 class="fw-extrabold mb-0" id="dash-visits-count" style="font-size: 2.2rem; letter-spacing: -1px;">--</h2>
+                        <span class="text-success small fw-bold"><i class="fas fa-arrow-up me-1"></i>Hoje</span>
+                    </div>
+                    <p class="text-muted small fw-bold text-uppercase mt-1 mb-0 opacity-75" style="letter-spacing: 1px;">Visitas Únicas</p>
                 </div>
             </div>
         </div>
 
         <!-- Mídias Totais -->
         <div class="col-xl-3 col-md-6">
-            <div class="card gourmet-card-light h-100">
-                <div class="card-body">
+            <div class="card gourmet-card-light h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="icon-shape bg-info-subtle text-info">
-                            <i class="fas fa-images"></i>
+                        <div class="icon-shape bg-info-subtle text-info rounded-4" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-images fa-lg"></i>
                         </div>
                     </div>
-                    <h3>{{$media_number}}</h3>
-                    <p class="text-label mb-0">Arquivos na Mídia</p>
+                    <div class="d-flex align-items-baseline gap-2">
+                        <h2 class="fw-extrabold mb-0" style="font-size: 2.2rem; letter-spacing: -1px;">{{$media_number}}</h2>
+                    </div>
+                    <p class="text-muted small fw-bold text-uppercase mt-1 mb-0 opacity-75" style="letter-spacing: 1px;">Arquivos em Nuvem</p>
                 </div>
             </div>
         </div>
 
         <!-- Usuários -->
         <div class="col-xl-3 col-md-6">
-            <div class="card gourmet-card-light h-100">
-                <div class="card-body">
+            <div class="card gourmet-card-light h-100 border-0 shadow-sm">
+                <div class="card-body p-4">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="icon-shape bg-warning-subtle text-warning">
-                            <i class="fas fa-user-shield"></i>
+                        <div class="icon-shape bg-warning-subtle text-warning rounded-4" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-user-shield fa-lg"></i>
                         </div>
                     </div>
-                    <h3>{{$user_number}}</h3>
-                    <p class="text-label mb-0">Usuários do Painel</p>
+                    <div class="d-flex align-items-baseline gap-2">
+                        <h2 class="fw-extrabold mb-0" style="font-size: 2.2rem; letter-spacing: -1px;">{{$user_number}}</h2>
+                    </div>
+                    <p class="text-muted small fw-bold text-uppercase mt-1 mb-0 opacity-75" style="letter-spacing: 1px;">Administradores</p>
                 </div>
             </div>
         </div>
 
-        <!-- Idiomas Ativos -->
+        <!-- Saúde do Sistema -->
         <div class="col-xl-3 col-md-6">
-            <div class="card gourmet-card-light h-100">
-                <div class="card-body">
-                    <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="icon-shape bg-indigo-subtle text-indigo" style="color: #6610f2 !important; background-color: #e7d9ff !important;">
-                            <i class="fas fa-language"></i>
+            <div class="card gourmet-card-light h-100 border-0 shadow-sm bg-dark text-white overflow-hidden">
+                <div class="card-body p-4 position-relative">
+                    <div class="d-flex align-items-center justify-content-between mb-3 position-relative" style="z-index: 2;">
+                        <div class="icon-shape bg-white bg-opacity-10 text-white rounded-4" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-heartbeat fa-lg"></i>
                         </div>
+                        <span class="badge bg-primary rounded-pill px-3 py-1 small fw-bold shadow-sm">Online</span>
                     </div>
-                    <h3>3</h3>
-                    <p class="text-label mb-0">Idiomas Ativos</p>
+                    <div class="position-relative" style="z-index: 2;">
+                        <h2 class="fw-extrabold mb-0 text-white" style="font-size: 2.2rem; letter-spacing: -1px;">100%</h2>
+                        <p class="text-white small fw-bold text-uppercase mt-1 mb-0 opacity-50" style="letter-spacing: 1px;">Uptime Estável</p>
+                    </div>
+                    <i class="fas fa-shield-alt position-absolute" style="right: -20px; bottom: -20px; font-size: 100px; opacity: 0.05;"></i>
                 </div>
             </div>
         </div>
     </div>
 
 
-    <div class="row g-3 mt-1">
+    <div class="row g-3">
         <!-- Blog Posts -->
-        <div class="col-xl-3 col-lg-4 col-sm-6">
+        <div class="col-xl-2 col-lg-4 col-sm-6">
             <div class="small-box gourmet-box bg-gourmet-blue">
-                <div class="inner">
+                <div class="inner text-center">
                     <h3>{{$post_number}}</h3>
                     <p>{{clean( trans('niva-backend.posts') )}}</p>
                 </div>
@@ -84,15 +97,15 @@
                     <i class="fas fa-newspaper"></i>
                 </div>
                 <a href="{{route('post.index')}}" class="small-box-footer">
-                    Gerenciar <i class="fas fa-arrow-circle-right ms-1"></i>
+                    Acessar <i class="fas fa-arrow-right ms-1"></i>
                 </a>
             </div>
         </div>
 
         <!-- Projects -->
-        <div class="col-xl-3 col-lg-4 col-sm-6">
+        <div class="col-xl-2 col-lg-4 col-sm-6">
             <div class="small-box gourmet-box bg-gourmet-green">
-                <div class="inner">
+                <div class="inner text-center">
                     <h3>{{$project_number}}</h3>
                     <p>{{clean( trans('niva-backend.projects') )}}</p>
                 </div>
@@ -100,15 +113,15 @@
                     <i class="fas fa-briefcase"></i>
                 </div>
                 <a href="{{route('project.index')}}" class="small-box-footer">
-                    Gerenciar <i class="fas fa-arrow-circle-right ms-1"></i>
+                    Acessar <i class="fas fa-arrow-right ms-1"></i>
                 </a>
             </div>
         </div>
 
         <!-- Services -->
-        <div class="col-xl-3 col-lg-4 col-sm-6">
+        <div class="col-xl-2 col-lg-4 col-sm-6">
             <div class="small-box gourmet-box bg-gourmet-cyan">
-                <div class="inner">
+                <div class="inner text-center">
                     <h3>{{$service_number}}</h3>
                     <p>{{clean( trans('niva-backend.services') )}}</p>
                 </div>
@@ -116,15 +129,15 @@
                     <i class="fas fa-concierge-bell"></i>
                 </div>
                 <a href="{{route('service.index')}}" class="small-box-footer">
-                    Gerenciar <i class="fas fa-arrow-circle-right ms-1"></i>
+                    Acessar <i class="fas fa-arrow-right ms-1"></i>
                 </a>
             </div>
         </div>
 
         <!-- Testimonials -->
-        <div class="col-xl-3 col-lg-4 col-sm-6">
+        <div class="col-xl-2 col-lg-4 col-sm-6">
             <div class="small-box gourmet-box bg-gourmet-orange">
-                <div class="inner">
+                <div class="inner text-center">
                     <h3>{{$testimonial_number}}</h3>
                     <p>{{clean( trans('niva-backend.testimonials') )}}</p>
                 </div>
@@ -132,15 +145,15 @@
                     <i class="fas fa-comment-dots"></i>
                 </div>
                 <a href="{{route('testimonial.index')}}" class="small-box-footer">
-                    Gerenciar <i class="fas fa-arrow-circle-right ms-1"></i>
+                    Acessar <i class="fas fa-arrow-right ms-1"></i>
                 </a>
             </div>
         </div>
 
         <!-- Team Members -->
-        <div class="col-xl-3 col-lg-4 col-sm-6">
+        <div class="col-xl-2 col-lg-4 col-sm-6">
             <div class="small-box gourmet-box bg-gourmet-red">
-                <div class="inner">
+                <div class="inner text-center">
                     <h3>{{$member_number}}</h3>
                     <p>{{clean( trans('niva-backend.members') )}}</p>
                 </div>
@@ -148,15 +161,15 @@
                     <i class="fas fa-users"></i>
                 </div>
                 <a href="{{route('member.index')}}" class="small-box-footer">
-                    Gerenciar <i class="fas fa-arrow-circle-right ms-1"></i>
+                    Acessar <i class="fas fa-arrow-right ms-1"></i>
                 </a>
             </div>
         </div>
 
         <!-- Clients -->
-        <div class="col-xl-3 col-lg-4 col-sm-6">
+        <div class="col-xl-2 col-lg-4 col-sm-6">
             <div class="small-box gourmet-box bg-gourmet-indigo">
-                <div class="inner">
+                <div class="inner text-center">
                     <h3>{{$client_number}}</h3>
                     <p>{{clean( trans('niva-backend.clients') )}}</p>
                 </div>
@@ -164,70 +177,72 @@
                     <i class="fas fa-handshake"></i>
                 </div>
                 <a href="{{route('client.index')}}" class="small-box-footer">
-                    Gerenciar <i class="fas fa-arrow-circle-right ms-1"></i>
+                    Acessar <i class="fas fa-arrow-right ms-1"></i>
                 </a>
             </div>
         </div>
     </div>
 
 
-
-
     <!-- Ações Rápidas do Sistema -->
-    <div class="row mt-4 mb-2">
-        <div class="col-12">
-            <div class="card border-0 shadow-sm rounded-4 bg-white">
-                <div class="card-body p-4 d-flex align-items-center justify-content-between flex-wrap gap-3">
-                    <div>
-                        <h5 class="fw-bold mb-1 text-dark"><i class="fas fa-server text-primary me-2"></i> Operações do Sistema</h5>
-                        <p class="text-muted small mb-0">Ferramentas de manutenção e otimização rápida de performance.</p>
+    <div class="row mt-5 mb-2">
+        <div class="col-lg-8">
+            <div class="card gourmet-card-light shadow-sm border-0 rounded-4">
+                <div class="card-header bg-white border-0 py-3 ps-4">
+                    <h6 class="m-0 font-weight-bold text-dark text-uppercase small opacity-75" style="letter-spacing: 1px;">Últimas Atividades do Sistema</h6>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead>
+                                <tr class="bg-light bg-opacity-50">
+                                    <th class="ps-4 border-0 small text-uppercase py-3">Módulo</th>
+                                    <th class="border-0 small text-uppercase py-3">Status</th>
+                                    <th class="text-end pe-4 border-0 small text-uppercase py-3">Registro</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="ps-4 py-3 fw-bold text-dark small"><i class="fas fa-newspaper text-primary me-2 opacity-50"></i>Blog / Notícias</td>
+                                    <td><span class="badge bg-success-subtle text-success px-3 rounded-pill">Ativo</span></td>
+                                    <td class="text-end pe-4 text-muted small fw-medium">{{ now()->diffForHumans() }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-4 py-3 fw-bold text-dark small"><i class="fas fa-briefcase text-success me-2 opacity-50"></i>Portfólio ETH</td>
+                                    <td><span class="badge bg-success-subtle text-success px-3 rounded-pill">Ativo</span></td>
+                                    <td class="text-end pe-4 text-muted small fw-medium">{{ now()->subHours(2)->diffForHumans() }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="ps-4 py-3 fw-bold text-dark small"><i class="fas fa-photo-video text-info me-2 opacity-50"></i>Mídia Center</td>
+                                    <td><span class="badge bg-primary-subtle text-primary px-3 rounded-pill">Operacional</span></td>
+                                    <td class="text-end pe-4 text-muted small fw-medium">{{ now()->subDays(1)->diffForHumans() }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="d-flex gap-2">
-                        <button type="button" id="dash-clear-cache" class="btn btn-success rounded-pill px-4 shadow-sm fw-bold">
-                            <i class="fas fa-broom me-2"></i> Limpar Cache Total
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card gourmet-card-light border-0 shadow-lg rounded-4 bg-primary text-white h-100 overflow-hidden">
+                <div class="card-body p-4 d-flex flex-column justify-content-center text-center position-relative">
+                    <div class="position-relative" style="z-index: 2;">
+                        <div class="bg-white bg-opacity-20 rounded-circle p-4 d-inline-block mb-3 shadow-lg">
+                            <i class="fas fa-bolt fa-3x text-white"></i>
+                        </div>
+                        <h5 class="fw-extrabold mb-2 text-white">Performance ETH</h5>
+                        <p class="text-white opacity-75 small mb-4">Mantenha seu sistema sempre rápido limpando caches desatualizados.</p>
+                        <button type="button" id="dash-clear-cache" class="btn btn-white btn-lg rounded-pill px-5 shadow fw-bold text-primary hover-scale">
+                            <i class="fas fa-broom me-2"></i> LIMPAR TUDO
                         </button>
                     </div>
+                    <i class="fas fa-rocket position-absolute" style="left: -30px; top: -30px; font-size: 150px; opacity: 0.1;"></i>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Quick Stats Card -->
-    <div class="card border-0 shadow-sm rounded-4 mt-5">
-        <div class="card-header bg-white border-0 py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Resumo do Sistema</h6>
-        </div>
-        <div class="card-body p-0">
-            <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0">
-                    <thead class="bg-light">
-                        <tr>
-                            <th class="ps-4">Módulo</th>
-                            <th>Status</th>
-                            <th class="text-end pe-4">Última Atividade</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="ps-4 fw-medium">Blog</td>
-                            <td><span class="badge bg-success-subtle text-success px-3">Ativo</span></td>
-                            <td class="text-end pe-4 text-muted small">{{ now()->diffForHumans() }}</td>
-                        </tr>
-                        <tr>
-                            <td class="ps-4 fw-medium">Portfólio</td>
-                            <td><span class="badge bg-success-subtle text-success px-3">Ativo</span></td>
-                            <td class="text-end pe-4 text-muted small">{{ now()->subHours(2)->diffForHumans() }}</td>
-                        </tr>
-                        <tr>
-                            <td class="ps-4 fw-medium">Mídia Center</td>
-                            <td><span class="badge bg-primary-subtle text-primary px-3">Operacional</span></td>
-                            <td class="text-end pe-4 text-muted small">{{ now()->subDays(1)->diffForHumans() }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
 </div>
 
 @stop
