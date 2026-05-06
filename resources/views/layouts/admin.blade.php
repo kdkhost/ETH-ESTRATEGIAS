@@ -46,10 +46,12 @@
         .btn-warning { background: linear-gradient(135deg, #ffc107 0%, #d39e00 100%); border: none; color: #fff !important; }
         
         /* Summernote Premium Adjustments */
-        .note-editor { border-radius: 0.75rem !important; border: 1px solid rgba(0,0,0,0.1) !important; overflow: hidden; background: #fff !important; }
+        .note-editor { border-radius: 0.75rem !important; border: 1px solid rgba(0,0,0,0.1) !important; overflow: hidden; background: #fff !important; margin-bottom: 1rem; }
         .note-toolbar { background: #f8f9fa !important; border-bottom: 1px solid rgba(0,0,0,0.05) !important; }
-        [data-bs-theme="dark"] .note-editor { background: #2b3035 !important; color: #fff; }
+        [data-bs-theme="dark"] .note-editor { background: #2b3035 !important; color: #fff; border-color: rgba(255,255,255,0.1) !important; }
         [data-bs-theme="dark"] .note-editable { background: #1e293b !important; color: #fff; }
+        [data-bs-theme="dark"] .note-toolbar { background: #343a40 !important; }
+        [data-bs-theme="dark"] .note-btn { color: #eee !important; background: transparent !important; border-color: rgba(255,255,255,0.1) !important; }
 
         /* FilePond Premium Customization */
         .filepond--root { font-family: 'Inter', sans-serif; border-radius: 1rem; }
@@ -326,42 +328,36 @@
         // Setup Ajax CSRF
         $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
 
-        // Global Summernote Premium Initialization
+        // Global Summernote Premium Initialization (Truly Global for ALL textareas)
         $(document).ready(function() {
             const initSummernote = () => {
-                if ($('.summernote').length > 0) {
-                    $('.summernote').each(function() {
-                        if (!$(this).next('.note-editor').length) { // Evita dupla inicialização
-                            $(this).summernote({
-                                height: 350,
-                                lang: 'pt-BR',
-                                placeholder: 'Comece a escrever seu conteúdo premium...',
-                                dialogsInBody: true,
-                                toolbar: [
-                                    ['style', ['style']],
-                                    ['font', ['bold', 'underline', 'clear', 'strikethrough', 'superscript', 'subscript']],
-                                    ['fontname', ['fontname']],
-                                    ['fontsize', ['fontsize']],
-                                    ['color', ['color']],
-                                    ['para', ['ul', 'ol', 'paragraph']],
-                                    ['table', ['table']],
-                                    ['insert', ['link', 'picture', 'video', 'hr']],
-                                    ['view', ['fullscreen', 'codeview', 'help']]
-                                ],
-                                callbacks: {
-                                    onImageUpload: function(files) {
-                                        // Futura implementação de upload via Ajax aqui se necessário
-                                    }
-                                }
-                            });
-                        }
-                    });
-                }
+                // Alvo: Todos os textareas, exceto os que possuem classe .no-summernote ou sejam inputs do ACE editor
+                $('textarea').not('.no-summernote, .ace_text-input').each(function() {
+                    if (!$(this).next('.note-editor').length) { 
+                        $(this).summernote({
+                            height: 300,
+                            lang: 'pt-BR',
+                            placeholder: 'Edite seu conteúdo aqui...',
+                            dialogsInBody: true,
+                            toolbar: [
+                                ['style', ['style']],
+                                ['font', ['bold', 'underline', 'clear', 'strikethrough']],
+                                ['fontname', ['fontname']],
+                                ['fontsize', ['fontsize']],
+                                ['color', ['color']],
+                                ['para', ['ul', 'ol', 'paragraph']],
+                                ['table', ['table']],
+                                ['insert', ['link', 'picture', 'video', 'hr']],
+                                ['view', ['fullscreen', 'codeview', 'help']]
+                            ]
+                        });
+                    }
+                });
             };
 
             initSummernote();
 
-            // Re-inicializar Summernote em modais ou elementos dinâmicos se necessário
+            // Re-inicializar em modais
             $(document).on('shown.bs.modal', function() {
                 initSummernote();
             });
@@ -377,25 +373,6 @@
 
         FilePond.setOptions({
             labelIdle: 'Arrasta e solta seus arquivos ou <span class="filepond--label-action">Procure</span>',
-            labelFileWaitingForSize: 'Aguardando tamanho',
-            labelFileSizeNotAvailable: 'Tamanho não disponível',
-            labelFileLoading: 'Carregando',
-            labelFileLoadError: 'Erro ao carregar',
-            labelFileProcessing: 'Enviando...',
-            labelFileProcessingComplete: 'Envio concluído',
-            labelFileProcessingAborted: 'Envio cancelado',
-            labelFileProcessingError: 'Erro no envio',
-            labelFileProcessingRevertError: 'Erro ao reverter',
-            labelTapToCancel: 'Toque para cancelar',
-            labelTapToRetry: 'Toque para tentar novamente',
-            labelTapToUndo: 'Toque para desfazer',
-            labelButtonRemoveItem: 'Remover',
-            labelButtonAbortItemLoad: 'Abortar',
-            labelButtonRetryItemLoad: 'Tentar novamente',
-            labelButtonAbortItemProcessing: 'Cancelar',
-            labelButtonUndoItemProcessing: 'Desfazer',
-            labelButtonRetryItemProcessing: 'Tentar novamente',
-            labelButtonProcessItem: 'Enviar',
             credits: false
         });
 
