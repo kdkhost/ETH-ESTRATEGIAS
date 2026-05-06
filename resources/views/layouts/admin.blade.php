@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css">
     
     <!-- Custom Premium CSS -->
-    <link href="{{asset('css/libs/custom-dashboard.css')}}" rel="stylesheet">
+    <link href="{{asset('css/libs/custom-dashboard.css')}}?v={{time()}}" rel="stylesheet">
     
     @yield('styles')
     
