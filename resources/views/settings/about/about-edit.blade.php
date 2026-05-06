@@ -8,7 +8,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{clean( trans('niva-backend.about_settings') )}}</h1>
         @if (!empty($langs))
-            <select name="language" class="form-select form-select-sm language-control shadow-sm" style="width: 150px;" onchange="window.location='{{url()->current() . '?language='}}'+this.value">
+            <select name="language" class="form-select form-select-sm language-control ms-auto shadow-sm" style="width: 150px;" onchange="window.location='{{url()->current() . '?language='}}'+this.value">
                 <option value="" selected disabled>{{clean( trans('niva-backend.select_language') )}}</option>
                 @foreach ($langs as $lang)
                     <option value="{{$lang->code}}" {{$lang->code == request()->input('language') ? 'selected' : ''}}>{{$lang->name}}</option>

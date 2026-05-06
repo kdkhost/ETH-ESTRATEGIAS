@@ -8,7 +8,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{clean( trans('niva-backend.home_settings') )}}</h1>
         @if (!empty($langs))
-            <select name="language" class="form-select form-select-sm language-control shadow-sm" style="width: 150px;" onchange="window.location='{{url()->current() . '?language='}}'+this.value">
+            <select name="language" class="form-select form-select-sm language-control ms-auto shadow-sm" style="width: 150px;" onchange="window.location='{{url()->current() . '?language='}}'+this.value">
                 <option value="" selected disabled>{{clean( trans('niva-backend.select_language') )}}</option>
                 @foreach ($langs as $lang)
                     <option value="{{$lang->code}}" {{$lang->code == request()->input('language') ? 'selected' : ''}}>{{$lang->name}}</option>
@@ -24,9 +24,9 @@
         <!-- SECTION 1: Slider Management -->
         <div class="col-12">
             <div class="card shadow border-0 overflow-hidden">
-                <div class="card-header py-3 bg-white border-0 d-flex justify-content-between align-items-center">
+                <div class="card-header py-3 bg-white border-0 d-flex align-items-center">
                     <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-sliders-h me-2"></i> {{clean( trans('niva-backend.section_1_main_slider') )}}</h6>
-                    <div class="d-flex gap-2">
+                    <div class="d-flex gap-2 ms-auto">
                         <a class="btn btn-sm btn-primary" href="{{ route('slider.index') . '?language=' . request()->input('language')}}">Ver Todos</a>
                         <a class="btn btn-sm btn-light border" href="{{ route('slider.create') . '?language=' . request()->input('language')}}">Novo Slider</a>
                     </div>
@@ -151,9 +151,9 @@
         <!-- SECTION 4: Services -->
         <div class="col-md-6">
             <div class="card shadow border-0 h-100">
-                <div class="card-header py-3 bg-white border-0 d-flex justify-content-between align-items-center">
+                <div class="card-header py-3 bg-white border-0 d-flex align-items-center">
                     <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-concierge-bell me-2"></i> {{clean( trans('niva-backend.section_4_services') )}}</h6>
-                    <a class="btn btn-sm btn-outline-primary border-0" href="{{ route('service.index') . '?language=' . request()->input('language')}}"><i class="fas fa-external-link-alt"></i></a>
+                    <a class="btn btn-sm btn-outline-primary border-0 ms-auto" href="{{ route('service.index') . '?language=' . request()->input('language')}}"><i class="fas fa-external-link-alt"></i></a>
                 </div>
                 <div class="card-body">
                     <form action="{{route('home-setting.update', $setting->id)}}" method="POST">
@@ -177,9 +177,9 @@
         <!-- SECTION 5: Portfolio -->
         <div class="col-md-6">
             <div class="card shadow border-0 h-100">
-                <div class="card-header py-3 bg-white border-0 d-flex justify-content-between align-items-center">
+                <div class="card-header py-3 bg-white border-0 d-flex align-items-center">
                     <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-briefcase me-2"></i> {{clean( trans('niva-backend.section_5_portfolio') )}}</h6>
-                    <a class="btn btn-sm btn-outline-primary border-0" href="{{ route('project.index') . '?language=' . request()->input('language')}}"><i class="fas fa-external-link-alt"></i></a>
+                    <a class="btn btn-sm btn-outline-primary border-0 ms-auto" href="{{ route('project.index') . '?language=' . request()->input('language')}}"><i class="fas fa-external-link-alt"></i></a>
                 </div>
                 <div class="card-body">
                     <form action="{{route('home-setting.update', $setting->id)}}" method="POST">

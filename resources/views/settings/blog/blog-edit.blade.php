@@ -7,7 +7,7 @@
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{clean( trans('niva-backend.blog_settings') )}}</h1>
-        <div class="d-flex gap-2">
+        <div class="d-flex gap-2 ms-auto">
             <a href="{{ route('post.index') . '?language=' . request()->input('language')}}" class="btn btn-light shadow-sm btn-sm">
                 <i class="fas fa-list fa-sm me-1"></i> {{clean( trans('niva-backend.view_all') )}}
             </a>
@@ -18,10 +18,10 @@
     </div>
 
     <div class="card shadow mb-4 border-0">
-        <div class="card-header py-3 bg-white border-0 d-flex justify-content-between align-items-center">
+        <div class="card-header py-3 bg-white border-0 d-flex align-items-center">
             <h6 class="m-0 font-weight-bold text-primary">Configurações da Seção</h6>
             @if (!empty($langs))
-                <select name="language" class="form-select form-select-sm language-control" style="width: 150px;" onchange="window.location='{{url()->current() . '?language='}}'+this.value">
+                <select name="language" class="form-select form-select-sm language-control ms-auto" style="width: 150px;" onchange="window.location='{{url()->current() . '?language='}}'+this.value">
                     <option value="" selected disabled>{{clean( trans('niva-backend.select_language') )}}</option>
                     @foreach ($langs as $lang)
                         <option value="{{$lang->code}}" {{$lang->code == request()->input('language') ? 'selected' : ''}}>{{$lang->name}}</option>

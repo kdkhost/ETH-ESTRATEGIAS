@@ -15,10 +15,10 @@
     </div>
 
     <div class="card shadow mb-4 border-0">
-        <div class="card-header py-3 bg-white border-0 d-flex justify-content-between align-items-center">
+        <div class="card-header py-3 bg-white border-0 d-flex align-items-center">
             <h6 class="m-0 font-weight-bold text-primary">{{clean( trans('niva-backend.section_4_services') )}}</h6>
             @if (!empty($langs))
-                <select name="language" class="form-select form-select-sm language-control" style="width: 150px;" onchange="window.location='{{url()->current() . '?language='}}'+this.value">
+                <select name="language" class="form-select form-select-sm language-control ms-auto" style="width: 150px;" onchange="window.location='{{url()->current() . '?language='}}'+this.value">
                     <option value="" selected disabled>{{clean( trans('niva-backend.select_language') )}}</option>
                     @foreach ($langs as $lang)
                         <option value="{{$lang->code}}" {{$lang->code == request()->input('language') ? 'selected' : ''}}>{{$lang->name}}</option>

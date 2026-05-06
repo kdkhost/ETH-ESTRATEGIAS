@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">{{clean( trans('niva-backend.edit_article') )}}</h1>
-        <a href="{{route('post.index') . '?language=' . request()->input('language')}}" class="btn btn-light btn-sm shadow-sm">
+        <a href="{{route('post.index') . '?language=' . request()->input('language')}}" class="btn btn-light btn-sm shadow-sm ms-auto">
             <i class="fas fa-arrow-left fa-sm me-1"></i> {{clean( trans('niva-backend.back_blogpage') )}}
         </a>
     </div>

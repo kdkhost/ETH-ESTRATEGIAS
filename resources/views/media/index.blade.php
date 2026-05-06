@@ -9,9 +9,9 @@
 
     <!-- Quick Upload Section -->
     <div class="card shadow border-0 mb-4 overflow-hidden">
-        <div class="card-header py-3 bg-white border-0 d-flex justify-content-between align-items-center">
+        <div class="card-header py-3 bg-white border-0 d-flex align-items-center">
             <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-cloud-upload-alt me-2"></i> Upload Rápido Premium</h6>
-            <button class="btn btn-sm btn-outline-primary rounded-pill px-3" type="button" data-bs-toggle="collapse" data-bs-target="#uploadCollapse">
+            <button class="btn btn-sm btn-outline-primary rounded-pill px-3 ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#uploadCollapse">
                 <i class="fas fa-chevron-down"></i>
             </button>
         </div>
