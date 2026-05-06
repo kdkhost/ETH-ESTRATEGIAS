@@ -380,9 +380,45 @@
 
 
     @if($setting->whatsapp == 1)
-    <a class="chat__trigger-quin logo-chat" href="https://wa.me/{{$setting->phone}}"  target="_blank" title="whatsapp">
+    <style>
+    .whatsapp-premium-box { position: fixed; bottom: 90px; right: 30px; width: 320px; background: #fff; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.15); z-index: 9999; opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s ease; overflow: hidden; font-family: 'Inter', sans-serif; }
+    .whatsapp-premium-box.active { opacity: 1; visibility: visible; transform: translateY(0); }
+    .wa-header { background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; padding: 20px; display: flex; justify-content: space-between; align-items: center; }
+    .wa-header-info { font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+    .wa-close { background: rgba(255,255,255,0.2); border: none; color: #fff; font-size: 20px; cursor: pointer; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+    .wa-close:hover { background: rgba(255,255,255,0.4); }
+    .wa-body { padding: 20px; background: #e5ddd5; }
+    .wa-message { background: #fff; padding: 12px 16px; border-radius: 0 12px 12px 12px; font-size: 14px; color: #444; box-shadow: 0 1px 2px rgba(0,0,0,0.05); display: inline-block; }
+    .wa-message p { margin: 0; }
+    .wa-footer { padding: 15px 20px; background: #fff; }
+    .wa-button { display: block; background: #25D366; color: #fff; text-align: center; padding: 12px; border-radius: 25px; text-decoration: none; font-weight: 600; font-size: 15px; transition: 0.2s; }
+    .wa-button:hover { background: #128C7E; color: #fff; }
+    .chat__trigger-quin.logo-chat { cursor: pointer; }
+    </style>
+    <div class="whatsapp-premium-box" id="wa-premium-box">
+        <div class="wa-header">
+            <div class="wa-header-info">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.01 2.011c-5.513 0-9.99 4.478-9.99 9.99 0 1.956.556 3.824 1.54 5.437L2 22l4.7-1.222a9.92 9.92 0 0 0 5.31 1.528h.003c5.513 0 9.99-4.478 9.99-9.991C22 6.495 17.523 2.011 12.01 2.011zm0 16.634c-1.636 0-3.238-.426-4.654-1.233l-.334-.198-3.46.906.924-3.376-.217-.346a8.318 8.318 0 0 1-1.272-4.453c0-4.606 3.748-8.354 8.354-8.354 4.606 0 8.353 3.748 8.353 8.354 0 4.606-3.747 8.354-8.353 8.354z" fill="#fff"/>
+                    <path d="M16.657 13.064c-.255-.128-1.503-.74-1.737-.826-.233-.085-.403-.128-.574.128-.17.255-.658.826-.807.997-.15.17-.298.19-.553.064-.255-.128-1.072-.395-2.042-1.258-.755-.672-1.264-1.503-1.413-1.758-.15-.255-.016-.393.111-.52.115-.115.255-.298.383-.447.128-.15.17-.255.255-.426.085-.17.043-.319-.021-.447-.064-.128-.574-1.383-.787-1.894-.207-.497-.417-.43-.574-.438-.15-.008-.319-.008-.489-.008-.17 0-.447.064-.681.319s-.894.872-.894 2.128c0 1.255.915 2.468 1.043 2.638.128.17 1.8 2.744 4.361 3.829 2.562 1.085 2.562.723 3.03.681.468-.043 1.503-.613 1.716-1.205.213-.591.213-1.097.15-1.205-.064-.106-.234-.17-.489-.298z" fill="#fff"/>
+                </svg> Fale Conosco
+            </div>
+            <button class="wa-close" onclick="document.getElementById('wa-premium-box').classList.remove('active')">&times;</button>
+        </div>
+        <div class="wa-body">
+            <div class="wa-message">
+                <p>Olá! 👋 Como podemos ajudar você hoje?</p>
+            </div>
+        </div>
+        <div class="wa-footer">
+            <a href="https://wa.me/{{$setting->phone}}" target="_blank" class="wa-button">
+                Iniciar Conversa
+            </a>
+        </div>
+    </div>
+    <div class="chat__trigger-quin logo-chat" onclick="document.getElementById('wa-premium-box').classList.toggle('active')" title="Fale pelo WhatsApp">
         <svg class="chat" width="30.2" height="30.2"><use xlink:href="#chat"></use></svg>
-    </a>
+    </div>
     @endif
     
 
