@@ -30,7 +30,16 @@
         "symfony/console": ">=8.0",
         "symfony/routing": ">=8.0",
         "symfony/http-foundation": ">=8.0",
-        "symfony/http-kernel": ">=8.0"
+        "symfony/http-kernel": ">=8.0",
+        "symfony/css-selector": ">=8.0",
+        "symfony/event-dispatcher": ">=8.0",
+        "symfony/string": ">=8.0",
+        "symfony/translation": ">=8.0",
+        "symfony/type-info": ">=8.0",
+        "symfony/error-handler": ">=8.0",
+        "symfony/var-dumper": ">=8.0",
+        "symfony/mime": ">=8.0",
+        "symfony/finder": ">=8.0"
     },
     "require-dev": {
         "spatie/laravel-ignition": "^2.4",
