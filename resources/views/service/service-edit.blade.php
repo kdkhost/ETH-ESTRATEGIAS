@@ -56,6 +56,23 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- SEO Card -->
+                <div class="card shadow border-0 mb-4">
+                    <div class="card-header py-3 bg-white border-0">
+                        <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-search me-2"></i> Configurações de SEO</h6>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Meta Título</label>
+                            <input type="text" name="meta_title" class="form-control border-0 bg-light rounded-3" value="{{$service->meta_title}}" placeholder="Título otimizado para o Google (máx 60 caracteres)">
+                        </div>
+                        <div class="mb-0">
+                            <label class="form-label fw-bold">Meta Descrição</label>
+                            <textarea name="meta_description" class="form-control border-0 bg-light rounded-3" rows="3" placeholder="Resumo chamativo para os resultados de busca (máx 160 caracteres)">{{$service->meta_description}}</textarea>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="col-lg-4">

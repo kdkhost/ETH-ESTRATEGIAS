@@ -16,7 +16,9 @@ class Service extends Model
         'title',
         'button_text',
         'button_link',
-        'description'
+        'description',
+        'meta_title',
+        'meta_description'
     ];
 
     public function photo(){
