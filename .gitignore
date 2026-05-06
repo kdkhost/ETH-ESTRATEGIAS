@@ -27,3 +27,5 @@ Thumbs.db
 composer.phar
 eth_sistema.tar.gz
 /cache
+/scratch
+bootstrap/cache/*.php
