@@ -11,65 +11,66 @@
     <div class="row g-4">
         <!-- Visitas Hoje -->
         <div class="col-xl-3 col-md-6">
-            <div class="card border-0 shadow-sm rounded-4 h-100 bg-white">
-                <div class="card-body p-4">
+            <div class="card gourmet-card-light h-100">
+                <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="rounded-circle bg-primary-subtle p-3 text-primary">
-                            <i class="fas fa-chart-line fa-lg"></i>
+                        <div class="icon-shape bg-primary-subtle text-primary">
+                            <i class="fas fa-chart-line"></i>
                         </div>
                         <span class="badge bg-success-subtle text-success rounded-pill px-3">Hoje</span>
                     </div>
-                    <h3 class="fw-bold mb-1" id="dash-visits-count">--</h3>
-                    <p class="text-muted small mb-0">Visitas no Site</p>
+                    <h3 id="dash-visits-count">--</h3>
+                    <p class="text-label mb-0">Visitas no Site</p>
                 </div>
             </div>
         </div>
 
         <!-- Mídias Totais -->
         <div class="col-xl-3 col-md-6">
-            <div class="card border-0 shadow-sm rounded-4 h-100 bg-white">
-                <div class="card-body p-4">
+            <div class="card gourmet-card-light h-100">
+                <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="rounded-circle bg-info-subtle p-3 text-info">
-                            <i class="fas fa-images fa-lg"></i>
+                        <div class="icon-shape bg-info-subtle text-info">
+                            <i class="fas fa-images"></i>
                         </div>
                     </div>
-                    <h3 class="fw-bold mb-1">{{$media_number}}</h3>
-                    <p class="text-muted small mb-0">Arquivos na Mídia</p>
+                    <h3>{{$media_number}}</h3>
+                    <p class="text-label mb-0">Arquivos na Mídia</p>
                 </div>
             </div>
         </div>
 
         <!-- Usuários -->
         <div class="col-xl-3 col-md-6">
-            <div class="card border-0 shadow-sm rounded-4 h-100 bg-white">
-                <div class="card-body p-4">
+            <div class="card gourmet-card-light h-100">
+                <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="rounded-circle bg-warning-subtle p-3 text-warning">
-                            <i class="fas fa-user-shield fa-lg"></i>
+                        <div class="icon-shape bg-warning-subtle text-warning">
+                            <i class="fas fa-user-shield"></i>
                         </div>
                     </div>
-                    <h3 class="fw-bold mb-1">{{$user_number}}</h3>
-                    <p class="text-muted small mb-0">Usuários do Painel</p>
+                    <h3>{{$user_number}}</h3>
+                    <p class="text-label mb-0">Usuários do Painel</p>
                 </div>
             </div>
         </div>
 
         <!-- Idiomas Ativos -->
         <div class="col-xl-3 col-md-6">
-            <div class="card border-0 shadow-sm rounded-4 h-100 bg-white">
-                <div class="card-body p-4">
+            <div class="card gourmet-card-light h-100">
+                <div class="card-body">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="rounded-circle bg-indigo-subtle p-3 text-indigo" style="color: #6610f2; background-color: #e7d9ff;">
-                            <i class="fas fa-language fa-lg"></i>
+                        <div class="icon-shape bg-indigo-subtle text-indigo" style="color: #6610f2 !important; background-color: #e7d9ff !important;">
+                            <i class="fas fa-language"></i>
                         </div>
                     </div>
-                    <h3 class="fw-bold mb-1">3</h3>
-                    <p class="text-muted small mb-0">Idiomas Ativos</p>
+                    <h3>3</h3>
+                    <p class="text-label mb-0">Idiomas Ativos</p>
                 </div>
             </div>
         </div>
     </div>
+
 
     <div class="row g-3 mt-1">
         <!-- Blog Posts -->

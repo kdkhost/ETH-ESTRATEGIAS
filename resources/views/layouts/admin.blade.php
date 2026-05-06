@@ -113,6 +113,54 @@
         .bg-gourmet-indigo { background: linear-gradient(135deg, #6610f2 0%, #4b08af 100%) !important; }
         .bg-gourmet-purple { background: linear-gradient(135deg, #6f42c1 0%, #522e8c 100%) !important; }
         .bg-gourmet-pink { background: linear-gradient(135deg, #d63384 0%, #a61a5e 100%) !important; }
+
+        /* Gourmet Card Light (KPIs) */
+        .gourmet-card-light {
+            border-radius: 1.25rem !important;
+            border: none !important;
+            background: #fff !important;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.03) !important;
+            position: relative;
+            overflow: hidden;
+        }
+        [data-bs-theme="dark"] .gourmet-card-light {
+            background: #2b3035 !important;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2) !important;
+        }
+        .gourmet-card-light:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08) !important;
+        }
+        .gourmet-card-light .card-body { padding: 1.25rem !important; }
+        .gourmet-card-light .icon-shape {
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 14px;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .gourmet-card-light:hover .icon-shape {
+            transform: rotate(8deg) scale(1.1);
+        }
+        .gourmet-card-light h3 {
+            font-size: 1.75rem !important;
+            font-weight: 800 !important;
+            margin-bottom: 2px !important;
+            color: #1e293b;
+        }
+        [data-bs-theme="dark"] .gourmet-card-light h3 { color: #f8f9fa; }
+        .gourmet-card-light .text-label {
+            font-size: 0.8rem !important;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
     </style>
 </head>
 
