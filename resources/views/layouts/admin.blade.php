@@ -41,6 +41,12 @@
                     <li class="nav-item d-none d-md-block"> <a target="_blank" href="{{ route('home') }}" class="nav-link btn btn-sm btn-primary text-white shadow-sm"><i class="fab fa-chrome"></i> {{clean( trans('niva-backend.view_website') , array('Attr.EnableID' => true))}}</a> </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
+                    <!-- Theme Toggle -->
+                    <li class="nav-item">
+                        <button class="nav-link btn-link" id="theme-toggle" type="button">
+                            <i class="fas fa-moon" id="theme-icon"></i>
+                        </button>
+                    </li>
                     <!-- User Menu -->
                     <li class="nav-item dropdown user-menu">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
@@ -48,14 +54,14 @@
                             <img src="{{$user->photo ? '/public/images/media/' . $user->photo->file : '/public/img/200x200.png'}}" class="user-image rounded-circle shadow" alt="User Image">
                             <span class="d-none d-md-inline">{{ auth()->user()->name }}</span>
                         </a>
-                        <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+                        <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end shadow">
                             <li class="user-header text-bg-primary">
                                 <img src="{{$user->photo ? '/public/images/media/' . $user->photo->file : '/public/img/200x200.png'}}" class="rounded-circle shadow" alt="User Image">
-                                <p>{{ auth()->user()->name }}</p>
+                                <p>{{ auth()->user()->name }} <small>Admin</small></p>
                             </li>
                             <li class="user-footer">
-                                <a href="{{ url('/admin/users') }}/{{auth()->user()->id}}/edit" class="btn btn-default btn-flat">{{clean( trans('niva-backend.edit_user') , array('Attr.EnableID' => true))}}</a>
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal" class="btn btn-default btn-flat float-end">{{clean( trans('niva-backend.logout') , array('Attr.EnableID' => true))}}</a>
+                                <a href="{{ url('/admin/users') }}/{{auth()->user()->id}}/edit" class="btn btn-light btn-sm">{{clean( trans('niva-backend.edit_user') , array('Attr.EnableID' => true))}}</a>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal" class="btn btn-danger btn-sm float-end">{{clean( trans('niva-backend.logout') , array('Attr.EnableID' => true))}}</a>
                             </li>
                         </ul>
                     </li>
@@ -311,6 +317,35 @@
                 position: "right",
                 style: { background: bg }
             }).showToast();
+        }
+
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const html = document.documentElement;
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('admin-theme') || 'light';
+        html.setAttribute('data-bs-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-bs-theme', newTheme);
+            localStorage.setItem('admin-theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            if (theme === 'dark') {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
         }
     </script>
 

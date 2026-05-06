@@ -22,11 +22,25 @@ class AdminMediasController extends Controller
     }
     
 
-    public function store(Request $request){
-        $file = $request->file('file');
-        $name = time() .  $file->getClientOriginalName();
-        $file->move('images/media/', $name);
-        Photo::create(['file'=>$name]);
+    public function store(Request $request)
+    {
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $name = time() . '_' . $file->getClientOriginalName();
+            
+            // Garantir que a pasta existe
+            $destinationPath = public_path('images/media/');
+            if (!file_exists($destinationPath)) {
+                mkdir($destinationPath, 0777, true);
+            }
+
+            $file->move($destinationPath, $name);
+            $photo = Photo::create(['file' => $name]);
+            
+            return response()->json(['id' => $photo->id, 'url' => asset('images/media/' . $name)]);
+        }
+        
+        return response()->json(['error' => 'Nenhum arquivo enviado'], 400);
     }
     
 

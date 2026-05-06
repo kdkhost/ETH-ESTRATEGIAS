@@ -1,116 +1,140 @@
 @extends('layouts.admin')
 
 @section('content')
-
-<!-- Begin Page Content -->
 <div class="container-fluid">
-
-
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">{{clean( trans('niva-backend.section_7_blog') , array('Attr.EnableID' => true))}}</h1>
-
-    <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">{{clean( trans('niva-backend.section_7_blog') , array('Attr.EnableID' => true))}}</h6>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                
-                <div class="row">
-                    <div class="col-lg-6">
-                        @if(Auth::user()->role->name == 'administrator')
-                        <a href="{{route('home-setting.edit') . '?language=' . request()->input('language')}}" class="btn btn-primary btn-back">{{clean( trans('niva-backend.back_homepage') , array('Attr.EnableID' => true))}}</a>
-                        <a href="{{route('blog-setting.edit') . '?language=' . request()->input('language')}}" class="btn btn-primary btn-back">{{clean( trans('niva-backend.back_blogpage') , array('Attr.EnableID' => true))}}</a>
-                        @endif
-                        <a href="{{route('post.create') . '?language=' . request()->input('language')}}" class="btn btn-primary btn-back">{{clean( trans('niva-backend.create_article') , array('Attr.EnableID' => true))}}</a>
-                    </div>
-                    <div class="col-lg-6 text-right">
-                        @if (!empty($langs))
-                            <select name="language" class="form-control language-control" onchange="window.location='{{url()->current() . '?language='}}'+this.value">
-                                <option value="" selected disabled>{{clean( trans('niva-backend.select_language') , array('Attr.EnableID' => true))}}</option>
-                                @foreach ($langs as $lang)
-                                    <option value="{{$lang->code}}" {{$lang->code == request()->input('language') ? 'selected' : ''}}>{{$lang->name}}</option>
-                                @endforeach
-                            </select>
-                        @endif
-                    </div>
-                </div>
-
-                @if ($message = Session::get('post_success'))
-                    <div class="alert alert-success alert-block">
-                        <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>    
-                        <strong>{{ $message }}</strong>
-                    </div>
-                @endif
-               
-
-                <form action="{{route('delete.post')}}" method="POST" class="form-inline">
-                @csrf
-                @method('DELETE')
-                <div class="form-group">
-                    <select name="checkbox_array" id="" class="form-control">
-                        <option value="">{{clean( trans('niva-backend.delete') , array('Attr.EnableID' => true))}}</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <input type="submit" name="delete_all" class="btn btn-primary">
-                </div>
-
-
-
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th><input type="checkbox" id="options"></th>
-                            <th scope="col">{{clean( trans('niva-backend.id') , array('Attr.EnableID' => true))}}</th>
-                            <th scope="col">{{clean( trans('niva-backend.photo') , array('Attr.EnableID' => true))}}</th>
-                            <th scope="col">{{clean( trans('niva-backend.owner') , array('Attr.EnableID' => true))}}</th>
-                            <th scope="col">{{clean( trans('niva-backend.title') , array('Attr.EnableID' => true))}}</th>
-                            <th scope="col">{{clean( trans('niva-backend.category') , array('Attr.EnableID' => true))}}</th>
-                            <th scope="col">{{clean( trans('niva-backend.body') , array('Attr.EnableID' => true))}}</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th><input type="checkbox" id="options1"></th>
-                            <th scope="col">{{clean( trans('niva-backend.id') , array('Attr.EnableID' => true))}}</th>
-                            <th scope="col">{{clean( trans('niva-backend.photo') , array('Attr.EnableID' => true))}}</th>
-                            <th scope="col">{{clean( trans('niva-backend.owner') , array('Attr.EnableID' => true))}}</th>
-                            <th scope="col">{{clean( trans('niva-backend.title') , array('Attr.EnableID' => true))}}</th>
-                            <th scope="col">{{clean( trans('niva-backend.category') , array('Attr.EnableID' => true))}}</th>
-                            <th scope="col">{{clean( trans('niva-backend.body') , array('Attr.EnableID' => true))}}</th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        @if($posts)
-                            @foreach($posts as $post)
-                                <tr>
-                                    <td><input class="checkboxes" type="checkbox" name="checkbox_array[]" value="{{$post->id}}"></td>
-                                    <td data-label="ID">{{$post->id}}</td>
-                                    <td data-label="Photo"><img height="50" src="{{$post->photo ? '/public/images/media/' . $post->photo->file : '/public/img/200x200.png'}}" alt=""><p class="mb-0 mt-2"><a href="{{ route('post.edit', $post->id) . '?language=' . request()->input('language')}}">{{clean( trans('niva-backend.edit') , array('Attr.EnableID' => true))}}</a></p></td>
-                                    <td data-label="OWNER">{{$post->user->name}}</td>
-                                    <td data-label="TITLE">{{$post->title}}</a></td>
-                                    <td data-label="Category">{{$post->category ? $post->category->name : 'Uncategorized'}}</td>
-                                    <td class="body-post" data-label="BODY">{{$post->meta_description}}</td>
-                                </tr>
-                             @endforeach
-                        @endif
-
-
-                        
-                    </tbody>
-                </table>
-
-                </form>
-
-            </div>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">{{clean( trans('niva-backend.section_7_blog') )}}</h1>
+        <div class="d-flex gap-2">
+            @if(Auth::user()->role->name == 'administrator')
+                <a href="{{route('home-setting.edit') . '?language=' . request()->input('language')}}" class="btn btn-light shadow-sm btn-sm">
+                    <i class="fas fa-home fa-sm me-1"></i> {{clean( trans('niva-backend.back_homepage') )}}
+                </a>
+                <a href="{{route('blog-setting.edit') . '?language=' . request()->input('language')}}" class="btn btn-light shadow-sm btn-sm">
+                    <i class="fas fa-cog fa-sm me-1"></i> {{clean( trans('niva-backend.back_blogpage') )}}
+                </a>
+            @endif
+            <a href="{{route('post.create') . '?language=' . request()->input('language')}}" class="btn btn-primary shadow-sm btn-sm">
+                <i class="fas fa-plus fa-sm me-1"></i> {{clean( trans('niva-backend.create_article') )}}
+            </a>
         </div>
     </div>
 
-</div>
-<!-- /.container-fluid -->
+    <div class="card shadow mb-4 border-0">
+        <div class="card-header py-3 bg-white border-0 d-flex justify-content-between align-items-center">
+            <h6 class="m-0 font-weight-bold text-primary">{{clean( trans('niva-backend.section_7_blog') )}}</h6>
+            @if (!empty($langs))
+                <select name="language" class="form-select form-select-sm language-control" style="width: 150px;" onchange="window.location='{{url()->current() . '?language='}}'+this.value">
+                    <option value="" selected disabled>{{clean( trans('niva-backend.select_language') )}}</option>
+                    @foreach ($langs as $lang)
+                        <option value="{{$lang->code}}" {{$lang->code == request()->input('language') ? 'selected' : ''}}>{{$lang->name}}</option>
+                    @endforeach
+                </select>
+            @endif
+        </div>
+        <div class="card-body">
+            <form action="{{route('delete.post')}}" method="POST" id="delete-posts-form">
+                @csrf
+                @method('DELETE')
 
+                <div class="d-flex align-items-center mb-4">
+                    <select name="checkbox_array" class="form-select form-select-sm me-2" style="width: 150px;">
+                        <option value="">{{clean( trans('niva-backend.delete') )}}</option>
+                    </select>
+                    <button type="submit" name="delete_all" class="btn btn-danger btn-sm shadow-sm">
+                        <i class="fas fa-trash-alt me-1"></i> Aplicar
+                    </button>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle border-0" id="dataTable" width="100%" cellspacing="0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th class="border-0"><input type="checkbox" id="options" class="form-check-input"></th>
+                                <th class="border-0">{{clean( trans('niva-backend.id') )}}</th>
+                                <th class="border-0">{{clean( trans('niva-backend.photo') )}}</th>
+                                <th class="border-0">{{clean( trans('niva-backend.owner') )}}</th>
+                                <th class="border-0">{{clean( trans('niva-backend.title') )}}</th>
+                                <th class="border-0">{{clean( trans('niva-backend.category') )}}</th>
+                                <th class="border-0 text-end">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if($posts)
+                                @foreach($posts as $post)
+                                    <tr>
+                                        <td><input class="checkboxes form-check-input" type="checkbox" name="checkbox_array[]" value="{{$post->id}}"></td>
+                                        <td><span class="badge bg-light text-dark">#{{$post->id}}</span></td>
+                                        <td>
+                                            <img width="60" class="rounded shadow-sm" src="{{$post->photo ? asset('images/media/' . $post->photo->file) : asset('img/200x200.png')}}" alt="">
+                                        </td>
+                                        <td>
+                                            <div class="fw-bold">{{$post->user->name}}</div>
+                                            <small class="text-muted">{{$post->user->email}}</small>
+                                        </td>
+                                        <td>
+                                            <div class="fw-bold">{{$post->title}}</div>
+                                            <small class="text-muted d-block text-truncate" style="max-width: 250px;">{{$post->meta_description}}</small>
+                                        </td>
+                                        <td>
+                                            <span class="badge bg-soft-primary text-primary border border-primary">
+                                                {{$post->category ? $post->category->name : 'Sem Categoria'}}
+                                            </span>
+                                        </td>
+                                        <td class="text-end">
+                                            <a href="{{ route('post.edit', $post->id) . '?language=' . request()->input('language')}}" class="btn btn-sm btn-outline-primary border-0 shadow-none">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                 @endforeach
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @stop
 
+@section('styles')
+<style>
+    .bg-soft-primary { background-color: rgba(13, 110, 253, 0.1); }
+    .table thead th { font-weight: 600; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px; }
+    [data-bs-theme="dark"] .bg-white { background-color: transparent !important; }
+</style>
+@stop
+
+@section('footer')
+<script>
+    $(document).ready(function() {
+        $('#options').click(function() {
+            $('.checkboxes').prop('checked', this.checked);
+        });
+
+        $('#delete-posts-form').on('submit', function(e) {
+            if ($('.checkboxes:checked').length === 0) {
+                e.preventDefault();
+                showToasty('Selecione pelo menos um post para excluir.', 'error');
+                return;
+            }
+
+            e.preventDefault();
+            Swal.fire({
+                title: 'Tem certeza?',
+                text: "Os posts selecionados serão excluídos permanentemente!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#0d6efd',
+                confirmButtonText: 'Sim, excluir!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            });
+        });
+    });
+</script>
+@stop
