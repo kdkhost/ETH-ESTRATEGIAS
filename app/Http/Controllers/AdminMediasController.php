@@ -73,8 +73,14 @@ class AdminMediasController extends Controller
                 }
                 $photo->delete();
             }
+            if ($request->ajax()) {
+                return response()->json(['success' => true, 'message' => 'Imagens excluídas com sucesso!']);
+            }
             return redirect()->back()->with('user_success','Imagens excluídas com sucesso!');
         } else {
+            if ($request->ajax()) {
+                return response()->json(['success' => false, 'message' => 'Nenhuma imagem selecionada.']);
+            }
             return redirect()->back();
         }
     }

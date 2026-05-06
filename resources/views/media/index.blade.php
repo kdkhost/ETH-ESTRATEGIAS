@@ -165,8 +165,26 @@
                 cancelButtonText: 'Cancelar'
             }).then((result) => { 
                 if (result.isConfirmed) { 
-                    $('<input>').attr({type: 'hidden', name: 'delete_all', value: '1'}).appendTo(this);
-                    this.submit(); 
+                    let form = $(this);
+                    let formData = form.serialize() + '&delete_all=1';
+                    
+                    $.ajax({
+                        url: form.attr('action'),
+                        type: 'POST',
+                        data: formData,
+                        headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                        success: function(response) {
+                            if(response.success) {
+                                showToasty(response.message, 'success');
+                                $('.checkboxes:checked').closest('.col').fadeOut(400, function() { 
+                                    $(this).remove(); 
+                                });
+                            }
+                        },
+                        error: function() {
+                            showToasty('Erro ao excluir as imagens.', 'error');
+                        }
+                    });
                 } 
             });
         });

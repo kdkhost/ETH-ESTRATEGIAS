@@ -106,6 +106,25 @@
         </div>
     </div>
 
+    <!-- Ações Rápidas do Sistema -->
+    <div class="row mt-4 mb-2">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm rounded-4 bg-white">
+                <div class="card-body p-4 d-flex align-items-center justify-content-between flex-wrap gap-3">
+                    <div>
+                        <h5 class="fw-bold mb-1 text-dark"><i class="fas fa-server text-primary me-2"></i> Operações do Sistema</h5>
+                        <p class="text-muted small mb-0">Ferramentas de manutenção e otimização rápida de performance.</p>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <a href="{{ route('system.optimize') }}" class="btn btn-success rounded-pill px-4 shadow-sm fw-bold">
+                            <i class="fas fa-broom me-2"></i> Limpar Cache Total
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Quick Stats Card -->
     <div class="card border-0 shadow-sm rounded-4 mt-5">
         <div class="card-header bg-white border-0 py-3">
