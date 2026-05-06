@@ -71,105 +71,104 @@
         </div>
     </div>
 
-    <div class="row g-4 mt-2">
+    <div class="row g-3 mt-1">
         <!-- Blog Posts -->
-        <div class="col-lg-4 col-6">
+        <div class="col-xl-3 col-lg-4 col-sm-6">
             <div class="small-box text-bg-primary shadow-sm border-0 rounded-4 overflow-hidden">
-                <div class="inner p-4">
-                    <h3 class="fw-bold mb-1">{{$post_number}}</h3>
-                    <p class="mb-0 opacity-75">{{clean( trans('niva-backend.posts') )}}</p>
+                <div class="inner p-3">
+                    <h3 class="fw-bold mb-0" style="font-size: 1.75rem;">{{$post_number}}</h3>
+                    <p class="mb-0 opacity-75 small">{{clean( trans('niva-backend.posts') )}}</p>
                 </div>
                 <div class="icon opacity-25">
-                    <i class="fas fa-newspaper" style="font-size: 70px;"></i>
+                    <i class="fas fa-newspaper" style="font-size: 50px; top: 15px;"></i>
                 </div>
-                <a href="{{route('post.index')}}" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-100-hover py-2 bg-dark bg-opacity-10 text-center d-block">
-                    Gerenciar Blog <i class="fas fa-arrow-circle-right ms-1"></i>
+                <a href="{{route('post.index')}}" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-100-hover py-1 bg-dark bg-opacity-10 text-center d-block small">
+                    Gerenciar <i class="fas fa-arrow-circle-right ms-1"></i>
                 </a>
             </div>
         </div>
 
         <!-- Projects -->
-        <div class="col-lg-4 col-6">
+        <div class="col-xl-3 col-lg-4 col-sm-6">
             <div class="small-box text-bg-success shadow-sm border-0 rounded-4 overflow-hidden">
-                <div class="inner p-4">
-                    <h3 class="fw-bold mb-1">{{$project_number}}</h3>
-                    <p class="mb-0 opacity-75">{{clean( trans('niva-backend.projects') )}}</p>
+                <div class="inner p-3">
+                    <h3 class="fw-bold mb-0" style="font-size: 1.75rem;">{{$project_number}}</h3>
+                    <p class="mb-0 opacity-75 small">{{clean( trans('niva-backend.projects') )}}</p>
                 </div>
                 <div class="icon opacity-25">
-                    <i class="fas fa-briefcase" style="font-size: 70px;"></i>
+                    <i class="fas fa-briefcase" style="font-size: 50px; top: 15px;"></i>
                 </div>
-                <a href="{{route('project.index')}}" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-100-hover py-2 bg-dark bg-opacity-10 text-center d-block">
-                    Gerenciar Portfólio <i class="fas fa-arrow-circle-right ms-1"></i>
+                <a href="{{route('project.index')}}" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-100-hover py-1 bg-dark bg-opacity-10 text-center d-block small">
+                    Gerenciar <i class="fas fa-arrow-circle-right ms-1"></i>
                 </a>
             </div>
         </div>
 
         <!-- Services -->
-        <div class="col-lg-4 col-6">
+        <div class="col-xl-3 col-lg-4 col-sm-6">
             <div class="small-box text-bg-info shadow-sm border-0 rounded-4 overflow-hidden text-white">
-                <div class="inner p-4">
-                    <h3 class="fw-bold mb-1 text-white">{{$service_number}}</h3>
-                    <p class="mb-0 opacity-75 text-white">{{clean( trans('niva-backend.services') )}}</p>
+                <div class="inner p-3">
+                    <h3 class="fw-bold mb-0 text-white" style="font-size: 1.75rem;">{{$service_number}}</h3>
+                    <p class="mb-0 opacity-75 text-white small">{{clean( trans('niva-backend.services') )}}</p>
                 </div>
                 <div class="icon opacity-25 text-white">
-                    <i class="fas fa-concierge-bell" style="font-size: 70px;"></i>
+                    <i class="fas fa-concierge-bell" style="font-size: 50px; top: 15px;"></i>
                 </div>
-                <a href="{{route('service.index')}}" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-100-hover py-2 bg-dark bg-opacity-10 text-center d-block">
-                    Gerenciar Serviços <i class="fas fa-arrow-circle-right ms-1"></i>
+                <a href="{{route('service.index')}}" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-100-hover py-1 bg-dark bg-opacity-10 text-center d-block small">
+                    Gerenciar <i class="fas fa-arrow-circle-right ms-1"></i>
                 </a>
             </div>
         </div>
-    </div>
 
-    <div class="row g-4 mt-2">
         <!-- Testimonials -->
-        <div class="col-lg-4 col-6">
+        <div class="col-xl-3 col-lg-4 col-sm-6">
             <div class="small-box text-bg-warning shadow-sm border-0 rounded-4 overflow-hidden text-white">
-                <div class="inner p-4">
-                    <h3 class="fw-bold mb-1 text-white">{{$testimonial_number}}</h3>
-                    <p class="mb-0 opacity-75 text-white">{{clean( trans('niva-backend.testimonials') )}}</p>
+                <div class="inner p-3">
+                    <h3 class="fw-bold mb-0 text-white" style="font-size: 1.75rem;">{{$testimonial_number}}</h3>
+                    <p class="mb-0 opacity-75 text-white small">{{clean( trans('niva-backend.testimonials') )}}</p>
                 </div>
                 <div class="icon opacity-25 text-white">
-                    <i class="fas fa-comment-dots" style="font-size: 70px;"></i>
+                    <i class="fas fa-comment-dots" style="font-size: 50px; top: 15px;"></i>
                 </div>
-                <a href="{{route('testimonial.index')}}" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-100-hover py-2 bg-dark bg-opacity-10 text-center d-block">
-                    Gerenciar Feedbacks <i class="fas fa-arrow-circle-right ms-1"></i>
+                <a href="{{route('testimonial.index')}}" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-100-hover py-1 bg-dark bg-opacity-10 text-center d-block small">
+                    Gerenciar <i class="fas fa-arrow-circle-right ms-1"></i>
                 </a>
             </div>
         </div>
 
         <!-- Team Members -->
-        <div class="col-lg-4 col-6">
+        <div class="col-xl-3 col-lg-4 col-sm-6">
             <div class="small-box text-bg-danger shadow-sm border-0 rounded-4 overflow-hidden">
-                <div class="inner p-4">
-                    <h3 class="fw-bold mb-1">{{$member_number}}</h3>
-                    <p class="mb-0 opacity-75">{{clean( trans('niva-backend.members') )}}</p>
+                <div class="inner p-3">
+                    <h3 class="fw-bold mb-0" style="font-size: 1.75rem;">{{$member_number}}</h3>
+                    <p class="mb-0 opacity-75 small">{{clean( trans('niva-backend.members') )}}</p>
                 </div>
                 <div class="icon opacity-25">
-                    <i class="fas fa-users" style="font-size: 70px;"></i>
+                    <i class="fas fa-users" style="font-size: 50px; top: 15px;"></i>
                 </div>
-                <a href="{{route('member.index')}}" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-100-hover py-2 bg-dark bg-opacity-10 text-center d-block">
-                    Gerenciar Equipe <i class="fas fa-arrow-circle-right ms-1"></i>
+                <a href="{{route('member.index')}}" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-100-hover py-1 bg-dark bg-opacity-10 text-center d-block small">
+                    Gerenciar <i class="fas fa-arrow-circle-right ms-1"></i>
                 </a>
             </div>
         </div>
 
         <!-- Clients -->
-        <div class="col-lg-4 col-6">
+        <div class="col-xl-3 col-lg-4 col-sm-6">
             <div class="small-box text-bg-indigo shadow-sm border-0 rounded-4 overflow-hidden text-white" style="background-color: #6610f2 !important;">
-                <div class="inner p-4">
-                    <h3 class="fw-bold mb-1 text-white">{{$client_number}}</h3>
-                    <p class="mb-0 opacity-75 text-white">{{clean( trans('niva-backend.clients') )}}</p>
+                <div class="inner p-3">
+                    <h3 class="fw-bold mb-0 text-white" style="font-size: 1.75rem;">{{$client_number}}</h3>
+                    <p class="mb-0 opacity-75 text-white small">{{clean( trans('niva-backend.clients') )}}</p>
                 </div>
                 <div class="icon opacity-25 text-white">
-                    <i class="fas fa-handshake" style="font-size: 70px;"></i>
+                    <i class="fas fa-handshake" style="font-size: 50px; top: 15px;"></i>
                 </div>
-                <a href="{{route('client.index')}}" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-100-hover py-2 bg-dark bg-opacity-10 text-center d-block">
-                    Gerenciar Clientes <i class="fas fa-arrow-circle-right ms-1"></i>
+                <a href="{{route('client.index')}}" class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-100-hover py-1 bg-dark bg-opacity-10 text-center d-block small">
+                    Gerenciar <i class="fas fa-arrow-circle-right ms-1"></i>
                 </a>
             </div>
         </div>
     </div>
+
 
 
     <!-- Ações Rápidas do Sistema -->
