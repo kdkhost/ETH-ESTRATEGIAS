@@ -1,109 +1,102 @@
-/* Admin Premium Refinement by Marcelo Brad RJ */
+/* ETH Premium AdminLTE 4 Refinement */
 :root {
-    --eth-primary: #0d6efd;
-    --eth-secondary: #6c757d;
-    --eth-dark: #212529;
-    --eth-light: #f8f9fa;
-    --sidebar-width: 250px;
+    --adminlte-primary: #0d6efd;
+    --adminlte-sidebar-bg: #1e293b;
 }
 
-/* Glassmorphism subtle effects */
-.card {
-    border: none;
-    border-radius: 12px;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-    transition: transform 0.2s, box-shadow 0.2s;
-    background: rgba(255, 255, 255, 0.95);
-}
-
-[data-bs-theme="dark"] .card {
-    background: rgba(33, 37, 41, 0.95);
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.5);
-}
-
-.card:hover {
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-}
-
-/* Sidebar Styling */
+/* Sidebar Rigorous Styling */
 .app-sidebar {
-    background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%) !important;
+    background: #0f172a !important; /* Deep Navy Premium */
 }
 
-.sidebar-brand {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    height: 70px;
-    display: flex;
-    align-items: center;
+.sidebar-brand .brand-text {
+    font-size: 1.25rem;
+    letter-spacing: -0.5px;
 }
 
-.nav-link {
-    border-radius: 8px;
-    margin: 2px 8px;
-    transition: all 0.3s;
-}
-
-.nav-link:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.nav-link.active {
-    background: var(--eth-primary) !important;
-    box-shadow: 0 4px 6px rgba(13, 110, 253, 0.3);
-}
-
-/* Form controls */
-.form-control, .form-select {
-    border-radius: 8px;
-    padding: 0.6rem 1rem;
-    border: 1px solid #dee2e6;
-}
-
-.form-control:focus {
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
-}
-
-/* Buttons */
-.btn {
-    border-radius: 8px;
-    padding: 0.5rem 1.2rem;
+.nav-sidebar .nav-link {
     font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem !important;
+    margin-bottom: 0.25rem;
+    color: #94a3b8 !important;
+}
+
+.nav-sidebar .nav-link:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: #fff !important;
+}
+
+.nav-sidebar .nav-link.active {
+    background: #0d6efd !important;
+    color: #fff !important;
+    box-shadow: 0 4px 15px rgba(13, 110, 253, 0.4);
+}
+
+.nav-header {
+    color: #64748b !important;
+    font-weight: 700 !important;
+    padding: 1.5rem 1rem 0.5rem !important;
+}
+
+.nav-treeview > .nav-item > .nav-link.active {
+    background: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: none !important;
+    border-left: 3px solid #0d6efd;
+    border-radius: 0 0.5rem 0.5rem 0 !important;
+}
+
+/* Card Premium Design */
+.card {
+    border-radius: 1rem !important;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02) !important;
+    overflow: hidden;
+}
+
+.card-header {
+    background-color: transparent !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    padding: 1.25rem !important;
+}
+
+/* Tables */
+.table {
+    border-collapse: separate;
+    border-spacing: 0 0.5rem;
+}
+
+.table tbody tr {
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
     transition: all 0.2s;
 }
 
-.btn-primary {
-    background: linear-gradient(45deg, #0d6efd, #0b5ed7);
-    border: none;
+.table tbody tr:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
-.btn-primary:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.4);
+/* Dark Mode Overrides */
+[data-bs-theme="dark"] .card {
+    background-color: #1e293b !important;
+    border-color: rgba(255, 255, 255, 0.05) !important;
 }
 
-/* Summernote customization */
-.note-editor {
-    border-radius: 12px !important;
-    overflow: hidden;
-    border: 1px solid #dee2e6 !important;
+[data-bs-theme="dark"] .table tbody tr {
+    background: #2b3035;
 }
 
-.note-toolbar {
-    background: #f8f9fa !important;
-    border-bottom: 1px solid #dee2e6 !important;
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
 }
-
-/* FilePond customization */
-.filepond--root {
-    font-family: inherit;
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
-
-.filepond--panel-root {
-    background-color: #f8f9fa;
-    border: 2px dashed #dee2e6;
-}
-
-[data-bs-theme="dark"] .filepond--panel-root {
-    background-color: #2b3035;
-    border-color: #495057;
+[data-bs-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
 }

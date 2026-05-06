@@ -1,103 +1,119 @@
 @extends('layouts.admin')
 
 @section('content')
-
-<!-- Begin Page Content -->
 <div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">{{clean( trans('niva-backend.all_users') )}}</h1>
+        <a href="{{route('users.create')}}" class="btn btn-primary shadow-sm btn-sm">
+            <i class="fas fa-user-plus fa-sm me-1"></i> {{clean( trans('niva-backend.create_user') )}}
+        </a>
+    </div>
 
-
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">{{clean( trans('niva-backend.all_users') , array('Attr.EnableID' => true))}}</h1>
-
-    <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">{{clean( trans('niva-backend.all_users') , array('Attr.EnableID' => true))}}</h6>
+    <div class="card shadow mb-4 border-0">
+        <div class="card-header py-3 bg-white border-0">
+            <h6 class="m-0 font-weight-bold text-primary">{{clean( trans('niva-backend.all_users') )}}</h6>
         </div>
         <div class="card-body">
-            <div class="table-responsive">
-
-
-                @if ($message = Session::get('user_success'))
-                    <div class="alert alert-success alert-block">
-                        <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>    
-                        <strong>{{ $message }}</strong>
-                    </div>
-                @endif
-                @if ($message = Session::get('user_fail'))
-                    <div class="alert alert-danger alert-block">
-                        <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>    
-                        <strong>{{ $message }}</strong>
-                    </div>
-                @endif
-
-               
-
-                <form action="{{route('delete.users')}}" method="POST" class="form-inline">
+            <form action="{{route('delete.users')}}" method="POST" id="delete-users-form">
                 @csrf
                 @method('DELETE')
-                <div class="form-group">
-                    <select name="checkbox_array" id="" class="form-control">
-                        <option value="">{{clean( trans('niva-backend.delete') , array('Attr.EnableID' => true))}}</option>
+                
+                <input type="hidden" name="current_user" value="{{ auth()->user()->id }}">
+
+                <div class="d-flex align-items-center mb-4">
+                    <select name="checkbox_array" class="form-select form-select-sm me-2" style="width: 150px;">
+                        <option value="">{{clean( trans('niva-backend.delete') )}}</option>
                     </select>
+                    <button type="submit" name="delete_all" class="btn btn-danger btn-sm shadow-sm">
+                        <i class="fas fa-trash-alt me-1"></i> Aplicar
+                    </button>
                 </div>
 
-                <div class="form-group">
-                    <input type="submit" name="delete_all" class="btn btn-primary">
-                    <input type="hidden" name="current_user" value="{{ auth()->user()->id }}">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle border-0" id="dataTable" width="100%" cellspacing="0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th class="border-0"><input type="checkbox" id="options" class="form-check-input"></th>
+                                <th class="border-0">{{clean( trans('niva-backend.name') )}}</th>
+                                <th class="border-0">{{clean( trans('niva-backend.email') )}}</th>
+                                <th class="border-0">{{clean( trans('niva-backend.role') )}}</th>
+                                <th class="border-0 text-end">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if($users)
+                                @foreach($users as $user)
+                                    <tr>
+                                        <td>
+                                            @if($user->id != auth()->user()->id)
+                                                <input class="checkboxes form-check-input" type="checkbox" name="checkbox_array[]" value="{{$user->id}}">
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img width="40" height="40" class="rounded-circle shadow-sm me-3" src="{{$user->photo ? asset('images/media/' . $user->photo->file) : asset('img/200x200.png')}}" alt="">
+                                                <div>
+                                                    <div class="fw-bold">{{$user->name}}</div>
+                                                    <small class="text-muted">ID: #{{$user->id}}</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>{{$user->email}}</td>
+                                        <td>
+                                            <span class="badge bg-primary-subtle text-primary border border-primary px-3">
+                                                {{$user->role ? $user->role->name : 'Nenhum'}}
+                                            </span>
+                                        </td>
+                                        <td class="text-end">
+                                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-outline-primary border-0 shadow-none">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                 @endforeach
+                            @endif
+                        </tbody>
+                    </table>
                 </div>
-
-
-
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th><input type="checkbox" id="options"></th>
-                            <th>{{clean( trans('niva-backend.name') , array('Attr.EnableID' => true))}}</th>
-                            <th>{{clean( trans('niva-backend.email') , array('Attr.EnableID' => true))}}</th>
-                            <th>{{clean( trans('niva-backend.role') , array('Attr.EnableID' => true))}}</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th><input type="checkbox" id="options1"></th>
-                            <th>{{clean( trans('niva-backend.name') , array('Attr.EnableID' => true))}}</th>
-                            <th>{{clean( trans('niva-backend.email') , array('Attr.EnableID' => true))}}</th>
-                            <th>{{clean( trans('niva-backend.role') , array('Attr.EnableID' => true))}}</th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        @if($users)
-                            @foreach($users as $user)
-                                <tr>
-                                    <td><input class="checkboxes" type="checkbox" name="checkbox_array[]" value="{{$user->id}}"></td>
-                                    <td data-label="Name">
-                                        <div class="float-left-avatar">
-                                            <img width="35" height="35" src="{{$user->photo ? '/public/images/media/' . $user->photo->file : '/public/img/200x200.png'}}" alt="">
-                                        </div>
-                                        <div class="float-left-user-name">
-                                            <p>{{$user->name}}</p>
-                                            <a href="{{ route('users.edit', $user->id) }}">{{clean( trans('niva-backend.edit') , array('Attr.EnableID' => true))}}</a>
-                                        </div>
-                                    </td>
-                                    <td data-label="Name and surname">{{$user->email}}</td>
-                                    <td data-label="Role">{{$user->role ? $user->role->name : ''}}</td>
-                                </tr>
-                             @endforeach
-                        @endif
-
-
-                        
-                    </tbody>
-                </table>
-
-                </form>
-                 {!! $users->render() !!}
+            </form>
+            <div class="mt-4">
+                {!! $users->render() !!}
             </div>
         </div>
     </div>
-
 </div>
-<!-- /.container-fluid -->
+@stop
 
+@section('footer')
+<script>
+    $(document).ready(function() {
+        $('#options').click(function() {
+            $('.checkboxes').prop('checked', this.checked);
+        });
+
+        $('#delete-users-form').on('submit', function(e) {
+            if ($('.checkboxes:checked').length === 0) {
+                e.preventDefault();
+                showToasty('Selecione pelo menos um usuário para excluir.', 'error');
+                return;
+            }
+
+            e.preventDefault();
+            Swal.fire({
+                title: 'Tem certeza?',
+                text: "Os usuários selecionados serão excluídos permanentemente!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#0d6efd',
+                confirmButtonText: 'Sim, excluir!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            });
+        });
+    });
+</script>
 @stop
