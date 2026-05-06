@@ -67,20 +67,19 @@ class SettingController extends Controller
     public function optimize(Request $request)
     {
         try {
+            // Em produção, optimize:clear é o comando mais seguro e eficaz para resolver problemas de cache.
+            // Evitamos config:cache e route:cache aqui para prevenir erros de classes dev-only.
             \Illuminate\Support\Facades\Artisan::call('optimize:clear');
-            \Illuminate\Support\Facades\Artisan::call('config:cache');
-            \Illuminate\Support\Facades\Artisan::call('route:cache');
-            \Illuminate\Support\Facades\Artisan::call('view:cache');
 
             if ($request->ajax()) {
-                return response()->json(['success' => true, 'message' => 'Sistema otimizado com sucesso!']);
+                return response()->json(['success' => true, 'message' => 'Caches do sistema limpos com sucesso!']);
             }
-            return back()->with('setting_success', 'Sistema otimizado com sucesso! (Caches gerados)');
+            return back()->with('setting_success', 'Caches do sistema limpos com sucesso!');
         } catch (\Exception $e) {
             if ($request->ajax()) {
                 return response()->json(['success' => false, 'message' => $e->getMessage()], 500);
             }
-            return back()->with('setting_error', 'Erro ao otimizar: ' . $e->getMessage());
+            return back()->with('setting_error', 'Erro ao limpar cache: ' . $e->getMessage());
         }
     }
 }
