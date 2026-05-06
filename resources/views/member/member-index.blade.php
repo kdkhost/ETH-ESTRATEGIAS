@@ -6,10 +6,10 @@
         <h1 class="h3 mb-0 text-gray-800">{{clean( trans('niva-backend.all_members') )}}</h1>
         <div class="d-flex gap-2">
             <a href="{{route('about-setting.edit')}}" class="btn btn-light shadow-sm btn-sm">
-                <i class="fas fa-info-circle fa-sm me-1"></i> Configurar Sobre
+                <i class="fas fa-arrow-left fa-sm me-1"></i> Voltar Sobre
             </a>
             <a href="{{route('member.create')}}" class="btn btn-primary shadow-sm btn-sm">
-                <i class="fas fa-plus fa-sm me-1"></i> Novo Membro
+                <i class="fas fa-user-plus fa-sm me-1"></i> {{clean( trans('niva-backend.create') )}}
             </a>
         </div>
     </div>
@@ -49,13 +49,13 @@
                                     <tr>
                                         <td><input class="checkboxes form-check-input" type="checkbox" name="checkbox_array[]" value="{{$member->id}}"></td>
                                         <td>
-                                            <img width="60" height="60" class="rounded-circle shadow-sm border" style="object-fit: cover;" src="{{$member->photo ? asset('images/media/' . $member->photo->file) : asset('img/200x200.png')}}" alt="">
+                                            <img width="60" height="60" class="rounded-circle shadow-sm object-fit-cover" src="{{$member->photo ? asset('images/media/' . $member->photo->file) : asset('img/200x200.png')}}" alt="">
                                         </td>
                                         <td class="fw-bold">{{$member->name}}</td>
-                                        <td><span class="badge bg-light text-dark border">{{$member->position}}</span></td>
+                                        <td><span class="badge bg-light text-dark border px-3">{{$member->position}}</span></td>
                                         <td class="text-end">
                                             <div class="d-flex justify-content-end gap-1">
-                                                <a href="{{ route('member.edit', $member->id)}}" class="btn btn-sm btn-outline-primary border-0 shadow-none">
+                                                <a href="{{ route('member.edit', $member->id) }}" class="btn btn-sm btn-outline-primary border-0 shadow-none">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <form action="{{ route('member.destroy', $member->id) }}" method="POST" class="d-inline single-delete-form">

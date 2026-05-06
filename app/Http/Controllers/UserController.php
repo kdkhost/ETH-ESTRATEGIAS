@@ -134,7 +134,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         if($user->id == auth()->id()){
-            return back()->with('user_error', 'Você não pode excluir a si mesmo!');
+             return back()->with('user_error', 'Você não pode excluir sua própria conta!');
         }
         $user->delete();
         return back()->with('user_success', 'Usuário excluído com sucesso!');
@@ -143,12 +143,17 @@ class UserController extends Controller
     public function delete_users(Request $request) {
         if(isset($request->delete_all) && !empty($request->checkbox_array)) {
             $users = User::findOrFail($request->checkbox_array);
+            $deletedCount = 0;
             foreach ($users as $user) {
                 if($user->id != auth()->id()){
                     $user->delete();
+                    $deletedCount++;
                 }
             }
-            return back()->with('user_success','Usuário(s) excluído(s) com sucesso! (Auto-exclusão não permitida)');
+            if ($deletedCount < count($request->checkbox_array)) {
+                return back()->with('user_success', 'Usuários excluídos. O usuário atual não pôde ser excluído.');
+            }
+            return back()->with('user_success','Usuários excluídos com sucesso!');
         } else {
             return back();
         }

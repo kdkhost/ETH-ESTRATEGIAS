@@ -3,21 +3,38 @@
 ## Sobre o Sistema
 O **ETH Estratégias** é uma plataforma corporativa web gerenciável desenvolvida sob medida. Conta com um painel administrativo poderoso e uma vitrine online robusta, otimizada e responsiva.
 
+## Atualizações Recentes (Maio 2026) - Versão Premium v2.0
+Realizamos uma modernização completa da infraestrutura de interface e segurança:
+
+### 🎨 UI/UX & Design System
+*   **Modernização AdminLTE 4:** Migração completa para o framework AdminLTE 4 com estética Premium.
+*   **Design Consistente:** Uso de cards arredondados (`rounded-4`), sombras suaves (`shadow-sm`) e tipografia moderna (Inter).
+*   **Modo Dark/Light:** Implementação de alternância de temas nativa com persistência em `localStorage`.
+*   **Componentização:** Botões e elementos de formulário padronizados para garantir uma experiência visual fluida.
+
+### 🛠️ Funcionalidades Premium
+*   **Upload Inteligente (FilePond):** Integração global do FilePond com suporte a arraste e solte, barra de progresso animada e plugins de validação/encoding.
+*   **Edição de Conteúdo (Summernote):** Refatoração do editor para versão premium com suporte a modo escuro e interface em Português (PT-BR).
+*   **Central de Mídias:** Adição de "Upload Rápido" diretamente na galeria e gestão aprimorada de arquivos.
+*   **Notificações & Alertas:** Substituição de alertas nativos por **Toasty Notify** e **SweetAlert2** para confirmações e feedback de sucesso/erro.
+
+### 🛡️ Segurança & Estabilidade
+*   **Laravel 12 Upgrade:** Sistema totalmente compatível com Laravel 12 e PHP 8.4.
+*   **Auditoria de HTML:** Correção de falhas de exposição de código HTML em campos de texto.
+*   **Saneamento de Dados:** Configuração refinada do `HTMLPurifier` para evitar injeção de scripts e manter a integridade do layout.
+*   **Correção de Fluxos:** Resolução de bugs críticos de exclusão (singular/plural de rotas) e métodos de controlador ausentes (`destroy`).
+
+---
+
 ## Direitos Autorais
 &copy; Todos os direitos reservados.
 **Autor e Desenvolvedor:** Marcelo Brad RJ
 *Nenhuma parte deste código, interface, layout ou arquitetura pode ser reproduzida, copiada, distribuída ou vendida sem a autorização expressa do autor.*
 
-## Tecnologias e Funcionalidades Premium
-*   **Backend:** PHP 8.4+, Laravel 12 (Core otimizado)
-*   **Frontend Público:** Blade Templates, Otimização de Performance, SEO Nativo
-*   **Painel Administrativo (AdminLTE 4):** 
-    *   **Interface:** Design Moderno/Premium com suporte a **Dark/Light Mode**.
-    *   **Uploads:** Integração com **FilePond** (Drag & Drop, Progresso Animado).
-    *   **Editor:** **Summernote** com suporte a código e sanitização.
-    *   **Segurança:** Proteção CSRF, XSS (HTMLPurifier) e exclusão física de mídias.
-    *   **Interatividade:** **SweetAlert2** para confirmações e **Toasty Notify** para feedback.
-    *   **Gestão:** Sistema de deleção individual e em massa padronizado em todos os módulos.
+## Tecnologias Principais
+*   **Backend:** PHP 8.4, Laravel 12 Framework
+*   **Frontend Público:** Blade Templates, Bootstrap 4, Vanilla JS/jQuery
+*   **Painel Administrativo:** AdminLTE 4, Bootstrap 5, SweetAlert2, FilePond, Summernote, Toasty
 *   **Banco de Dados:** MySQL
 
 ## Licença

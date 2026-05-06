@@ -6,14 +6,14 @@
         <h1 class="h3 mb-0 text-gray-800">{{clean( trans('niva-backend.all_languages') )}}</h1>
         <div class="d-flex gap-2">
             <a href="{{route('language.create')}}" class="btn btn-primary shadow-sm btn-sm">
-                <i class="fas fa-plus fa-sm me-1"></i> Novo Idioma
+                <i class="fas fa-plus fa-sm me-1"></i> {{clean( trans('niva-backend.create_language') )}}
             </a>
         </div>
     </div>
 
     <div class="card shadow mb-4 border-0">
         <div class="card-header py-3 bg-white border-0">
-            <h6 class="m-0 font-weight-bold text-primary">Idiomas Instalados</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Gerenciamento de Idiomas</h6>
         </div>
         <div class="card-body">
             <form action="{{route('delete.language')}}" method="POST" id="delete-languages-form">
@@ -48,23 +48,25 @@
                                     <tr>
                                         <td><input class="checkboxes form-check-input" type="checkbox" name="checkbox_array[]" value="{{$language->id}}"></td>
                                         <td>
-                                            <img height="30" class="rounded shadow-sm border" src="{{$language->photo ? asset('images/media/' . $language->photo->file) : asset('img/200x200.png')}}" alt="">
+                                            <img width="30" class="rounded shadow-sm border" src="{{$language->photo ? asset('images/media/' . $language->photo->file) : asset('img/200x200.png')}}" alt="Flag">
                                         </td>
                                         <td class="fw-bold">{{$language->name}}</td>
-                                        <td><code class="text-primary">{{$language->code}}</code></td>
+                                        <td><code class="small text-uppercase">{{$language->code}}</code></td>
                                         <td>
                                             @if($language->is_default == 1)
-                                                <span class="badge bg-success-subtle text-success border border-success">Sim</span>
+                                                <span class="badge bg-success shadow-sm px-3">Sim</span>
                                             @else
-                                                <span class="badge bg-light text-muted border">Não</span>
+                                                <span class="badge bg-light text-dark border px-3">Não</span>
                                             @endif
                                         </td>
                                         <td>
-                                            <span class="badge bg-info-subtle text-info border border-info">{{ $language->rtl == 1 ? 'RTL' : 'LTR'}}</span>
+                                            <span class="badge bg-info-subtle text-info border px-2">
+                                                {{ $language->rtl == 1 ? 'Direita p/ Esquerda (RTL)' : 'Esquerda p/ Direita (LTR)'}}
+                                            </span>
                                         </td>
                                         <td class="text-end">
                                             <div class="d-flex justify-content-end gap-1">
-                                                <a href="{{ route('language.edit', $language->id)}}" class="btn btn-sm btn-outline-primary border-0 shadow-none">
+                                                <a href="{{ route('language.edit', $language->id) }}" class="btn btn-sm btn-outline-primary border-0 shadow-none">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <form action="{{ route('language.destroy', $language->id) }}" method="POST" class="d-inline single-delete-form">

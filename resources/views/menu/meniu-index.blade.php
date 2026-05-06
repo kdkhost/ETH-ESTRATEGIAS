@@ -6,14 +6,14 @@
         <h1 class="h3 mb-0 text-gray-800">{{clean( trans('niva-backend.all_menus') )}}</h1>
         <div class="d-flex gap-2">
             <a href="{{route('menu.create') . '?language=' . request()->input('language')}}" class="btn btn-primary shadow-sm btn-sm">
-                <i class="fas fa-plus fa-sm me-1"></i> Novo Link
+                <i class="fas fa-plus fa-sm me-1"></i> {{clean( trans('niva-backend.create_menu') )}}
             </a>
         </div>
     </div>
 
     <div class="card shadow mb-4 border-0">
         <div class="card-header py-3 bg-white border-0 d-flex justify-content-between align-items-center">
-            <h6 class="m-0 font-weight-bold text-primary">Navegação do Site</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Links de Navegação</h6>
             @if (!empty($langs))
                 <select name="language" class="form-select form-select-sm language-control" style="width: 150px;" onchange="window.location='{{url()->current() . '?language='}}'+this.value">
                     <option value="" selected disabled>{{clean( trans('niva-backend.select_language') )}}</option>
@@ -43,7 +43,7 @@
                             <tr>
                                 <th class="border-0"><input type="checkbox" id="options" class="form-check-input"></th>
                                 <th class="border-0">{{clean( trans('niva-backend.name') )}}</th>
-                                <th class="border-0">Link / Rota</th>
+                                <th class="border-0">Link / URL</th>
                                 <th class="border-0">Ordem</th>
                                 <th class="border-0 text-end">Ações</th>
                             </tr>
@@ -54,9 +54,9 @@
                                     <tr>
                                         <td><input class="checkboxes form-check-input" type="checkbox" name="checkbox_array[]" value="{{$menu->id}}"></td>
                                         <td class="fw-bold">{{$menu->name}}</td>
-                                        <td><code class="text-primary small">{{$menu->link}}</code></td>
+                                        <td><code class="small text-primary">{{$menu->link}}</code></td>
                                         <td>
-                                            <span class="badge bg-light text-dark border px-3"># {{$menu->order}}</span>
+                                            <span class="badge bg-light text-dark border">{{$menu->order}}</span>
                                         </td>
                                         <td class="text-end">
                                             <div class="d-flex justify-content-end gap-1">
@@ -101,7 +101,7 @@
             e.preventDefault();
             Swal.fire({
                 title: 'Tem certeza?',
-                text: "Os itens de menu selecionados serão excluídos permanentemente!",
+                text: "Os links selecionados serão excluídos permanentemente!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d33',

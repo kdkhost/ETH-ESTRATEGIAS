@@ -78,7 +78,7 @@ class MenuController extends Controller
     public function destroy(Menu $menu)
     {
         $menu->delete();
-        return back()->with('menu_success', 'Menu excluído com sucesso!');
+        return back()->with('menu_success', 'Item de menu excluído com sucesso!');
     }
 
     public function delete_menu(Request $request) {
@@ -87,7 +87,7 @@ class MenuController extends Controller
             foreach ($menus as $menu) {
                 $menu->delete();
             }
-            return back()->with('menu_success','Menu(s) excluído(s) com sucesso!');
+            return back()->with('menu_success','Item(ns) de menu excluído(s) com sucesso!');
         } else {
             return back();
         }
