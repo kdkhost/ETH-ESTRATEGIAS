@@ -161,6 +161,7 @@ Route::middleware(['admin'])->group(function () {
     Route::put('admin/settings/{langid}/update', [SettingController::class, 'update'])->name('setting.update');
 
     Route::get('admin/system/optimize', [SettingController::class, 'optimize'])->name('system.optimize');
+    Route::get('admin/api/visits-today', [DashboardController::class, 'visitsToday'])->name('api.visits-today');
 
 
 });

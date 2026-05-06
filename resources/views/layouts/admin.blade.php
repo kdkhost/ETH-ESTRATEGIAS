@@ -73,8 +73,24 @@
                             <i class="fas fa-external-link-alt me-1"></i> Ver Site
                         </a> 
                     </li>
+                    <li class="nav-item d-none d-md-block ms-2">
+                        <button id="btn-clear-cache" class="btn btn-sm btn-outline-success rounded-pill px-3" title="Limpar todos os caches do sistema">
+                            <i class="fas fa-broom me-1"></i> Limpar Cache
+                        </button>
+                    </li>
+                    <li class="nav-item d-none d-md-block ms-2">
+                        <button id="btn-clear-views" class="btn btn-sm btn-outline-warning rounded-pill px-3" title="Limpar apenas cache de views" style="color:#856404">
+                            <i class="fas fa-layer-group me-1"></i> Cache Views
+                        </button>
+                    </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
+                    <!-- Indicador de visitas hoje -->
+                    <li class="nav-item me-2 d-none d-lg-flex align-items-center">
+                        <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 py-2 rounded-pill small" id="navbar-visits-badge" title="Visitas hoje">
+                            <i class="fas fa-chart-line me-1"></i> <span id="visits-count">--</span> visitas hoje
+                        </span>
+                    </li>
                     <!-- Theme Toggle -->
                     <li class="nav-item me-2">
                         <button class="nav-link btn-link" id="theme-toggle" type="button">
@@ -379,9 +395,47 @@
 
         // Global Notification
         function showToasty(msg, type = 'success') {
-            let bg = type === 'success' ? "linear-gradient(to right, #00b09b, #96c93d)" : "linear-gradient(to right, #ff5f6d, #ffc371)";
-            Toastify({ text: msg, duration: 4000, close: true, gravity: "top", position: "right", style: { background: bg } }).showToast();
+            let configs = {
+                success: { bg: "linear-gradient(to right, #00b09b, #96c93d)", icon: "✅" },
+                error:   { bg: "linear-gradient(to right, #ff5f6d, #ffc371)", icon: "❌" },
+                warning: { bg: "linear-gradient(to right, #f7971e, #ffd200)", icon: "⚠️" },
+                info:    { bg: "linear-gradient(to right, #2193b0, #6dd5ed)", icon: "ℹ️" }
+            };
+            let cfg = configs[type] || configs.success;
+            Toastify({
+                text: cfg.icon + " " + msg,
+                duration: 4500,
+                close: true,
+                gravity: "top",
+                position: "right",
+                style: { background: cfg.bg, borderRadius: "12px", fontFamily: "'Inter', sans-serif", fontSize: "14px", padding: "14px 20px", boxShadow: "0 8px 20px rgba(0,0,0,0.15)" }
+            }).showToast();
         }
+
+        // ====================================================
+        // Flash Messages Globais do Laravel → Toastify
+        // ====================================================
+        @foreach([
+            'user_success','user_error',
+            'post_success','project_success','page_success',
+            'service_success','testimonial_success','member_success',
+            'client_success','slider_success','pricing_success',
+            'category_success','language_success','menu_success',
+            'setting_success','setting_error','success','error'
+        ] as $flash)
+            @if(session($flash))
+                @php $type = (str_ends_with($flash, '_error') || $flash === 'error') ? 'error' : 'success'; @endphp
+                showToasty("{{ addslashes(session($flash)) }}", "{{ $type }}");
+            @endif
+        @endforeach
+
+        // Erros de validação
+        @if($errors->any())
+            @foreach($errors->all() as $error)
+                showToasty("{{ addslashes($error) }}", "error");
+            @endforeach
+        @endif
+
 
         // Theme Toggle
         const themeToggle = document.getElementById('theme-toggle');
@@ -421,6 +475,70 @@
                     this.submit();
                 }
             });
+        });
+
+        // ====================================================
+        // Botões de Cache (Navbar) via AJAX
+        // ====================================================
+        $('#btn-clear-cache').on('click', function() {
+            let btn = $(this);
+            Swal.fire({
+                title: 'Limpar todos os caches?',
+                text: 'Config, rotas, views e application cache serão regenerados.',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#198754',
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: '<i class="fas fa-broom me-1"></i> Sim, limpar!',
+                cancelButtonText: 'Cancelar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-1"></i> Limpando...');
+                    $.ajax({
+                        url: '{{ route("system.optimize") }}',
+                        type: 'GET',
+                        headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                        success: function() {
+                            showToasty('✅ Caches limpos e otimizados com sucesso!', 'success');
+                            btn.prop('disabled', false).html('<i class="fas fa-broom me-1"></i> Limpar Cache');
+                        },
+                        error: function() {
+                            showToasty('Erro ao limpar cache.', 'error');
+                            btn.prop('disabled', false).html('<i class="fas fa-broom me-1"></i> Limpar Cache');
+                        }
+                    });
+                }
+            });
+        });
+
+        $('#btn-clear-views').on('click', function() {
+            let btn = $(this);
+            btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin me-1"></i>');
+            $.ajax({
+                url: '{{ route("system.optimize") }}',
+                type: 'GET',
+                headers: { 'X-Requested-With': 'XMLHttpRequest' },
+                success: function() {
+                    showToasty('✅ Cache de views limpo!', 'success');
+                    btn.prop('disabled', false).html('<i class="fas fa-layer-group me-1"></i> Cache Views');
+                },
+                error: function() {
+                    showToasty('Erro ao limpar cache de views.', 'error');
+                    btn.prop('disabled', false).html('<i class="fas fa-layer-group me-1"></i> Cache Views');
+                }
+            });
+        });
+
+        // Badge de visitas hoje (na navbar)
+        $.ajax({
+            url: '{{ url("/admin/api/visits-today") }}',
+            type: 'GET',
+            headers: { 'X-Requested-With': 'XMLHttpRequest' },
+            success: function(data) {
+                if (data.count !== undefined) {
+                    $('#visits-count').text(data.count);
+                }
+            }
         });
     </script>
 
