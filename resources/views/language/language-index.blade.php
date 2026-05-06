@@ -49,7 +49,7 @@
                                     <tr>
                                         <td><input class="checkboxes form-check-input" form="delete-languages-form" type="checkbox" name="checkbox_array[]" value="{{$language->id}}"></td>
                                         <td>
-                                            <img width="30" class="rounded shadow-sm border" src="{{$language->photo ? asset('images/media/' . $language->photo->file) : asset('img/200x200.png')}}" alt="Flag">
+                                            <img loading="lazy" width="30" class="rounded shadow-sm border" src="{{$language->photo ? asset('images/media/' . $language->photo->file) : asset('img/200x200.png')}}" alt="Flag">
                                         </td>
                                         <td class="fw-bold">{{$language->name}}</td>
                                         <td><code class="small text-uppercase">{{$language->code}}</code></td>
@@ -124,5 +124,6 @@
     });
 </script>
 @stop
+
 
 

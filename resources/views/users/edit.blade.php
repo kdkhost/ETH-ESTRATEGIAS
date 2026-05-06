@@ -39,7 +39,7 @@
                 <!-- Coluna Lateral: Foto e Resumo -->
                 <div class="col-lg-3 text-center">
                     <div class="position-relative d-inline-block mb-3">
-                        <img class="img-fluid rounded-circle shadow border p-1" width="180" height="180" style="object-fit: cover; aspect-ratio: 1/1;" src="{{$user->photo ? asset('images/media/' . $user->photo->file) : asset('img/200x200.png')}}" alt="{{$user->name}}">
+                        <img loading="lazy" class="img-fluid rounded-circle shadow border p-1" width="180" height="180" style="object-fit: cover; aspect-ratio: 1/1;" src="{{$user->photo ? asset('images/media/' . $user->photo->file) : asset('img/200x200.png')}}" alt="{{$user->name}}">
                         <span class="position-absolute bottom-0 end-0 badge rounded-pill bg-success p-2 border border-light" title="Usuário Ativo">
                             <span class="visually-hidden">Ativo</span>
                         </span>

@@ -3,48 +3,21 @@
 <head>
 
     @php $setting = App\Models\Setting::find($currentLang->id); @endphp
-    <!-- Page Title -->
-    <title>@yield('title')</title>
+
     @if($setting->loader_status == 1) 
         <script type="text/javascript">
             window.paceOptions = { ajax: false, restartOnRequestAfter: false, restartOnPushState: false};
         </script>
     @endif
-    <!-- Meta Data -->
+    
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="google-adsense-account" content="ca-pub-3150896617677590">
 
-    <meta name="description" content="@yield('meta')">
-    <link rel="canonical" href="{{url()->current()}}">
-    <meta name="keywords" content="{{$setting->keywords}}" />
-    <meta name="publisher" content="{{url()->current()}}">
-    <meta name="copyright" content="Copyright (c) {{$setting->title}}" />
-    <meta name="author" content="{{$setting->author}}" />
-    <meta name="contact" content="{{$setting->contact}}" />
-
-    <meta name="revisit-after" content="7 Days" />
-    <meta name="robots" content="index, follow" />
-    <meta name="googlebot" content="index, follow" />
-    <meta name="subjects" content="{{$setting->title}}" />
-    <meta name="classification" content="{{$setting->title}}" />
-
-    <meta itemprop="name" content="@yield('title')">
-    <meta itemprop="description" content="@yield('meta')">
-    <meta itemprop="image" content="{{route('home')}}{{$setting->photo ? '/public/images/media/' . $setting->photo->file : '/public/img/200x200.png'}}">
-    
-    @if($setting->OGgraph_switch == 1)
-
-    <meta property="og:title" content="@yield('title')" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="{{route('home')}}" />
-    <meta property="og:image" content="{{route('home')}}{{$setting->photo ? '/public/images/media/' . $setting->photo->file : '/public/img/200x200.png'}}" />
-    <meta property="og:site_name" content="{{$setting->author}}" />
-    <meta property="og:description" content="@yield('meta')" />
-    
-    @endif
+    <!-- Motor de SEO Global -->
+    @include('includes.seo')
 
     @if($setting->analytics_switch == 1)
 

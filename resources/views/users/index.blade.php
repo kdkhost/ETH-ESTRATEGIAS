@@ -51,7 +51,7 @@
                                         </td>
                                         <td>
                                             <div class="d-flex align-items-center">
-                                                <img width="40" height="40" class="rounded-circle shadow-sm me-3" src="{{$user->photo ? asset('images/media/' . $user->photo->file) : asset('img/200x200.png')}}" alt="">
+                                                <img loading="lazy" width="40" height="40" class="rounded-circle shadow-sm me-3" src="{{$user->photo ? asset('images/media/' . $user->photo->file) : asset('img/200x200.png')}}" alt="">
                                                 <div>
                                                     <div class="fw-bold">{{$user->name}}</div>
                                                     <small class="text-muted">ID: #{{$user->id}}</small>
@@ -128,3 +128,4 @@
     });
 </script>
 @stop
+

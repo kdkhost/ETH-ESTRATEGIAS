@@ -58,7 +58,7 @@
                         <div class="row g-4">
                             <div class="col-lg-4 text-center">
                                 <label class="form-label fw-bold d-block mb-3 uppercase small">Visualização do Banner</label>
-                                <img class="img-fluid rounded-4 shadow-sm border mb-3" style="max-height: 200px; object-fit: cover;" src="{{$setting->banner_img ? $setting->banner_img : asset('img/200x200.png')}}" alt="Banner">
+                                <img loading="lazy" class="img-fluid rounded-4 shadow-sm border mb-3" style="max-height: 200px; object-fit: cover;" src="{{$setting->banner_img ? $setting->banner_img : asset('img/200x200.png')}}" alt="Banner">
                             </div>
                             <div class="col-lg-8">
                                 <div class="form-group mb-3">

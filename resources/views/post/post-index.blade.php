@@ -66,7 +66,7 @@
                                         <td><input class="checkboxes form-check-input" form="delete-posts-form" type="checkbox" name="checkbox_array[]" value="{{$post->id}}"></td>
                                         <td><span class="badge bg-light text-dark">#{{$post->id}}</span></td>
                                         <td>
-                                            <img width="60" class="rounded shadow-sm" src="{{$post->photo ? asset('images/media/' . $post->photo->file) : asset('img/200x200.png')}}" alt="">
+                                            <img loading="lazy" width="60" class="rounded shadow-sm" src="{{$post->photo ? asset('images/media/' . $post->photo->file) : asset('img/200x200.png')}}" alt="">
                                         </td>
                                         <td>
                                             <div class="fw-bold">{{$post->user->name}}</div>
@@ -148,5 +148,6 @@
     });
 </script>
 @stop
+
 
 

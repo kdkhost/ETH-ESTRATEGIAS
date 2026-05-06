@@ -40,7 +40,7 @@
                         <div class="row g-4">
                             <div class="col-lg-4 text-center">
                                 <label class="form-label fw-bold d-block mb-3 uppercase small">Banner Hero</label>
-                                <img class="img-fluid rounded-4 shadow-sm border mb-3" style="max-height: 200px; object-fit: cover;" src="{{$setting->banner_img ? $setting->banner_img : asset('img/200x200.png')}}">
+                                <img loading="lazy" class="img-fluid rounded-4 shadow-sm border mb-3" style="max-height: 200px; object-fit: cover;" src="{{$setting->banner_img ? $setting->banner_img : asset('img/200x200.png')}}">
                                 <div class="input-group input-group-sm">
                                     <input type="text" name="banner_img" class="form-control" value="{{$setting->banner_img}}" placeholder="URL da Imagem">
                                     <a target="_blank" href="{{route('media.index')}}" class="btn btn-outline-primary">Mídia</a>

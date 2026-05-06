@@ -51,7 +51,7 @@
                         <div class="card bg-light border-0 rounded-4 p-3">
                             <label class="form-label fw-bold d-block mb-3">{{clean( trans('niva-backend.photo') )}} Principal</label>
                             <div class="d-flex align-items-center gap-3">
-                                <img class="img-thumbnail rounded-3 shadow-sm" width="100" height="100" style="object-fit: cover;" src="{{$project->photo ? asset('images/media/' . $project->photo->file) : asset('img/200x200.png')}}">
+                                <img loading="lazy" class="img-thumbnail rounded-3 shadow-sm" width="100" height="100" style="object-fit: cover;" src="{{$project->photo ? asset('images/media/' . $project->photo->file) : asset('img/200x200.png')}}">
                                 <div class="flex-grow-1">
                                     <input type="file" name="photo_id" class="form-control form-control-sm">
                                     <small class="text-muted d-block mt-1">Recomendado: 800x600px</small>
@@ -63,7 +63,7 @@
                         <div class="card bg-light border-0 rounded-4 p-3 h-100">
                             <label class="form-label fw-bold d-block mb-3">Imagem de Destaque (URL)</label>
                             <div class="d-flex align-items-center gap-3">
-                                <img class="img-thumbnail rounded-3 shadow-sm" width="100" height="100" style="object-fit: cover;" src="{{$project->image_featured2 ? $project->image_featured2 : asset('img/200x200.png')}}">
+                                <img loading="lazy" class="img-thumbnail rounded-3 shadow-sm" width="100" height="100" style="object-fit: cover;" src="{{$project->image_featured2 ? $project->image_featured2 : asset('img/200x200.png')}}">
                                 <div class="flex-grow-1">
                                     <input type="text" name="image_featured2" class="form-control form-control-sm" value="{{$project->image_featured2}}" placeholder="https://...">
                                     <small class="text-muted d-block mt-1">Copie a URL do Media Center</small>
@@ -100,7 +100,7 @@
                             @php $galField = "img_gal$i"; @endphp
                             <div class="col-md-3">
                                 <div class="bg-light p-2 rounded border">
-                                    <img class="img-fluid rounded mb-2 shadow-sm d-block mx-auto" style="height: 60px; object-fit: cover;" src="{{$project->$galField ? $project->$galField : asset('img/200x200.png')}}">
+                                    <img loading="lazy" class="img-fluid rounded mb-2 shadow-sm d-block mx-auto" style="height: 60px; object-fit: cover;" src="{{$project->$galField ? $project->$galField : asset('img/200x200.png')}}">
                                     <input type="text" name="{{$galField}}" class="form-control form-control-sm" value="{{$project->$galField}}" placeholder="URL Imagem {{$i}}">
                                 </div>
                             </div>
@@ -170,3 +170,4 @@
     [data-bs-theme="dark"] .card-header { background-color: rgba(255,255,255,0.05); }
 </style>
 @stop
+

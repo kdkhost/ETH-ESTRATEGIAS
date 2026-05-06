@@ -59,7 +59,7 @@
                                     <tr>
                                         <td><input class="checkboxes form-check-input" form="delete-sliders-form" type="checkbox" name="checkbox_array[]" value="{{$slider->id}}"></td>
                                         <td>
-                                            <img width="80" class="rounded shadow-sm" src="{{$slider->photo ? asset('images/media/' . $slider->photo->file) : asset('img/200x200.png')}}" alt="">
+                                            <img loading="lazy" width="80" class="rounded shadow-sm" src="{{$slider->photo ? asset('images/media/' . $slider->photo->file) : asset('img/200x200.png')}}" alt="">
                                         </td>
                                         <td class="fw-medium">{!!$slider->heading1!!}</td>
                                         <td>{{$slider->heading2}}</td>
@@ -125,5 +125,6 @@
     });
 </script>
 @stop
+
 
 

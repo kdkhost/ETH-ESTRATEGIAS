@@ -39,46 +39,27 @@
                 <input type="hidden" name="language_id" value="{{$lang_id}}">
 
                 <div class="row g-4">
-                    <div class="col-md-6">
-                        <div class="form-group mb-3">
-                            <label class="form-label fw-bold">{{clean( trans('niva-backend.title') )}}</label>
-                            <input type="text" name="title" class="form-control" placeholder="Título da página">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group mb-3">
-                            <label class="form-label fw-bold">{{clean( trans('niva-backend.link') )}}</label>
-                            <div class="input-group input-group-sm">
-                                <span class="input-group-text bg-light text-muted">{{URL::to('/')}}/</span>
-                                <input type="text" name="slug" class="form-control" placeholder="url-da-pagina">
+                                        <!-- Módulo SEO Premium -->
+                    <div class="col-12 mt-4">
+                        <div class="card shadow border-0 text-bg-indigo" style="background-color: #6610f2 !important;">
+                            <div class="card-header py-3 border-0 bg-transparent">
+                                <h6 class="m-0 font-weight-bold text-white"><i class="fas fa-search me-2"></i> SEO Avançado (Google)</h6>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12">
-                        <div class="form-group mb-3">
-                            <label class="form-label fw-bold">{{clean( trans('niva-backend.photo') )}}</label>
-                            <input type="file" name="photo_id" class="form-control" id="photo_id">
-                        </div>
-                    </div>
-
-                    <div class="col-12">
-                        <div class="form-group mb-4">
-                            <label class="form-label fw-bold">{{clean( trans('niva-backend.body') )}}</label>
-                            <textarea name="body" class="form-control summernote" id="body" rows="15"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="form-group mb-3">
-                            <label class="form-label fw-bold">{{clean( trans('niva-backend.meta_title') )}}</label>
-                            <input type="text" name="meta_title" class="form-control" placeholder="Título para SEO">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group mb-3">
-                            <label class="form-label fw-bold">{{clean( trans('niva-backend.meta_description') )}}</label>
-                            <input type="text" name="meta_description" class="form-control" placeholder="Descrição para SEO">
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold text-white opacity-75 small">Meta Título (Máx 60 caracteres)</label>
+                                        <input type="text" name="meta_title" class="form-control bg-white bg-opacity-10 text-white border-0 shadow-none" placeholder="Título chamativo para o Google" value="{{ isset($page) ? $page->meta_title : (isset($post) ? $post->meta_title : '') }}">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold text-white opacity-75 small">Meta Descrição (Máx 160 caracteres)</label>
+                                        <input type="text" name="meta_description" class="form-control bg-white bg-opacity-10 text-white border-0 shadow-none" placeholder="Resumo magnético para aumentar cliques" value="{{ isset($page) ? $page->meta_description : (isset($post) ? $post->meta_description : '') }}">
+                                    </div>
+                                </div>
+                                <div class="mt-3 text-white-50 small">
+                                    <i class="fas fa-info-circle me-1"></i> Preencha estes campos para que o link fique com miniatura e resumo profissional ao ser compartilhado no WhatsApp ou Facebook.
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -94,3 +75,4 @@
 </div>
 
 @endsection
+

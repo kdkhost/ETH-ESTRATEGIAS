@@ -160,6 +160,8 @@ Route::middleware(['admin'])->group(function () {
     Route::get('admin/settings', [SettingController::class, 'edit'])->name('setting.edit');
     Route::put('admin/settings/{langid}/update', [SettingController::class, 'update'])->name('setting.update');
 
+    Route::get('admin/system/optimize', [SettingController::class, 'optimize'])->name('system.optimize');
+
 
 });
 Route::middleware(['XSS'])->group(function () { 

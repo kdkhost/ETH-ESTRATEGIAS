@@ -59,7 +59,7 @@
                                     <tr>
                                         <td><input class="checkboxes form-check-input" form="delete-testimonials-form" type="checkbox" name="checkbox_array[]" value="{{$testimonial->id}}"></td>
                                         <td>
-                                            <img width="60" height="60" class="rounded-circle shadow-sm" src="{{$testimonial->photo ? asset('images/media/' . $testimonial->photo->file) : asset('img/200x200.png')}}" alt="">
+                                            <img loading="lazy" width="60" height="60" class="rounded-circle shadow-sm" src="{{$testimonial->photo ? asset('images/media/' . $testimonial->photo->file) : asset('img/200x200.png')}}" alt="">
                                         </td>
                                         <td class="fw-bold">{{$testimonial->name}}</td>
                                         <td><span class="badge bg-light text-dark border">{{$testimonial->position}}</span></td>
@@ -126,5 +126,6 @@
     });
 </script>
 @stop
+
 
 

@@ -64,5 +64,17 @@ class SettingController extends Controller
 
 
 
-
+    public function optimize()
+    {
+        try {
+            \Illuminate\Support\Facades\Artisan::call('optimize:clear');
+            \Illuminate\Support\Facades\Artisan::call('config:cache');
+            \Illuminate\Support\Facades\Artisan::call('route:cache');
+            \Illuminate\Support\Facades\Artisan::call('view:cache');
+            
+            return back()->with('setting_success','Sistema otimizado com sucesso! (Caches gerados)');
+        } catch (\Exception $e) {
+            return back()->with('setting_error','Erro ao otimizar o sistema: ' . $e->getMessage());
+        }
+    }
 }

@@ -59,7 +59,7 @@
                                     <tr>
                                         <td><input class="checkboxes form-check-input" form="delete-services-form" type="checkbox" name="checkbox_array[]" value="{{$service->id}}"></td>
                                         <td>
-                                            <img width="80" class="rounded shadow-sm" src="{{$service->photo ? asset('images/media/' . $service->photo->file) : asset('img/200x200.png')}}" alt="">
+                                            <img loading="lazy" width="80" class="rounded shadow-sm" src="{{$service->photo ? asset('images/media/' . $service->photo->file) : asset('img/200x200.png')}}" alt="">
                                         </td>
                                         <td>
                                             <div class="text-primary fs-4">{!!$service->icon!!}</div>
@@ -125,5 +125,6 @@
     });
 </script>
 @stop
+
 
 

@@ -82,7 +82,7 @@
                                     
                                     
                                     <div class="form-group">
-                                        <img class="img-fluid pb-4" width="100" height="100" src="{{$member->photo ? '/public/images/media/' . $member->photo->file : '/public/img/200x200.png'}}">
+                                        <img loading="lazy" class="img-fluid pb-4" width="100" height="100" src="{{$member->photo ? '/public/images/media/' . $member->photo->file : '/public/img/200x200.png'}}">
                                         <p><strong>{{clean( trans('niva-backend.photo') , array('Attr.EnableID' => true))}}</strong></p>
                                         <input type="file"  name="photo_id" class="form-control-file"  id="photo_id">
                                     </div>
@@ -112,4 +112,5 @@
 
 
 @endsection
+
 

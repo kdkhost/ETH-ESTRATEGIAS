@@ -71,9 +71,9 @@
                     <div class="card-body text-center">
                         <div class="mb-4">
                             @if($post->photo)
-                                <img class="img-fluid rounded-4 shadow-sm border mb-3" style="max-height: 200px;" src="{{asset('images/media/' . $post->photo->file)}}">
+                                <img loading="lazy" class="img-fluid rounded-4 shadow-sm border mb-3" style="max-height: 200px;" src="{{asset('images/media/' . $post->photo->file)}}">
                             @else
-                                <img class="img-fluid rounded-4 shadow-sm border mb-3" style="max-height: 200px;" src="{{asset('img/200x200.png')}}">
+                                <img loading="lazy" class="img-fluid rounded-4 shadow-sm border mb-3" style="max-height: 200px;" src="{{asset('img/200x200.png')}}">
                             @endif
                         </div>
                         <div class="text-start">
@@ -125,3 +125,5 @@
     });
 </script>
 @stop
+
+

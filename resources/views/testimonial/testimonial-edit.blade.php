@@ -64,7 +64,7 @@
                                             <div class="form-group">
                                                 <strong>{{clean( trans('niva-backend.photo') , array('Attr.EnableID' => true))}} <span>{{clean( trans('niva-backend.upload_image') , array('Attr.EnableID' => true))}} <a target="_blank" href="{{route('media.create')}}"> {{clean( trans('niva-backend.here') , array('Attr.EnableID' => true))}} </a> {{clean( trans('niva-backend.then_copy_url') , array('Attr.EnableID' => true))}} <a target="_blank" href="{{route('media.index')}}"> {{clean( trans('niva-backend.here') , array('Attr.EnableID' => true))}} </a></span></strong>
                                                 @if($testimonial->profile_pic)
-                                                <img style="padding-bottom:10px" class="img-fluid" width="50" src="{{$testimonial->profile_pic}}" alt="">
+                                                <img loading="lazy" style="padding-bottom:10px" class="img-fluid" width="50" src="{{$testimonial->profile_pic}}" alt="">
                                                 @endif
                                                 <input type="text" name="profile_pic" class="form-control" value="{{$testimonial->profile_pic}}">
                                             </div>
@@ -105,3 +105,4 @@
 
 
 @endsection
+

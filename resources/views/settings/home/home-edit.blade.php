@@ -74,7 +74,7 @@
                                 <div class="bg-light p-3 rounded-4 border">
                                     <label class="form-label small fw-bold">Imagem Flutuante {{$i}}</label>
                                     @if($setting->$imgField)
-                                    <img src="{{$setting->$imgField}}" class="img-fluid rounded mb-2 shadow-sm d-block mx-auto" style="max-height: 60px;">
+                                    <img loading="lazy" src="{{$setting->$imgField}}" class="img-fluid rounded mb-2 shadow-sm d-block mx-auto" style="max-height: 60px;">
                                     @endif
                                     <input type="text" name="{{$imgField}}" class="form-control form-control-sm mb-2" value="{{$setting->$imgField}}" placeholder="URL da Imagem">
                                     <input type="text" name="{{$tit1Field}}" class="form-control form-control-sm mb-1" value="{{$setting->$tit1Field}}" placeholder="Texto 1">

@@ -33,7 +33,7 @@
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col-md-4 text-center mb-3 mb-md-0">
-                                <img class="img-fluid rounded shadow-sm border" style="max-height: 200px;" src="{{$setting->banner_img ? $setting->banner_img : asset('img/200x200.png')}}" alt="Banner">
+                                <img loading="lazy" class="img-fluid rounded shadow-sm border" style="max-height: 200px;" src="{{$setting->banner_img ? $setting->banner_img : asset('img/200x200.png')}}" alt="Banner">
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group mb-3">

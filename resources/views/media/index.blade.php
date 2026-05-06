@@ -55,7 +55,7 @@
                     <div class="col">
                         <div class="card h-100 border-0 shadow-sm media-card rounded-4 overflow-hidden position-relative">
                             <div class="media-thumb-container position-relative">
-                                <img src="{{asset('images/media/' . $photo->file)}}" class="card-img-top" style="height: 160px; object-fit: cover;" alt="{{$photo->file}}">
+                                <img loading="lazy" src="{{asset('images/media/' . $photo->file)}}" class="card-img-top" style="height: 160px; object-fit: cover;" alt="{{$photo->file}}">
                                 <div class="media-overlay">
                                     <div class="form-check position-absolute top-0 start-0 m-2">
                                         <input class="form-check-input checkboxes shadow" type="checkbox" name="checkbox_array[]" value="{{$photo->id}}">
@@ -163,8 +163,14 @@
                 confirmButtonColor: '#dc3545',
                 confirmButtonText: 'Sim, Excluir!',
                 cancelButtonText: 'Cancelar'
-            }).then((result) => { if (result.isConfirmed) { this.submit(); } });
+            }).then((result) => { 
+                if (result.isConfirmed) { 
+                    $('<input>').attr({type: 'hidden', name: 'delete_all', value: '1'}).appendTo(this);
+                    this.submit(); 
+                } 
+            });
         });
     });
 </script>
 @stop
+

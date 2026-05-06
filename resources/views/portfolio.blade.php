@@ -33,7 +33,7 @@
                         <div class="project-row @php if($count % 2 == 0){ echo 'project-row-right'; } @endphp">
                             <div class="project_index">0.@php echo $count; @endphp  </div>
                             <div class="project__img">
-                              <img class="img-fluid thumparallax-down" width="900" height="938" src="{{$project->image_featured2}}">                
+                              <img loading="lazy" class="img-fluid thumparallax-down" width="900" height="938" src="{{$project->image_featured2}}">                
                             </div>
                             <div class="container">
                                 <div class="info-row__info">
@@ -60,6 +60,7 @@
  
 
 @endsection
+
 
 
 

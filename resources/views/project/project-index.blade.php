@@ -59,7 +59,7 @@
                                     <tr>
                                         <td><input class="checkboxes form-check-input" form="delete-projects-form" type="checkbox" name="checkbox_array[]" value="{{$project->id}}"></td>
                                         <td>
-                                            <img width="80" class="rounded shadow-sm" src="{{$project->photo ? asset('images/media/' . $project->photo->file) : asset('img/200x200.png')}}" alt="">
+                                            <img loading="lazy" width="80" class="rounded shadow-sm" src="{{$project->photo ? asset('images/media/' . $project->photo->file) : asset('img/200x200.png')}}" alt="">
                                         </td>
                                         <td>
                                             <div class="fw-bold small">{{$project->user->name}}</div>
@@ -135,5 +135,6 @@
     });
 </script>
 @stop
+
 
 

@@ -59,7 +59,7 @@
                                         <td><input class="checkboxes form-check-input" form="delete-clients-form" type="checkbox" name="checkbox_array[]" value="{{$client->id}}"></td>
                                         <td>
                                             <div class="bg-light p-2 rounded border d-inline-block shadow-sm">
-                                                <img width="100" style="object-fit: contain; height: 40px;" src="{{$client->photo ? asset('images/media/' . $client->photo->file) : asset('img/200x200.png')}}" alt="Logo">
+                                                <img loading="lazy" width="100" style="object-fit: contain; height: 40px;" src="{{$client->photo ? asset('images/media/' . $client->photo->file) : asset('img/200x200.png')}}" alt="Logo">
                                             </div>
                                         </td>
                                         <td class="fw-bold">{{$client->company_name}}</td>
@@ -131,5 +131,6 @@
     });
 </script>
 @stop
+
 
 

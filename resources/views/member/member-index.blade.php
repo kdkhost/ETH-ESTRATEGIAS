@@ -50,7 +50,7 @@
                                     <tr>
                                         <td><input class="checkboxes form-check-input" form="delete-members-form" type="checkbox" name="checkbox_array[]" value="{{$member->id}}"></td>
                                         <td>
-                                            <img width="60" height="60" class="rounded-circle shadow-sm object-fit-cover" src="{{$member->photo ? asset('images/media/' . $member->photo->file) : asset('img/200x200.png')}}" alt="">
+                                            <img loading="lazy" width="60" height="60" class="rounded-circle shadow-sm object-fit-cover" src="{{$member->photo ? asset('images/media/' . $member->photo->file) : asset('img/200x200.png')}}" alt="">
                                         </td>
                                         <td class="fw-bold">{{$member->name}}</td>
                                         <td><span class="badge bg-light text-dark border px-3">{{$member->position}}</span></td>
@@ -113,5 +113,6 @@
     });
 </script>
 @stop
+
 
 

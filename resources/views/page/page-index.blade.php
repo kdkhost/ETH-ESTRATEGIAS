@@ -58,7 +58,7 @@
                                     <tr>
                                         <td><input class="checkboxes form-check-input" form="delete-pages-form" type="checkbox" name="checkbox_array[]" value="{{$page->id}}"></td>
                                         <td>
-                                            <img width="80" class="rounded shadow-sm" src="{{$page->photo ? asset('images/media/' . $page->photo->file) : asset('img/200x200.png')}}" alt="">
+                                            <img loading="lazy" width="80" class="rounded shadow-sm" src="{{$page->photo ? asset('images/media/' . $page->photo->file) : asset('img/200x200.png')}}" alt="">
                                         </td>
                                         <td class="fw-bold">{{$page->title}}</td>
                                         <td>
@@ -126,5 +126,6 @@
     });
 </script>
 @stop
+
 
 

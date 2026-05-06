@@ -244,6 +244,7 @@
                                 <li class="nav-item"> <a href="{{ route('menu.index') }}?language={{$lang->code}}" class="nav-link {{ Request::is('admin/menu*') ? 'active' : '' }}"> <i class="nav-icon far fa-circle"></i> <p>Menu de Navegação</p> </a> </li>
                                 <li class="nav-item"> <a href="{{ route('headerfooter-setting.edit') }}?language={{$lang->code}}" class="nav-link {{ Request::is('admin/header-footer*') ? 'active' : '' }}"> <i class="nav-icon far fa-circle"></i> <p>Cabeçalho e Rodapé</p> </a> </li>
                                 <li class="nav-item"> <a href="{{ route('language.index') }}" class="nav-link {{ Request::is('admin/language*') ? 'active' : '' }}"> <i class="nav-icon far fa-circle"></i> <p>Idiomas</p> </a> </li>
+                                <li class="nav-item"> <a href="{{ route('system.optimize') }}" class="nav-link text-success"> <i class="nav-icon fas fa-bolt"></i> <p>Otimizar Sistema</p> </a> </li>
                             </ul>
                         </li>
                         @endif

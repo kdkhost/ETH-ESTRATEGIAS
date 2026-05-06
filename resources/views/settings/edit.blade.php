@@ -48,7 +48,7 @@
                                 <label class="form-label fw-bold d-block small text-muted uppercase text-center mb-3">Logo Principal</label>
                                 <div class="d-flex flex-column align-items-center gap-3">
                                     <div class="bg-light p-3 rounded-4 border shadow-sm d-inline-block">
-                                        <img height="50" src="{{$setting->photo ? asset('images/media/' . $setting->photo->file) : asset('img/200x200.png')}}" alt="Logo Current">
+                                        <img loading="lazy" height="50" src="{{$setting->photo ? asset('images/media/' . $setting->photo->file) : asset('img/200x200.png')}}" alt="Logo Current">
                                     </div>
                                     <input type="file" name="photo_id" class="filepond">
                                 </div>
@@ -57,7 +57,7 @@
                                 <label class="form-label fw-bold d-block small text-muted uppercase text-center mb-3">Favicon</label>
                                 <div class="d-flex flex-column align-items-center gap-3">
                                     <div class="bg-light p-3 rounded-4 border shadow-sm d-inline-block">
-                                        @if ($setting->favicon) <img height="32" src="{{$setting->favicon}}" /> @else <i class="fas fa-icons fa-2x text-muted opacity-25"></i> @endif
+                                        @if ($setting->favicon) <img loading="lazy" height="32" src="{{$setting->favicon}}" /> @else <i class="fas fa-icons fa-2x text-muted opacity-25"></i> @endif
                                     </div>
                                     <input type="text" name="favicon" value="{{$setting->favicon}}" class="form-control form-control-sm" placeholder="URL do Favicon">
                                 </div>
