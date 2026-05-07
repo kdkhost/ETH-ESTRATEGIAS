@@ -16,7 +16,7 @@ body {
 }
 
 .app-main {
-    padding-top: 1.5rem !important;
+    padding-top: 0 !important;
 }
 
 /* Header / Topbar Fixed */
