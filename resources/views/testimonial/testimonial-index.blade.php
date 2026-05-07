@@ -59,7 +59,7 @@
                                     <tr class="border-bottom-0">
                                         <td class="px-3"><input class="checkboxes form-check-input" form="delete-testimonials-form" type="checkbox" name="checkbox_array[]" value="{{$testimonial->id}}"></td>
                                         <td>
-                                            <img loading="lazy" width="50" height="50" class="rounded-circle shadow-sm border border-2 border-white" src="{{$testimonial->photo ? asset('images/media/' . $testimonial->photo->file) : asset('img/200x200.png')}}" alt="">
+                                            <img loading="lazy" width="50" height="50" class="rounded-circle shadow-sm border border-2 border-white object-fit-cover" src="{{$testimonial->profile_pic ? $testimonial->profile_pic : asset('img/200x200.png')}}" alt="">
                                         </td>
                                         <td class="fw-bold text-dark">{!! clean($testimonial->name) !!}</td>
                                         <td><span class="badge bg-light text-secondary border px-3 rounded-pill">{{$testimonial->position}}</span></td>
