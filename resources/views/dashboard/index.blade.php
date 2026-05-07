@@ -85,7 +85,7 @@
     </div>
 
 
-    <div class="row g-3">
+    <div class="row g-4">
         <!-- Blog Posts -->
         <div class="col-xl-2 col-lg-4 col-sm-6">
             <div class="small-box gourmet-box bg-gourmet-blue">
