@@ -61,11 +61,11 @@
                                         <td>
                                             <img loading="lazy" width="50" height="50" class="rounded-circle shadow-sm border border-2 border-white" src="{{$testimonial->photo ? asset('images/media/' . $testimonial->photo->file) : asset('img/200x200.png')}}" alt="">
                                         </td>
-                                        <td class="fw-bold text-dark">{{$testimonial->name}}</td>
+                                        <td class="fw-bold text-dark">{!! clean($testimonial->name) !!}</td>
                                         <td><span class="badge bg-light text-secondary border px-3 rounded-pill">{{$testimonial->position}}</span></td>
                                         <td class="text-muted small" style="max-width: 400px;">
                                             <i class="fas fa-quote-left opacity-25 me-1"></i>
-                                            {{Str::limit(strip_tags($testimonial->description), 120)}}
+                                            {!! Str::limit(clean($testimonial->description), 120) !!}
                                         </td>
                                         <td class="text-end px-3">
                                             <div class="d-flex justify-content-end gap-2">

@@ -53,7 +53,7 @@
                                 @foreach($menus->sortBy('order') as $menu)
                                     <tr class="border-bottom-0">
                                         <td class="px-3"><input class="checkboxes form-check-input" form="delete-menus-form" type="checkbox" name="checkbox_array[]" value="{{$menu->id}}"></td>
-                                        <td class="fw-bold text-dark">{{$menu->name}}</td>
+                                        <td class="fw-bold text-dark">{!! clean($menu->name) !!}</td>
                                         <td><code class="small text-primary bg-primary-subtle px-2 py-1 rounded">{{$menu->link}}</code></td>
                                         <td>
                                             <span class="badge bg-light text-dark border px-3 rounded-pill">{{$menu->order}}</span>

@@ -51,8 +51,8 @@
                                         <td>
                                             <img loading="lazy" width="55" height="55" class="rounded-circle shadow-sm border border-2 border-white object-fit-cover" src="{{$member->photo ? asset('images/media/' . $member->photo->file) : asset('img/200x200.png')}}" alt="">
                                         </td>
-                                        <td class="fw-bold text-dark">{{$member->name}}</td>
-                                        <td><span class="badge bg-light text-secondary border px-3 rounded-pill">{{$member->position}}</span></td>
+                                        <td class="fw-bold text-dark">{!! clean($member->name) !!}</td>
+                                        <td><span class="badge bg-light text-secondary border px-3 rounded-pill">{!! clean($member->position) !!}</span></td>
                                         <td class="text-end px-3">
                                             <div class="d-flex justify-content-end gap-2">
                                                 <a href="{{ route('member.edit', $member->id) }}" class="btn btn-sm btn-outline-primary border-0 rounded-circle p-2" title="Editar">

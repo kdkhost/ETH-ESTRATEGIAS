@@ -57,7 +57,7 @@
                                             <img loading="lazy" width="45" height="45" class="rounded-circle shadow-sm me-3 border border-2 border-white"
                                                  src="{{$user->photo ? asset('images/media/' . $user->photo->file) : asset('img/200x200.png')}}" alt="">
                                             <div>
-                                                <div class="fw-bold text-dark">{{$user->name}}</div>
+                                                <div class="fw-bold text-dark">{!! clean($user->name) !!}</div>
                                                 <small class="text-muted">ID: #{{$user->id}}</small>
                                             </div>
                                         </div>

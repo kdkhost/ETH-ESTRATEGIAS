@@ -64,8 +64,8 @@
                                             <div class="fw-bold text-dark small">{{$project->user->name}}</div>
                                         </td>
                                         <td>
-                                            <div class="fw-bold text-dark">{{$project->title}}</div>
-                                            <small class="text-muted d-block text-truncate" style="max-width: 250px;">{{Str::limit(strip_tags($project->body), 50)}}</small>
+                                            <div class="fw-bold text-dark">{!! clean($project->title) !!}</div>
+                                            <small class="text-muted d-block text-truncate" style="max-width: 250px;">{!! clean(Str::limit($project->body, 50)) !!}</small>
                                         </td>
                                         <td>
                                             <span class="badge bg-secondary-subtle text-secondary border px-3 rounded-pill small">

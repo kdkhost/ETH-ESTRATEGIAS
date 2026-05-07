@@ -73,8 +73,8 @@
                                             <small class="text-muted">{{$user->email ?? $post->user->email}}</small>
                                         </td>
                                         <td>
-                                            <div class="fw-bold text-dark">{{$post->title}}</div>
-                                            <small class="text-muted d-block text-truncate" style="max-width: 250px;">{{strip_tags($post->meta_description)}}</small>
+                                            <div class="fw-bold text-dark">{!! clean($post->title) !!}</div>
+                                            <small class="text-muted d-block text-truncate" style="max-width: 250px;">{!! clean($post->meta_description) !!}</small>
                                         </td>
                                         <td>
                                             <span class="badge bg-primary-subtle text-primary border border-primary px-3 rounded-pill">

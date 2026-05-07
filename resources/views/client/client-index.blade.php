@@ -61,7 +61,7 @@
                                                 <img loading="lazy" width="100" style="object-fit: contain; height: 40px;" src="{{$client->photo ? asset('images/media/' . $client->photo->file) : asset('img/200x200.png')}}" alt="Logo">
                                             </div>
                                         </td>
-                                        <td class="fw-bold text-dark">{{$client->company_name}}</td>
+                                        <td class="fw-bold text-dark">{!! clean($client->company_name) !!}</td>
                                         <td>
                                             @if($client->company_link)
                                                 <a href="{{$client->company_link}}" target="_blank" class="text-decoration-none small badge bg-light text-primary border rounded-pill px-3 py-2">

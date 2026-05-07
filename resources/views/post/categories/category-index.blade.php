@@ -57,7 +57,7 @@
                                         <tr class="border-bottom-0">
                                             <td class="px-3"><input class="checkboxes form-check-input" form="delete-categories-form" type="checkbox" name="checkbox_array[]" value="{{$category->id}}"></td>
                                             <td><span class="badge bg-light text-secondary rounded-pill">#{{$category->id}}</span></td>
-                                            <td class="fw-bold text-dark">{{$category->name}}</td>
+                                            <td class="fw-bold text-dark">{!! clean($category->name) !!}</td>
                                             <td class="text-end px-3">
                                                 <div class="d-flex justify-content-end gap-2">
                                                     <a href="{{ route('category.edit', $category->id) . '?language=' . request()->input('language')}}" class="btn btn-sm btn-outline-primary border-0 rounded-circle p-2" title="Editar">

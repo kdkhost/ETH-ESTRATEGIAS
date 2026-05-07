@@ -64,8 +64,8 @@
                                         <td>
                                             <div class="text-primary fs-5 bg-light d-inline-flex align-items-center justify-content-center rounded-circle" style="width: 40px; height: 40px;">{!!$service->icon!!}</div>
                                         </td>
-                                        <td class="fw-bold text-dark">{{$service->title}}</td>
-                                        <td class="text-muted small" style="max-width: 300px;">{{Str::limit(strip_tags($service->description), 100)}}</td>
+                                        <td class="fw-bold text-dark">{!! clean($service->title) !!}</td>
+                                        <td class="text-muted small" style="max-width: 300px;">{!! Str::limit(clean($service->description), 100) !!}</td>
                                         <td class="text-end px-3">
                                             <div class="d-flex justify-content-end gap-2">
                                                 <a href="{{ route('service.edit', $service->id) . '?language=' . request()->input('language')}}" class="btn btn-sm btn-outline-primary border-0 rounded-circle p-2" title="Editar">
