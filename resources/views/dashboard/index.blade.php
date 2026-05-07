@@ -224,7 +224,7 @@
             </div>
         </div>
 
-        <div class="col-lg-4">
+        <div class="col-lg-4 mt-4 mt-lg-0">
             <div class="card gourmet-card-light border-0 shadow-lg rounded-4 bg-primary text-white h-100 overflow-hidden">
                 <div class="card-body p-4 d-flex flex-column justify-content-center text-center position-relative">
                     <div class="position-relative" style="z-index: 2;">
@@ -233,7 +233,7 @@
                         </div>
                         <h5 class="fw-extrabold mb-2 text-white">Performance ETH</h5>
                         <p class="text-white opacity-75 small mb-4">Mantenha seu sistema sempre rápido limpando caches desatualizados.</p>
-                        <button type="button" id="dash-clear-cache" class="btn btn-white btn-lg rounded-pill px-5 shadow fw-bold text-primary hover-scale">
+                        <button type="button" id="dash-clear-cache" class="btn btn-white rounded-pill px-4 py-2 shadow-sm fw-bold text-primary hover-scale small">
                             <i class="fas fa-broom me-2"></i> LIMPAR TUDO
                         </button>
                     </div>
