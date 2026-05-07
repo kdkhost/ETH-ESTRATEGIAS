@@ -11,83 +11,62 @@
     <div class="row g-4 mb-5">
         <!-- Visitas Hoje -->
         <div class="col-xl-3 col-md-6">
-            <div class="card gourmet-card-light h-100 border-0 shadow-sm border-start border-4 border-primary overflow-hidden position-relative">
-                <div class="card-body p-4 position-relative" style="z-index: 2;">
+            <div class="card h-100 border-0 shadow-sm rounded-4 bg-white overflow-hidden">
+                <div class="card-body p-4 border-start border-4 border-primary">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="icon-shape bg-primary bg-opacity-10 text-primary rounded-4 shadow-sm" style="width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-chart-line fa-xl"></i>
+                        <div class="icon-shape bg-primary bg-opacity-10 text-primary rounded-circle" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-chart-line"></i>
                         </div>
-                        <div class="text-end">
-                            <span class="badge bg-success-subtle text-success rounded-pill px-3 py-1 small fw-bold shadow-sm">LIVE</span>
-                        </div>
+                        <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-1 small fw-bold">AO VIVO</span>
                     </div>
-                    <div class="d-flex align-items-baseline gap-2">
-                        <h2 class="fw-black mb-0 text-dark" id="dash-visits-count" style="font-size: 2.5rem; letter-spacing: -1.5px;">--</h2>
-                        <span class="text-success small fw-bold bg-success bg-opacity-10 px-2 py-0 rounded-pill"><i class="fas fa-caret-up me-1"></i>HOJE</span>
-                    </div>
-                    <p class="text-muted small fw-extrabold text-uppercase mt-2 mb-0 opacity-50" style="letter-spacing: 1.5px; font-size: 0.7rem;">Visitas Únicas</p>
-                </div>
-                <div class="position-absolute opacity-05" style="right: -10px; bottom: -10px; z-index: 1;">
-                    <i class="fas fa-chart-line" style="font-size: 100px; color: var(--bs-primary);"></i>
+                    <h2 class="fw-bold mb-0 text-dark" id="dash-visits-count" style="font-size: 2.2rem; letter-spacing: -1px;">--</h2>
+                    <p class="text-muted small fw-bold text-uppercase mt-2 mb-0">Visitas Únicas</p>
                 </div>
             </div>
         </div>
 
         <!-- Mídias Totais -->
         <div class="col-xl-3 col-md-6">
-            <div class="card gourmet-card-light h-100 border-0 shadow-sm border-start border-4 border-info overflow-hidden position-relative">
-                <div class="card-body p-4 position-relative" style="z-index: 2;">
+            <div class="card h-100 border-0 shadow-sm rounded-4 bg-white overflow-hidden">
+                <div class="card-body p-4 border-start border-4 border-info">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="icon-shape bg-info bg-opacity-10 text-info rounded-4 shadow-sm" style="width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-cloud-upload-alt fa-xl"></i>
+                        <div class="icon-shape bg-info bg-opacity-10 text-info rounded-circle" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-images"></i>
                         </div>
                     </div>
-                    <div class="d-flex align-items-baseline gap-2">
-                        <h2 class="fw-black mb-0 text-dark" style="font-size: 2.5rem; letter-spacing: -1.5px;">{{$media_number}}</h2>
-                    </div>
-                    <p class="text-muted small fw-extrabold text-uppercase mt-2 mb-0 opacity-50" style="letter-spacing: 1.5px; font-size: 0.7rem;">Arquivos em Nuvem</p>
-                </div>
-                <div class="position-absolute opacity-05" style="right: -10px; bottom: -10px; z-index: 1;">
-                    <i class="fas fa-images" style="font-size: 100px; color: var(--bs-info);"></i>
+                    <h2 class="fw-bold mb-0 text-dark" style="font-size: 2.2rem; letter-spacing: -1px;">{{$media_number}}</h2>
+                    <p class="text-muted small fw-bold text-uppercase mt-2 mb-0">Arquivos em Nuvem</p>
                 </div>
             </div>
         </div>
 
         <!-- Usuários -->
         <div class="col-xl-3 col-md-6">
-            <div class="card gourmet-card-light h-100 border-0 shadow-sm border-start border-4 border-warning overflow-hidden position-relative">
-                <div class="card-body p-4 position-relative" style="z-index: 2;">
+            <div class="card h-100 border-0 shadow-sm rounded-4 bg-white overflow-hidden">
+                <div class="card-body p-4 border-start border-4 border-warning">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="icon-shape bg-warning bg-opacity-10 text-warning rounded-4 shadow-sm" style="width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-user-shield fa-xl"></i>
+                        <div class="icon-shape bg-warning bg-opacity-10 text-warning rounded-circle" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-user-shield"></i>
                         </div>
                     </div>
-                    <div class="d-flex align-items-baseline gap-2">
-                        <h2 class="fw-black mb-0 text-dark" style="font-size: 2.5rem; letter-spacing: -1.5px;">{{$user_number}}</h2>
-                    </div>
-                    <p class="text-muted small fw-extrabold text-uppercase mt-2 mb-0 opacity-50" style="letter-spacing: 1.5px; font-size: 0.7rem;">Administradores</p>
-                </div>
-                <div class="position-absolute opacity-05" style="right: -10px; bottom: -10px; z-index: 1;">
-                    <i class="fas fa-users" style="font-size: 100px; color: var(--bs-warning);"></i>
+                    <h2 class="fw-bold mb-0 text-dark" style="font-size: 2.2rem; letter-spacing: -1px;">{{$user_number}}</h2>
+                    <p class="text-muted small fw-bold text-uppercase mt-2 mb-0">Administradores</p>
                 </div>
             </div>
         </div>
 
         <!-- Saúde do Sistema -->
         <div class="col-xl-3 col-md-6">
-            <div class="card gourmet-card-light h-100 border-0 shadow-lg bg-primary text-white overflow-hidden border-start border-4 border-white border-opacity-25">
-                <div class="card-body p-4 position-relative">
-                    <div class="d-flex align-items-center justify-content-between mb-3 position-relative" style="z-index: 2;">
-                        <div class="icon-shape bg-white bg-opacity-20 text-white rounded-4 shadow-lg" style="width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-heartbeat fa-xl"></i>
+            <div class="card h-100 border-0 shadow-sm rounded-4 bg-primary text-white overflow-hidden">
+                <div class="card-body p-4 border-start border-4 border-white border-opacity-25">
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <div class="icon-shape bg-white bg-opacity-20 text-white rounded-circle" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-heartbeat"></i>
                         </div>
-                        <span class="badge bg-white text-primary rounded-pill px-3 py-1 small fw-black shadow-sm">ONLINE</span>
+                        <span class="badge bg-white text-primary rounded-pill px-3 py-1 small fw-bold">ONLINE</span>
                     </div>
-                    <div class="position-relative" style="z-index: 2;">
-                        <h2 class="fw-black mb-0 text-white" style="font-size: 2.5rem; letter-spacing: -1.5px;">100%</h2>
-                        <p class="text-white small fw-extrabold text-uppercase mt-2 mb-0 opacity-50" style="letter-spacing: 1.5px; font-size: 0.7rem;">Uptime Estável</p>
-                    </div>
-                    <i class="fas fa-shield-alt position-absolute" style="right: -20px; bottom: -20px; font-size: 120px; opacity: 0.1; transform: rotate(-15deg);"></i>
+                    <h2 class="fw-bold mb-0" style="font-size: 2.2rem; letter-spacing: -1px;">100%</h2>
+                    <p class="text-white text-opacity-75 small fw-bold text-uppercase mt-2 mb-0">Uptime Estável</p>
                 </div>
             </div>
         </div>
@@ -200,50 +179,50 @@
                 <div class="card-header bg-white border-0 py-3 ps-4">
                     <h6 class="m-0 font-weight-bold text-dark text-uppercase small opacity-75" style="letter-spacing: 1px;">Últimas Atividades do Sistema</h6>
                 </div>
-                <div class="card-body p-0">
-                    <div class="activity-feed p-4">
+                <div class="card-body p-4">
+                    <div class="activity-feed">
                         <!-- Blog Activity -->
-                        <div class="activity-item d-flex align-items-center mb-4 p-3 rounded-4 bg-light bg-opacity-10 hover-elevate transition-all border-start border-4 border-primary shadow-sm">
-                            <div class="activity-icon bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center me-3 shadow-sm" style="width: 48px; height: 48px;">
-                                <i class="fas fa-newspaper fs-5"></i>
+                        <div class="activity-item d-flex align-items-center mb-3 p-3 bg-white border border-light shadow-sm rounded-3">
+                            <div class="activity-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                <i class="fas fa-newspaper small"></i>
                             </div>
                             <div class="activity-content flex-grow-1">
-                                <h6 class="mb-0 fw-bold text-dark">Blog / Notícias</h6>
-                                <p class="mb-0 text-muted small">Conteúdo atualizado recentemente</p>
+                                <h6 class="mb-0 text-dark fw-bold">Blog / Notícias</h6>
+                                <p class="mb-0 text-muted small">Atualizado recentemente</p>
                             </div>
                             <div class="activity-meta text-end">
-                                <span class="badge bg-success-subtle text-success px-3 rounded-pill mb-1">Ativo</span>
-                                <div class="text-muted small fw-medium">{{ now()->diffForHumans() }}</div>
+                                <span class="badge bg-success-subtle text-success px-2 py-1 rounded-pill small">Ativo</span>
+                                <div class="text-muted small mt-1">{{ now()->diffForHumans() }}</div>
                             </div>
                         </div>
 
                         <!-- Portfolio Activity -->
-                        <div class="activity-item d-flex align-items-center mb-4 p-3 rounded-4 bg-light bg-opacity-10 hover-elevate transition-all border-start border-4 border-success shadow-sm">
-                            <div class="activity-icon bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center me-3 shadow-sm" style="width: 48px; height: 48px;">
-                                <i class="fas fa-briefcase fs-5"></i>
+                        <div class="activity-item d-flex align-items-center mb-3 p-3 bg-white border border-light shadow-sm rounded-3">
+                            <div class="activity-icon bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                <i class="fas fa-briefcase small"></i>
                             </div>
                             <div class="activity-content flex-grow-1">
-                                <h6 class="mb-0 fw-bold text-dark">Portfólio ETH</h6>
-                                <p class="mb-0 text-muted small">Novos projetos publicados</p>
+                                <h6 class="mb-0 text-dark fw-bold">Portfólio ETH</h6>
+                                <p class="mb-0 text-muted small">Novos projetos</p>
                             </div>
                             <div class="activity-meta text-end">
-                                <span class="badge bg-success-subtle text-success px-3 rounded-pill mb-1">Ativo</span>
-                                <div class="text-muted small fw-medium">{{ now()->subHours(2)->diffForHumans() }}</div>
+                                <span class="badge bg-success-subtle text-success px-2 py-1 rounded-pill small">Ativo</span>
+                                <div class="text-muted small mt-1">{{ now()->subHours(2)->diffForHumans() }}</div>
                             </div>
                         </div>
 
                         <!-- Media Activity -->
-                        <div class="activity-item d-flex align-items-center p-3 rounded-4 bg-light bg-opacity-10 hover-elevate transition-all border-start border-4 border-info shadow-sm">
-                            <div class="activity-icon bg-info bg-opacity-10 text-info rounded-circle d-flex align-items-center justify-content-center me-3 shadow-sm" style="width: 48px; height: 48px;">
-                                <i class="fas fa-photo-video fs-5"></i>
+                        <div class="activity-item d-flex align-items-center p-3 bg-white border border-light shadow-sm rounded-3">
+                            <div class="activity-icon bg-info text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                <i class="fas fa-photo-video small"></i>
                             </div>
                             <div class="activity-content flex-grow-1">
-                                <h6 class="mb-0 fw-bold text-dark">Mídia Center</h6>
-                                <p class="mb-0 text-muted small">Otimização de arquivos concluída</p>
+                                <h6 class="mb-0 text-dark fw-bold">Mídia Center</h6>
+                                <p class="mb-0 text-muted small">Otimização concluída</p>
                             </div>
                             <div class="activity-meta text-end">
-                                <span class="badge bg-primary-subtle text-primary px-3 rounded-pill mb-1">Operacional</span>
-                                <div class="text-muted small fw-medium">{{ now()->subDays(1)->diffForHumans() }}</div>
+                                <span class="badge bg-primary-subtle text-primary px-2 py-1 rounded-pill small">Operacional</span>
+                                <div class="text-muted small mt-1">{{ now()->subDays(1)->diffForHumans() }}</div>
                             </div>
                         </div>
                     </div>
