@@ -210,13 +210,13 @@
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             @php $user = Auth::user(); @endphp
                             <img src="{{$user->photo ? asset('images/media/' . $user->photo->file) : asset('img/200x200.png')}}" class="user-image rounded-circle shadow-sm" alt="User Image">
-                            <span class="d-none d-md-inline fw-medium text-dark">{{ auth()->user()->name }}</span>
+                            <span class="d-none d-md-inline fw-medium text-dark">{!! clean(auth()->user()->name) !!}</span>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end border-0 shadow">
                             <li class="user-header text-bg-primary rounded-top">
                                 <img src="{{$user->photo ? asset('images/media/' . $user->photo->file) : asset('img/200x200.png')}}" class="rounded-circle shadow" alt="User Image">
-                                <p class="mb-0">{{ auth()->user()->name }}</p>
-                                <small>{{auth()->user()->role->name}}</small>
+                                <p class="mb-0">{!! clean(auth()->user()->name) !!}</p>
+                                <small>{!! clean(auth()->user()->role->name) !!}</small>
                             </li>
                             <li class="user-footer bg-light p-3 d-flex justify-content-between">
                                 <a href="{{ url('/admin/users') }}/{{auth()->user()->id}}/edit" class="btn btn-sm btn-light border">Perfil</a>
