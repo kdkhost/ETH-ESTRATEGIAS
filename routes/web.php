@@ -80,6 +80,9 @@ Route::middleware(['author'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
     Route::resource('admin/users', UserController::class);
+    
+    // Rota de saída da supervisão (Precisa estar acessível ao usuário personificado)
+    Route::get('admin/impersonate/leave', [UserController::class, 'leave_impersonation'])->name('impersonate.leave');
 
     Route::resource('admin/media', AdminMediasController::class);
     Route::delete('/delete/media', [AdminMediasController::class, 'deleteMedia'])->name('delete.media');
@@ -94,6 +97,8 @@ Route::middleware(['author'])->group(function () {
 
 Route::middleware(['admin'])->group(function () {
 
+    // Rota de entrada da supervisão (Restrita a Admins)
+    Route::get('admin/impersonate/{user}', [UserController::class, 'impersonate'])->name('impersonate');
 
     Route::delete('/delete/users', [UserController::class, 'delete_users'])->name('delete.users');
     

@@ -9,6 +9,7 @@ use App\Http\Requests\UserEditRequest;
 use App\Models\Role;
 use App\Models\Photo;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 use DB;
 
 class UserController extends Controller
@@ -157,5 +158,41 @@ class UserController extends Controller
         } else {
             return back();
         }
+    }
+
+    /**
+     * Iniciar sessão supervisionada como outro usuário.
+     */
+    public function impersonate(User $user)
+    {
+        if ($user->id == auth()->id()) {
+            return back()->with('user_error', 'Você não pode supervisionar sua própria conta.');
+        }
+
+        // Armazena o ID original do admin na sessão
+        session(['impersonator_id' => auth()->id()]);
+        
+        // Loga como o usuário alvo
+        Auth::loginUsingId($user->id);
+
+        return redirect()->route('dashboard.index')->with('user_success', 'Acesso supervisionado iniciado. Você está acessando como ' . $user->name . '.');
+    }
+
+    /**
+     * Encerrar sessão supervisionada e retornar ao admin original.
+     */
+    public function leave_impersonation()
+    {
+        if (session()->has('impersonator_id')) {
+            $adminId = session('impersonator_id');
+            session()->forget('impersonator_id');
+            
+            // Retorna ao login do admin original
+            Auth::loginUsingId($adminId);
+            
+            return redirect()->route('users.index')->with('user_success', 'Acesso supervisionado encerrado. Você retornou à sua conta original.');
+        }
+
+        return redirect()->route('dashboard.index');
     }
 }

@@ -74,6 +74,9 @@
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                             @if($user->id != auth()->id())
+                                                <a href="{{ route('impersonate', $user->id) }}" class="btn btn-sm btn-outline-warning border-0 rounded-circle p-2" title="Supervisionar Conta" style="color: #eab308;">
+                                                    <i class="fas fa-user-shield"></i>
+                                                </a>
                                                 <form action="{{ route('users.destroy', $user->id) }}" method="POST" class="d-inline single-delete-form">
                                                     @csrf
                                                     @method('DELETE')
