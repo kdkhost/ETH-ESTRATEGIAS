@@ -59,9 +59,9 @@
                                         <td class="px-3"><input class="checkboxes form-check-input" form="delete-pricing-form" type="checkbox" name="checkbox_array[]" value="{{$pricing->id}}"></td>
                                         <td class="text-dark py-3">
                                             <div class="pricing-title-box">
-                                                {!! clean($pricing->title) !!}
+                                                {!! clean(html_entity_decode($pricing->title)) !!}
                                             </div>
-                                            <small class="text-muted d-block mt-1">ID: #{{$pricing->id}}</small>
+                                            <small class="text-muted d-block mt-1">ID: #{{$pricing->id}} - GOURMET v1.1</small>
                                         </td>
                                         <td>
                                             @if($pricing->price)
