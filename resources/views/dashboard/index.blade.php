@@ -228,8 +228,8 @@
             <div class="card gourmet-card-light border-0 shadow-lg rounded-4 bg-primary text-white h-100 overflow-hidden">
                 <div class="card-body p-4 d-flex flex-column justify-content-center text-center position-relative">
                     <div class="position-relative" style="z-index: 2;">
-                        <div class="bg-white bg-opacity-20 rounded-circle p-4 d-inline-block mb-3 shadow-lg">
-                            <i class="fas fa-bolt fa-3x text-white"></i>
+                        <div class="bg-white rounded-circle p-2 d-inline-block mb-3 shadow-lg border border-4 border-white border-opacity-25">
+                            <img src="{{route('home')}}/public/images/media/1705726533logo.png" alt="Logo" style="width: 80px; height: 80px; object-fit: contain;">
                         </div>
                         <h5 class="fw-extrabold mb-2 text-white">Performance ETH</h5>
                         <p class="text-white opacity-75 small mb-4">Mantenha seu sistema sempre rápido limpando caches desatualizados.</p>
