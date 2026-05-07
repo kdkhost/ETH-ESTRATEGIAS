@@ -30,7 +30,7 @@
         @csrf
         @method('PUT')
 
-        <div class="row g-4">
+        <div class="row g-3">
             
             <!-- Branding Section -->
             <div class="col-12">
@@ -38,8 +38,8 @@
                     <div class="card-header py-3 bg-white border-0 d-flex align-items-center">
                         <h6 class="m-0 font-weight-bold text-primary uppercase"><i class="fas fa-fingerprint me-2"></i> Identidade Visual & Branding Gourmet</h6>
                     </div>
-                    <div class="card-body p-4">
-                        <div class="row g-4 align-items-center">
+                    <div class="card-body p-3">
+                        <div class="row g-3 align-items-center">
                             <div class="col-lg-6">
                                 <label class="form-label fw-bold small text-muted uppercase">Nome Institucional do Website</label>
                                 <input type="text" name="title" value="{{$setting->title}}" class="form-control form-control-lg border-0 bg-light rounded-4 px-4 shadow-none" placeholder="Ex: ETH Estratégias">
@@ -76,8 +76,8 @@
                     <div class="card-header py-3 bg-white border-0">
                         <h6 class="m-0 font-weight-bold text-primary uppercase"><i class="fas fa-tools me-2"></i> Experiência do Usuário & Disponibilidade</h6>
                     </div>
-                    <div class="card-body p-4">
-                        <div class="row g-4">
+                    <div class="card-body p-3">
+                        <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label fw-bold d-block small text-muted uppercase mb-3">Modo Manutenção Gourmet</label>
                                 <div class="btn-group w-100 rounded-pill overflow-hidden shadow-sm" role="group">
@@ -127,8 +127,8 @@
                     <div class="card-header py-3 bg-white border-0">
                         <h6 class="m-0 font-weight-bold text-primary uppercase"><i class="fas fa-search me-2"></i> Inteligência SEO & Analytics</h6>
                     </div>
-                    <div class="card-body p-4">
-                        <div class="mb-4">
+                    <div class="card-body p-3">
+                        <div class="mb-3">
                             <label class="form-label fw-bold text-muted small uppercase">Palavras-chave Globais (Keywords)</label>
                             <textarea name="keywords" class="form-control bg-light border-0 shadow-none p-3 rounded-4" rows="3" placeholder="estratégia, consultoria, growth...">{{$setting->keywords}}</textarea>
                         </div>
@@ -172,8 +172,8 @@
                     <div class="card-header py-3 bg-white border-0">
                         <h6 class="m-0 font-weight-bold text-primary uppercase"><i class="fas fa-info-circle me-2"></i> Informações Corporativas Premium</h6>
                     </div>
-                    <div class="card-body p-4">
-                        <div class="row g-4">
+                    <div class="card-body p-3">
+                        <div class="row g-3">
                             <div class="col-md-4">
                                 <label class="form-label fw-bold small text-muted uppercase">Copyright / Autor</label>
                                 <div class="input-group bg-light rounded-4 overflow-hidden border-0">
