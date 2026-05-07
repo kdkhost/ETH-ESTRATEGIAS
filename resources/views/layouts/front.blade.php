@@ -452,53 +452,47 @@
                     $(".slider-venor h1, .slider-venor h2, .slider-venor .slider-body").removeClass('active');
                 });
 
+                function applyTypewriter(element) {
+                    var $this = $(element);
+                    var text = $this.text().trim();
+                    if (text.length > 0) {
+                        $this.text('');
+                        var i = 0;
+                        var speed = 100;
+                        function type() {
+                            if (i < text.length) {
+                                $this.append(text.charAt(i));
+                                i++;
+                                setTimeout(type, speed);
+                            }
+                        }
+                        type();
+                    }
+                }
+
                 $('.slider-venor').on('translated.owl.carousel', function(event) {
                     var activeItem = $(".slider-venor .owl-item.active");
                     activeItem.find("h1, h2, .slider-body").addClass('active');
                     
-                    // Se houver spans destacados, faz efeito typewriter neles
+                    // Aplica em spans (texto vazado ou destaque)
                     activeItem.find("h1 span, h2 span").each(function() {
-                        var $this = $(this);
-                        var text = $this.text();
-                        $this.text('');
-                        var i = 0;
-                        var speed = 100; // Velocidade da máquina de escrever
-                        
-                        function typeWriter() {
-                            if (i < text.length) {
-                                $this.append(text.charAt(i));
-                                i++;
-                                setTimeout(typeWriter, speed);
-                            }
-                        }
-                        typeWriter();
-                    });
-
-                    // Para o restante das letras, mantém o shuffle elegante mais lento
-                    activeItem.find("h1, h2").each(function(){
-                        // Só faz shuffle se não tiver span sendo "digitado" ou faz no conteúdo fora do span
-                        // Mas para simplificar e atender o usuário:
-                        // $(this).shuffleLetters({ "step": 50 }); 
+                        applyTypewriter(this);
                     });
                 });
                 
-                // Trigger on first load
+                // Inicialização para o primeiro slide e outros elementos vazados na página
                 setTimeout(function(){
                     var activeItem = $(".slider-venor .owl-item.active");
                     activeItem.find("h1, h2, .slider-body").addClass('active');
                     activeItem.find("h1 span, h2 span").each(function() {
-                        var $this = $(this);
-                        var text = $this.text();
-                        $this.text('');
-                        var i = 0;
-                        function typeWriter() {
-                            if (i < text.length) {
-                                $this.append(text.charAt(i));
-                                i++;
-                                setTimeout(typeWriter, 100);
-                            }
-                        }
-                        typeWriter();
+                        applyTypewriter(this);
+                    });
+
+                    // Aplica em outros H3 spans (como os da seção de serviços) ou banners
+                    $("h1.banner-title span, h3 span, .typed-section .mt_typed-beforetext").each(function(){
+                         // Só aplica se for visível ou conforme o scroll (ScrollReveal já cuida da visibilidade)
+                         // Para garantir o efeito "como original":
+                         applyTypewriter(this);
                     });
                 }, 1000);
             });
