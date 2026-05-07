@@ -11,74 +11,83 @@
     <div class="row g-4 mb-5">
         <!-- Visitas Hoje -->
         <div class="col-xl-3 col-md-6">
-            <div class="card gourmet-card-light h-100 border-0 shadow-sm">
-                <div class="card-body p-4">
+            <div class="card gourmet-card-light h-100 border-0 shadow-sm border-start border-4 border-primary overflow-hidden position-relative">
+                <div class="card-body p-4 position-relative" style="z-index: 2;">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="icon-shape bg-primary-subtle text-primary rounded-4" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-chart-line fa-lg"></i>
+                        <div class="icon-shape bg-primary bg-opacity-10 text-primary rounded-4 shadow-sm" style="width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-chart-line fa-xl"></i>
                         </div>
                         <div class="text-end">
-                            <span class="badge bg-success-subtle text-success rounded-pill px-3 py-1 small fw-bold">Live</span>
+                            <span class="badge bg-success-subtle text-success rounded-pill px-3 py-1 small fw-bold shadow-sm">LIVE</span>
                         </div>
                     </div>
                     <div class="d-flex align-items-baseline gap-2">
-                        <h2 class="fw-extrabold mb-0" id="dash-visits-count" style="font-size: 2.2rem; letter-spacing: -1px;">--</h2>
-                        <span class="text-success small fw-bold"><i class="fas fa-arrow-up me-1"></i>Hoje</span>
+                        <h2 class="fw-black mb-0 text-dark" id="dash-visits-count" style="font-size: 2.5rem; letter-spacing: -1.5px;">--</h2>
+                        <span class="text-success small fw-bold bg-success bg-opacity-10 px-2 py-0 rounded-pill"><i class="fas fa-caret-up me-1"></i>HOJE</span>
                     </div>
-                    <p class="text-muted small fw-bold text-uppercase mt-1 mb-0 opacity-75" style="letter-spacing: 1px;">Visitas Únicas</p>
+                    <p class="text-muted small fw-extrabold text-uppercase mt-2 mb-0 opacity-50" style="letter-spacing: 1.5px; font-size: 0.7rem;">Visitas Únicas</p>
+                </div>
+                <div class="position-absolute opacity-05" style="right: -10px; bottom: -10px; z-index: 1;">
+                    <i class="fas fa-chart-line" style="font-size: 100px; color: var(--bs-primary);"></i>
                 </div>
             </div>
         </div>
 
         <!-- Mídias Totais -->
         <div class="col-xl-3 col-md-6">
-            <div class="card gourmet-card-light h-100 border-0 shadow-sm">
-                <div class="card-body p-4">
+            <div class="card gourmet-card-light h-100 border-0 shadow-sm border-start border-4 border-info overflow-hidden position-relative">
+                <div class="card-body p-4 position-relative" style="z-index: 2;">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="icon-shape bg-info-subtle text-info rounded-4" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-images fa-lg"></i>
+                        <div class="icon-shape bg-info bg-opacity-10 text-info rounded-4 shadow-sm" style="width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-cloud-upload-alt fa-xl"></i>
                         </div>
                     </div>
                     <div class="d-flex align-items-baseline gap-2">
-                        <h2 class="fw-extrabold mb-0" style="font-size: 2.2rem; letter-spacing: -1px;">{{$media_number}}</h2>
+                        <h2 class="fw-black mb-0 text-dark" style="font-size: 2.5rem; letter-spacing: -1.5px;">{{$media_number}}</h2>
                     </div>
-                    <p class="text-muted small fw-bold text-uppercase mt-1 mb-0 opacity-75" style="letter-spacing: 1px;">Arquivos em Nuvem</p>
+                    <p class="text-muted small fw-extrabold text-uppercase mt-2 mb-0 opacity-50" style="letter-spacing: 1.5px; font-size: 0.7rem;">Arquivos em Nuvem</p>
+                </div>
+                <div class="position-absolute opacity-05" style="right: -10px; bottom: -10px; z-index: 1;">
+                    <i class="fas fa-images" style="font-size: 100px; color: var(--bs-info);"></i>
                 </div>
             </div>
         </div>
 
         <!-- Usuários -->
         <div class="col-xl-3 col-md-6">
-            <div class="card gourmet-card-light h-100 border-0 shadow-sm">
-                <div class="card-body p-4">
+            <div class="card gourmet-card-light h-100 border-0 shadow-sm border-start border-4 border-warning overflow-hidden position-relative">
+                <div class="card-body p-4 position-relative" style="z-index: 2;">
                     <div class="d-flex align-items-center justify-content-between mb-3">
-                        <div class="icon-shape bg-warning-subtle text-warning rounded-4" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-user-shield fa-lg"></i>
+                        <div class="icon-shape bg-warning bg-opacity-10 text-warning rounded-4 shadow-sm" style="width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-user-shield fa-xl"></i>
                         </div>
                     </div>
                     <div class="d-flex align-items-baseline gap-2">
-                        <h2 class="fw-extrabold mb-0" style="font-size: 2.2rem; letter-spacing: -1px;">{{$user_number}}</h2>
+                        <h2 class="fw-black mb-0 text-dark" style="font-size: 2.5rem; letter-spacing: -1.5px;">{{$user_number}}</h2>
                     </div>
-                    <p class="text-muted small fw-bold text-uppercase mt-1 mb-0 opacity-75" style="letter-spacing: 1px;">Administradores</p>
+                    <p class="text-muted small fw-extrabold text-uppercase mt-2 mb-0 opacity-50" style="letter-spacing: 1.5px; font-size: 0.7rem;">Administradores</p>
+                </div>
+                <div class="position-absolute opacity-05" style="right: -10px; bottom: -10px; z-index: 1;">
+                    <i class="fas fa-users" style="font-size: 100px; color: var(--bs-warning);"></i>
                 </div>
             </div>
         </div>
 
         <!-- Saúde do Sistema -->
         <div class="col-xl-3 col-md-6">
-            <div class="card gourmet-card-light h-100 border-0 shadow-sm bg-dark text-white overflow-hidden">
+            <div class="card gourmet-card-light h-100 border-0 shadow-lg bg-primary text-white overflow-hidden border-start border-4 border-white border-opacity-25">
                 <div class="card-body p-4 position-relative">
                     <div class="d-flex align-items-center justify-content-between mb-3 position-relative" style="z-index: 2;">
-                        <div class="icon-shape bg-white bg-opacity-10 text-white rounded-4" style="width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;">
-                            <i class="fas fa-heartbeat fa-lg"></i>
+                        <div class="icon-shape bg-white bg-opacity-20 text-white rounded-4 shadow-lg" style="width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-heartbeat fa-xl"></i>
                         </div>
-                        <span class="badge bg-primary rounded-pill px-3 py-1 small fw-bold shadow-sm">Online</span>
+                        <span class="badge bg-white text-primary rounded-pill px-3 py-1 small fw-black shadow-sm">ONLINE</span>
                     </div>
                     <div class="position-relative" style="z-index: 2;">
-                        <h2 class="fw-extrabold mb-0 text-white" style="font-size: 2.2rem; letter-spacing: -1px;">100%</h2>
-                        <p class="text-white small fw-bold text-uppercase mt-1 mb-0 opacity-50" style="letter-spacing: 1px;">Uptime Estável</p>
+                        <h2 class="fw-black mb-0 text-white" style="font-size: 2.5rem; letter-spacing: -1.5px;">100%</h2>
+                        <p class="text-white small fw-extrabold text-uppercase mt-2 mb-0 opacity-50" style="letter-spacing: 1.5px; font-size: 0.7rem;">Uptime Estável</p>
                     </div>
-                    <i class="fas fa-shield-alt position-absolute" style="right: -20px; bottom: -20px; font-size: 100px; opacity: 0.05;"></i>
+                    <i class="fas fa-shield-alt position-absolute" style="right: -20px; bottom: -20px; font-size: 120px; opacity: 0.1; transform: rotate(-15deg);"></i>
                 </div>
             </div>
         </div>
