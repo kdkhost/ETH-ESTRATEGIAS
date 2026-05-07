@@ -171,15 +171,18 @@
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
     <div class="app-wrapper">
     
-        <!-- Banner de Acesso Supervisionado -->
+        <!-- Banner de Acesso Supervisionado (Fixado no rodapé) -->
         @if(session()->has('impersonator_id'))
-            <div class="alert text-center m-0 border-0 rounded-0 shadow-sm" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: #e2e8f0; z-index: 9999; position: relative; border-bottom: 2px solid #eab308 !important;">
+            <div class="alert text-center m-0 border-0 rounded-0 shadow-lg" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: #e2e8f0; z-index: 99999; position: fixed; bottom: 0; left: 0; width: 100%; border-top: 3px solid #eab308 !important;">
                 <i class="fas fa-user-shield me-2 text-warning"></i>
                 <span class="fw-semibold">Acesso Supervisionado:</span> Você está operando o painel como <span class="fw-bold text-white">{{ auth()->user()->name }}</span>.
-                <a href="{{ route('impersonate.leave') }}" class="btn btn-sm btn-warning ms-3 rounded-pill px-4 fw-bold shadow-sm" style="color: #0f172a !important;">
+                <a href="{{ route('impersonate.leave') }}" class="btn btn-sm btn-warning ms-4 rounded-pill px-4 fw-bold shadow" style="color: #0f172a !important;">
                     Sair e Retornar <i class="fas fa-sign-out-alt ms-1"></i>
                 </a>
             </div>
+            <style>
+                body { padding-bottom: 60px; } /* Evitar que o conteúdo fique escondido atrás do banner */
+            </style>
         @endif
 
         <!-- Header / Topbar -->
