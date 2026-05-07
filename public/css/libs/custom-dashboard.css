@@ -36,6 +36,14 @@ body {
 /* Sidebar Rigorous Styling */
 .app-sidebar, .sidebar-wrapper {
     background: #0f172a !important; /* Deep Navy Premium */
+    overflow-y: auto !important;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+}
+
+.app-sidebar::-webkit-scrollbar, 
+.sidebar-wrapper::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
 }
 
 /* Fix for mobile overlay behavior */
