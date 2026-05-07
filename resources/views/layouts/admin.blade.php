@@ -379,12 +379,6 @@
                         </li>
                         @endif
 
-                        <li class="nav-item mt-4">
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#logoutModal" class="nav-link text-danger">
-                                <i class="nav-icon fas fa-sign-out-alt"></i>
-                                <p>Encerrar Sessão</p>
-                            </a>
-                        </li>
 
                     </ul>
                 </nav>
