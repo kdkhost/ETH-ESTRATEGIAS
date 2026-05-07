@@ -111,8 +111,3 @@
     [data-bs-theme="dark"] .card-header { background-color: rgba(255,255,255,0.05); }
 </style>
 @endsection
-
-
-
-
-@endsection
