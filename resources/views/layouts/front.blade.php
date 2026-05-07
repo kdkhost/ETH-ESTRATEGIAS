@@ -454,7 +454,13 @@
 
                 function applyTypewriter(element) {
                     var $this = $(element);
-                    var text = $this.text().trim();
+                    var text = $this.data('original-text') || $this.text().trim();
+                    
+                    // Armazena o texto original se ainda não o fez
+                    if (!$this.data('original-text')) {
+                        $this.data('original-text', text);
+                    }
+
                     if (text.length > 0) {
                         $this.text('');
                         var i = 0;
@@ -470,6 +476,22 @@
                     }
                 }
 
+                // Observer para textos fora do slider (scroll)
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            applyTypewriter(entry.target);
+                            // Se quiser que anime apenas uma vez por "aparição", não precisa dar unobserve
+                            // Se quiser que re-anime ao voltar, o applyTypewriter já reseta o texto
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                // Alvos globais de texto vazado
+                $("h1 span, h2 span, h3 span, h1.banner-title span, .typed-section .mt_typed-beforetext").each(function() {
+                    observer.observe(this);
+                });
+
                 $('.slider-venor').on('translated.owl.carousel', function(event) {
                     var activeItem = $(".slider-venor .owl-item.active");
                     activeItem.find("h1, h2, .slider-body").addClass('active');
@@ -479,21 +501,6 @@
                         applyTypewriter(this);
                     });
                 });
-                
-                // Inicialização Urgente
-                setTimeout(function(){
-                    var activeItem = $(".slider-venor .owl-item.active");
-                    activeItem.find("h1, h2, .slider-body").addClass('active');
-                    
-                    // Aplica APENAS nos textos vazados/destacados
-                    activeItem.find("h1 span, h2 span").each(function() {
-                        applyTypewriter(this);
-                    });
-
-                    $("h1.banner-title span, h3 span, .typed-section .mt_typed-beforetext").each(function(){
-                         applyTypewriter(this);
-                    });
-                }, 500);
             });
         })
     } ( jQuery ) )
