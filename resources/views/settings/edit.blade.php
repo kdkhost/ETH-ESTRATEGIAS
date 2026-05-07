@@ -123,43 +123,43 @@
 
             <!-- SEO & Analytics -->
             <div class="col-md-5">
-                <div class="card text-bg-dark border-0 rounded-4 shadow-lg h-100 overflow-hidden">
-                    <div class="card-header py-3 border-bottom border-white border-opacity-10 bg-transparent">
-                        <h6 class="m-0 font-weight-bold text-white uppercase"><i class="fas fa-search me-2"></i> Inteligência SEO & Analytics</h6>
+                <div class="card gourmet-card-light shadow-sm border-0 h-100 overflow-hidden">
+                    <div class="card-header py-3 bg-white border-0">
+                        <h6 class="m-0 font-weight-bold text-primary uppercase"><i class="fas fa-search me-2"></i> Inteligência SEO & Analytics</h6>
                     </div>
                     <div class="card-body p-4">
                         <div class="mb-4">
-                            <label class="form-label fw-bold text-white opacity-75 small uppercase">Palavras-chave Globais (Keywords)</label>
-                            <textarea name="keywords" class="form-control bg-white bg-opacity-10 text-white border-0 shadow-none p-3 rounded-4" rows="3" placeholder="estratégia, consultoria, growth...">{{$setting->keywords}}</textarea>
+                            <label class="form-label fw-bold text-muted small uppercase">Palavras-chave Globais (Keywords)</label>
+                            <textarea name="keywords" class="form-control bg-light border-0 shadow-none p-3 rounded-4" rows="3" placeholder="estratégia, consultoria, growth...">{{$setting->keywords}}</textarea>
                         </div>
                         <div class="row g-3 mb-4">
                             <div class="col-6">
                                 <label class="form-label small fw-bold text-white opacity-75 uppercase">Google Analytics</label>
-                                <select name="analytics_switch" class="form-select bg-white bg-opacity-10 text-white border-0 shadow-none rounded-pill px-3">
-                                    <option value="1" {{$setting->analytics_switch == 1 ? 'selected' : ''}} class="text-dark">ATIVADO</option>
-                                    <option value="0" {{$setting->analytics_switch == 0 ? 'selected' : ''}} class="text-dark">DESATIVADO</option>
+                                <select name="analytics_switch" class="form-select bg-light border-0 shadow-none rounded-pill px-3">
+                                    <option value="1" {{$setting->analytics_switch == 1 ? 'selected' : ''}}>ATIVADO</option>
+                                    <option value="0" {{$setting->analytics_switch == 0 ? 'selected' : ''}}>DESATIVADO</option>
                                 </select>
                             </div>
                             <div class="col-6">
                                 <label class="form-label small fw-bold text-white opacity-75 uppercase">Facebook Pixel</label>
-                                <select name="facebook_pixel_switch" class="form-select bg-white bg-opacity-10 text-white border-0 shadow-none rounded-pill px-3">
-                                    <option value="1" {{$setting->facebook_pixel_switch == 1 ? 'selected' : ''}} class="text-dark">ATIVADO</option>
-                                    <option value="0" {{$setting->facebook_pixel_switch == 0 ? 'selected' : ''}} class="text-dark">DESATIVADO</option>
+                                <select name="facebook_pixel_switch" class="form-select bg-light border-0 shadow-none rounded-pill px-3">
+                                    <option value="1" {{$setting->facebook_pixel_switch == 1 ? 'selected' : ''}}>ATIVADO</option>
+                                    <option value="0" {{$setting->facebook_pixel_switch == 0 ? 'selected' : ''}}>DESATIVADO</option>
                                 </select>
                             </div>
                         </div>
                         <div class="mb-4">
                             <label class="form-label small fw-bold text-white opacity-75 uppercase">Tag ID do Google Analytics</label>
-                            <div class="input-group bg-white bg-opacity-10 rounded-pill overflow-hidden border-0">
-                                <span class="input-group-text bg-transparent border-0 ps-3"><i class="fab fa-google text-white opacity-25"></i></span>
-                                <input type="text" name="analytics" value="{{$setting->analytics}}" class="form-control bg-transparent text-white border-0 shadow-none" placeholder="G-XXXXXXXXXX">
+                            <div class="input-group bg-light rounded-pill overflow-hidden border-0">
+                                <span class="input-group-text bg-transparent border-0 ps-3"><i class="fab fa-google text-primary opacity-25"></i></span>
+                                <input type="text" name="analytics" value="{{$setting->analytics}}" class="form-control bg-transparent border-0 shadow-none" placeholder="G-XXXXXXXXXX">
                             </div>
                         </div>
                         <div class="mb-0">
                             <label class="form-label small fw-bold text-white opacity-75 uppercase">ID do Facebook Pixel</label>
-                            <div class="input-group bg-white bg-opacity-10 rounded-pill overflow-hidden border-0">
-                                <span class="input-group-text bg-transparent border-0 ps-3"><i class="fab fa-facebook text-white opacity-25"></i></span>
-                                <input type="text" name="facebook_pixel" value="{{$setting->facebook_pixel}}" class="form-control bg-transparent text-white border-0 shadow-none" placeholder="Pixel ID">
+                            <div class="input-group bg-light rounded-pill overflow-hidden border-0">
+                                <span class="input-group-text bg-transparent border-0 ps-3"><i class="fab fa-facebook text-primary opacity-25"></i></span>
+                                <input type="text" name="facebook_pixel" value="{{$setting->facebook_pixel}}" class="form-control bg-transparent border-0 shadow-none" placeholder="Pixel ID">
                             </div>
                         </div>
                     </div>
