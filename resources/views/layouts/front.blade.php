@@ -496,8 +496,19 @@
                     });
                 }, { threshold: 0.5 });
 
-                // Alvos globais de texto vazado (Incluindo H2 direto para o slider)
-                $("h1 span, h2, h2 span, h3 span, h1.banner-title span, .typed-section .mt_typed-beforetext").each(function() {
+                // Alvos globais EXATOS de texto vazado (baseado no CSS -webkit-text-stroke)
+                var vazadoSelectors = [
+                    ".slider-content h1 span",
+                    ".slider-content h2", 
+                    ".slider-content h2 span",
+                    ".services-section h3 span",
+                    ".portfolio-section h3 span",
+                    ".blog-section .blog-section-title span",
+                    "h1.banner-title span",
+                    ".project-number" // Números do portfolio
+                ].join(", ");
+
+                $(vazadoSelectors).each(function() {
                     observer.observe(this);
                 });
 
@@ -505,8 +516,8 @@
                     var activeItem = $(".slider-venor .owl-item.active");
                     activeItem.find("h1, h2, .slider-body").addClass('active');
                     
-                    // Aplica efeito Typewriter nos textos vazados (spans ou h2 direto)
-                    activeItem.find("h1 span, h2, h2 span").each(function() {
+                    // Aplica efeito Typewriter APENAS nos textos vazados exatos do slider ativo
+                    activeItem.find(".slider-content h1 span, .slider-content h2, .slider-content h2 span").each(function() {
                         applyTypewriter(this);
                     });
                 });
