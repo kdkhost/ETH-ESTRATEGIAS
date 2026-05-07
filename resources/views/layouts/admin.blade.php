@@ -207,7 +207,7 @@
                     </li>
                     <!-- Real-time Clock -->
                     <li class="nav-item me-3 d-none d-md-flex align-items-center">
-                        <div class="fw-bold text-dark font-monospace bg-light px-3 py-1 rounded-pill border shadow-sm" style="font-size: 0.9rem; min-width: 110px; text-align: center;">
+                        <div class="fw-bold text-dark font-monospace bg-light px-3 py-1 rounded-pill border shadow-sm" style="font-size: 0.9rem; min-width: 140px; text-align: center;">
                             <i class="far fa-clock me-2 text-primary"></i><span id="real-time-clock">00:00:00</span>
                         </div>
                     </li>
@@ -511,14 +511,13 @@
         // Relógio em Tempo Real
         function updateClock() {
             const now = new Date();
-            const options = { 
+            const timeString = now.toLocaleTimeString('pt-BR', { 
                 timeZone: 'America/Sao_Paulo', 
                 hour: '2-digit', 
                 minute: '2-digit', 
-                second: '2-digit', 
+                second: '2-digit',
                 hour12: false 
-            };
-            const timeString = now.toLocaleTimeString('pt-BR', options);
+            });
             const clockEl = document.getElementById('real-time-clock');
             if(clockEl) clockEl.innerText = timeString;
         }
