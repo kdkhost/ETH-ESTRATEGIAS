@@ -404,7 +404,7 @@
 
         <!-- Footer -->
         <footer class="app-footer border-top bg-white py-3">
-            <div class="float-end d-none d-sm-inline opacity-50">v1.2 | Laravel 12</div>
+            <div class="float-end d-none d-sm-inline">v1.2.1-DEBUG | Laravel 12</div>
             <strong class="fw-medium text-dark">Copyright &copy; 2026 Marcelo Brad RJ.</strong> Todos os direitos reservados.
         </footer>
 
