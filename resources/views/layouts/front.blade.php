@@ -456,12 +456,15 @@
                     var $this = $(element);
                     var text = $this.data('original-text') || $this.text().trim();
                     
-                    // Armazena o texto original se ainda não o fez
                     if (!$this.data('original-text')) {
                         $this.data('original-text', text);
                     }
 
-                    if (text.length > 0) {
+                    // Evita múltiplas instâncias rodando no mesmo elemento
+                    if ($this.data('is-typing')) return;
+                    $this.data('is-typing', true);
+
+                    function startLoop() {
                         $this.text('');
                         var i = 0;
                         var speed = 100;
@@ -470,10 +473,16 @@
                                 $this.append(text.charAt(i));
                                 i++;
                                 setTimeout(type, speed);
+                            } else {
+                                // Espera 3 segundos e reinicia
+                                setTimeout(function() {
+                                    startLoop();
+                                }, 3000);
                             }
                         }
                         type();
                     }
+                    startLoop();
                 }
 
                 // Observer para textos fora do slider (scroll)
