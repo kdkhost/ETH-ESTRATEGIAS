@@ -65,7 +65,7 @@
                                             <div class="fw-bold text-dark">{!! strip_tags($slider->heading1) !!}</div>
                                             <small class="text-muted">ID: #{{$slider->id}}</small>
                                         </td>
-                                        <td><span class="text-muted small">{{$slider->heading2}}</span></td>
+                                        <td><span class="text-muted small">{!! clean($slider->heading2) !!}</span></td>
                                         <td>
                                             <span class="badge bg-primary-subtle text-primary border border-primary px-3 rounded-pill">{{$slider->button_text}}</span>
                                         </td>
