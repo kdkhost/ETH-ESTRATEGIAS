@@ -41,6 +41,22 @@ body {
     top: 0;
 }
 
+.nav-sidebar .nav-item {
+    margin-bottom: 2px;
+}
+
+.nav-sidebar .nav-link {
+    padding: 0.75rem 1rem !important;
+    border-radius: 0.75rem !important;
+    margin: 0 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.nav-sidebar .nav-link p {
+    font-weight: 500;
+    font-size: 0.88rem;
+}
+
 .sidebar-brand .brand-text {
     font-size: 1.25rem;
     letter-spacing: -0.5px;

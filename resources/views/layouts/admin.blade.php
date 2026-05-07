@@ -243,7 +243,7 @@
                 </a>
             </div>
             <div class="sidebar-wrapper">
-                <nav class="mt-3 px-2">
+                <nav class="mt-3 px-2 pb-5">
                     <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
                         
                         <!-- Dashboard -->
