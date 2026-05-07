@@ -3,14 +3,15 @@
 ## Sobre o Sistema
 O **ETH Estratégias** é uma plataforma corporativa web gerenciável desenvolvida sob medida. Conta com um painel administrativo poderoso e uma vitrine online robusta, otimizada e responsiva.
 
-## Atualizações Recentes (Maio 2026) - Versão Premium v2.0
+## Atualizações Recentes (Maio 2026) - Versão Premium v2.1
 Realizamos uma modernização completa da infraestrutura de interface e segurança:
 
-### 🎨 UI/UX & Design System
-*   **Modernização AdminLTE 4:** Migração completa para o framework AdminLTE 4 com estética Premium.
-*   **Design Consistente:** Uso de cards arredondados (`rounded-4`), sombras suaves (`shadow-sm`) e tipografia moderna (Inter).
+### 🎨 UI/UX & Design System Gourmet v1.5
+*   **Design System Gourmet:** Implementação de cards com texturas, bordas de destaque (`Premium Stripe`) e ícones em marca d'água.
+*   **Navbar Premium:** Barra superior fixa (Sticky) com efeito Glassmorphism e relógio digital em tempo real (sem refresh).
+*   **Experiência Mobile:** Correção do comportamento da sidebar para modo overlay, garantindo que o conteúdo não seja comprimido em telas pequenas.
+*   **UX Refinada:** Menu lateral otimizado com rolagem invisível e remoção de redundâncias (Logout centralizado no perfil).
 *   **Modo Dark/Light:** Implementação de alternância de temas nativa com persistência em `localStorage`.
-*   **Componentização:** Botões e elementos de formulário padronizados para garantir uma experiência visual fluida.
 
 ### 🛠️ Funcionalidades Premium
 *   **Upload Inteligente (FilePond):** Integração global do FilePond com suporte a arraste e solte, barra de progresso animada e plugins de validação/encoding.

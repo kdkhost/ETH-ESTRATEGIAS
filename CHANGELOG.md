@@ -1,6 +1,26 @@
 # Changelog - ETH Estratégias
 
 Todas as mudanças notáveis neste projeto serão documentadas neste arquivo.
+ 
+## [2.1.0] - 2026-05-06
+### Adicionado
+- Relógio em tempo real na Navbar com atualização dinâmica via JS.
+- Configuração oficial de fuso horário para `America/Sao_Paulo`.
+- Novo Feed de Atividades "Gourmet" com ícones vibrantes e bordas de destaque.
+- Inserção da logo oficial no card de Performance do Dashboard.
+- Rolagem vertical suave e barra de rolagem oculta na sidebar.
+
+### Modificado
+- Design System **Gourmet v1.5** aplicado a todos os cartões de estatísticas.
+- Navbar fixada (Sticky) com efeito Glassmorphism e desfoque de fundo.
+- Remoção do logout da sidebar, centralizando a ação no menu de perfil (Melhor UX).
+- Redimensionamento global de cartões e botões para um layout mais denso e premium.
+- Correção do comportamento mobile: sidebar agora utiliza modo overlay (sobreposição).
+
+### Corrigido
+- Espaçamento excessivo no topo da página (ajuste de padding no main container).
+- Incoerência visual e "aperto" no menu lateral após remoção de itens.
+- Falta de margens verticais entre os componentes no layout mobile.
 
 ## [2.0.0] - 2026-05-06
 ### Adicionado
