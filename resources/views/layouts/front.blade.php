@@ -474,14 +474,7 @@
                     var activeItem = $(".slider-venor .owl-item.active");
                     activeItem.find("h1, h2, .slider-body").addClass('active');
                     
-                    // 1. Efeito Shuffle para o texto principal (não span)
-                    activeItem.find("h1, h2").each(function(){
-                        var $h = $(this);
-                        // Shuffle apenas se não for o span que será digitado (ou faz no texto pai)
-                        $h.shuffleLetters(); 
-                    });
-
-                    // 2. Efeito Typewriter para os spans destacados (vazados)
+                    // Aplica efeito Typewriter APENAS nos spans destacados (vazados)
                     activeItem.find("h1 span, h2 span").each(function() {
                         applyTypewriter(this);
                     });
@@ -492,8 +485,7 @@
                     var activeItem = $(".slider-venor .owl-item.active");
                     activeItem.find("h1, h2, .slider-body").addClass('active');
                     
-                    activeItem.find("h1, h2").shuffleLetters();
-                    
+                    // Aplica APENAS nos textos vazados/destacados
                     activeItem.find("h1 span, h2 span").each(function() {
                         applyTypewriter(this);
                     });
