@@ -18,7 +18,7 @@
     </div>
 
     <!-- DataTales Example -->
-    <div class="card gourmet-card-light shadow-sm border-0 mb-4 col-lg-9 mx-auto">
+    <div class="card shadow mb-4 border-0 rounded-4 overflow-hidden">
         <div class="card-header py-3 bg-white border-0 d-flex align-items-center">
             <h6 class="m-0 font-weight-bold text-primary"><i class="fas fa-user-plus me-2"></i> Adicionar Novo Usuário</h6>
         </div>
@@ -38,77 +38,55 @@
 
                 <div class="row g-4">
                     <div class="col-md-6">
-                        <label class="form-label fw-bold small text-muted uppercase">{{clean( trans('niva-backend.name') )}}</label>
-                        <div class="input-group">
-                            <span class="input-group-text bg-light border-0"><i class="fas fa-user text-primary opacity-50"></i></span>
-                            <input type="text" name="name" class="form-control form-control-lg bg-light border-0" placeholder="Nome completo" required>
-                        </div>
+                        <label class="form-label fw-bold">{{clean( trans('niva-backend.name') )}}</label>
+                        <input type="text" name="name" class="form-control" placeholder="Nome completo" required>
                     </div>
                     
                     <div class="col-md-6">
-                        <label class="form-label fw-bold small text-muted uppercase">{{clean( trans('niva-backend.email') )}}</label>
-                        <div class="input-group">
-                            <span class="input-group-text bg-light border-0"><i class="fas fa-envelope text-primary opacity-50"></i></span>
-                            <input type="email" name="email" class="form-control form-control-lg bg-light border-0" placeholder="E-mail de acesso" required>
-                        </div>
+                        <label class="form-label fw-bold">{{clean( trans('niva-backend.email') )}}</label>
+                        <input type="email" name="email" class="form-control" placeholder="E-mail de acesso" required>
                     </div>
                     
                     <div class="col-md-6">
-                        <label class="form-label fw-bold small text-muted uppercase">{{clean( trans('niva-backend.roles') )}}</label>
-                        <div class="input-group">
-                            <span class="input-group-text bg-light border-0"><i class="fas fa-shield-alt text-primary opacity-50"></i></span>
-                            <select name="role_id" id="role_id" class="form-select form-select-lg bg-light border-0 ps-3" required>
-                                <option value="">{{clean( trans('niva-backend.choose_role') )}}</option>
-                                @foreach($roles as $role)
-                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
-                                @endforeach 
-                            </select>
-                        </div>
+                        <label class="form-label fw-bold">{{clean( trans('niva-backend.roles') )}}</label>
+                        <select name="role_id" id="role_id" class="form-select" required>
+                            <option value="">{{clean( trans('niva-backend.choose_role') )}}</option>
+                            @foreach($roles as $role)
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            @endforeach 
+                        </select>
                     </div>
                     
                     <div class="col-md-6">
-                        <label class="form-label fw-bold small text-muted uppercase">{{clean( trans('niva-backend.password') )}}</label>
-                        <div class="input-group">
-                            <span class="input-group-text bg-light border-0"><i class="fas fa-lock text-primary opacity-50"></i></span>
-                            <input type="password" name="password" class="form-control form-control-lg bg-light border-0" placeholder="Senha de acesso" required>
-                        </div>
+                        <label class="form-label fw-bold">{{clean( trans('niva-backend.password') )}}</label>
+                        <input type="password" name="password" class="form-control" placeholder="Senha de acesso" required>
                     </div>
 
                     <div class="col-md-6">
-                        <label class="form-label fw-bold small text-muted uppercase">{{clean( trans('niva-backend.address') )}}</label>
-                        <div class="input-group">
-                            <span class="input-group-text bg-light border-0"><i class="fas fa-map-marker-alt text-primary opacity-50"></i></span>
-                            <input type="text" name="address" class="form-control form-control-lg bg-light border-0" placeholder="Endereço">
-                        </div>
+                        <label class="form-label fw-bold">{{clean( trans('niva-backend.address') )}}</label>
+                        <input type="text" name="address" class="form-control" placeholder="Endereço">
                     </div>
                     
                     <div class="col-md-6">
-                        <label class="form-label fw-bold small text-muted uppercase">{{clean( trans('niva-backend.city') )}}</label>
-                        <div class="input-group">
-                            <span class="input-group-text bg-light border-0"><i class="fas fa-building text-primary opacity-50"></i></span>
-                            <input type="text" name="city" class="form-control form-control-lg bg-light border-0" placeholder="Cidade">
-                        </div>
+                        <label class="form-label fw-bold">{{clean( trans('niva-backend.city') )}}</label>
+                        <input type="text" name="city" class="form-control" placeholder="Cidade">
                     </div>
                     
                     <div class="col-md-6">
-                        <label class="form-label fw-bold small text-muted uppercase">{{clean( trans('niva-backend.phone') )}}</label>
-                        <div class="input-group">
-                            <span class="input-group-text bg-light border-0"><i class="fas fa-phone text-primary opacity-50"></i></span>
-                            <input type="text" name="phone" class="form-control form-control-lg bg-light border-0" placeholder="Telefone">
-                        </div>
+                        <label class="form-label fw-bold">{{clean( trans('niva-backend.phone') )}}</label>
+                        <input type="text" name="phone" class="form-control" placeholder="Telefone">
                     </div>
                     
                     <div class="col-md-6">
-                        <label class="form-label fw-bold small text-muted uppercase">{{clean( trans('niva-backend.photo') )}}</label>
-                        <div class="input-group">
-                            <span class="input-group-text bg-light border-0"><i class="fas fa-image text-primary opacity-50"></i></span>
-                            <input type="file" name="photo_id" class="form-control form-control-lg bg-light border-0" id="photo_id" style="padding-top: 10px;">
+                        <div class="card bg-light border-0 rounded-4 p-3 m-0 shadow-none h-100">
+                            <label class="form-label fw-bold d-block mb-3">{{clean( trans('niva-backend.photo') )}}</label>
+                            <input type="file" name="photo_id" class="form-control" id="photo_id">
+                            <small class="text-muted d-block mt-2">Resolução ideal: 200x200px</small>
                         </div>
-                        <small class="text-muted mt-1 d-block ms-1">Resolução ideal: 200x200px</small>
                     </div>
 
-                    <div class="col-12 text-end mt-4 pt-3 border-top">
-                        <button type="submit" class="btn btn-primary shadow-sm px-5">
+                    <div class="col-12 text-center mt-5">
+                        <button type="submit" class="btn btn-primary btn-lg px-5 shadow rounded-pill">
                             <i class="fas fa-save me-2"></i> {{clean( trans('niva-backend.create_user') )}}
                         </button>
                     </div>
@@ -120,6 +98,19 @@
 
 </div>
 <!-- /.container-fluid -->
+
+@stop
+
+@section('styles')
+<style>
+    .rounded-4 { border-radius: 1rem !important; }
+    .form-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem; color: #6c757d; }
+    .form-control, .form-select { border-radius: 0.5rem; padding: 0.6rem 1rem; border-color: #dee2e6; }
+    .form-control:focus, .form-select:focus { border-color: #0d6efd; box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.05); }
+    .card-header { background-color: #f8f9fa; }
+    [data-bs-theme="dark"] .card-header { background-color: rgba(255,255,255,0.05); }
+</style>
+@endsection
 
 
 
