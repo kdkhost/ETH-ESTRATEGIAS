@@ -34,11 +34,17 @@ body {
 }
 
 /* Sidebar Rigorous Styling */
-.app-sidebar {
+.app-sidebar, .sidebar-wrapper {
     background: #0f172a !important; /* Deep Navy Premium */
-    height: 100vh !important;
-    position: sticky !important;
-    top: 0;
+}
+
+/* Fix for mobile overlay behavior */
+@media (max-width: 991.98px) {
+    .sidebar-open .app-sidebar {
+        transform: translateX(0) !important;
+        visibility: visible !important;
+        z-index: 1040 !important;
+    }
 }
 
 .nav-sidebar .nav-item {
