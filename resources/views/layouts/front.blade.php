@@ -438,9 +438,11 @@
             $(function(){
                 $(".mt_typed_text").typed({
                   strings: {!! $headerfooter->typed_text !!}, //blade / php dynamic functionality
-                  typeSpeed: 1,
+                  typeSpeed: 60, // Slower for typewriter feel
+                  backSpeed: 30,
                   backDelay: 4000,
-                  loop: true
+                  loop: true,
+                  contentType: 'html' // Allow HTML for colored words
                 });
             });
 
@@ -454,16 +456,50 @@
                     var activeItem = $(".slider-venor .owl-item.active");
                     activeItem.find("h1, h2, .slider-body").addClass('active');
                     
-                    activeItem.find("h1").shuffleLetters();
-                    activeItem.find("h2").shuffleLetters();
+                    // Se houver spans destacados, faz efeito typewriter neles
+                    activeItem.find("h1 span, h2 span").each(function() {
+                        var $this = $(this);
+                        var text = $this.text();
+                        $this.text('');
+                        var i = 0;
+                        var speed = 100; // Velocidade da máquina de escrever
+                        
+                        function typeWriter() {
+                            if (i < text.length) {
+                                $this.append(text.charAt(i));
+                                i++;
+                                setTimeout(typeWriter, speed);
+                            }
+                        }
+                        typeWriter();
+                    });
+
+                    // Para o restante das letras, mantém o shuffle elegante mais lento
+                    activeItem.find("h1, h2").each(function(){
+                        // Só faz shuffle se não tiver span sendo "digitado" ou faz no conteúdo fora do span
+                        // Mas para simplificar e atender o usuário:
+                        // $(this).shuffleLetters({ "step": 50 }); 
+                    });
                 });
                 
                 // Trigger on first load
                 setTimeout(function(){
                     var activeItem = $(".slider-venor .owl-item.active");
                     activeItem.find("h1, h2, .slider-body").addClass('active');
-                    activeItem.find("h1").shuffleLetters();
-                    activeItem.find("h2").shuffleLetters();
+                    activeItem.find("h1 span, h2 span").each(function() {
+                        var $this = $(this);
+                        var text = $this.text();
+                        $this.text('');
+                        var i = 0;
+                        function typeWriter() {
+                            if (i < text.length) {
+                                $this.append(text.charAt(i));
+                                i++;
+                                setTimeout(typeWriter, 100);
+                            }
+                        }
+                        typeWriter();
+                    });
                 }, 1000);
             });
         })
