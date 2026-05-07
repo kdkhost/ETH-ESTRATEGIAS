@@ -474,27 +474,34 @@
                     var activeItem = $(".slider-venor .owl-item.active");
                     activeItem.find("h1, h2, .slider-body").addClass('active');
                     
-                    // Aplica em spans (texto vazado ou destaque)
+                    // 1. Efeito Shuffle para o texto principal (não span)
+                    activeItem.find("h1, h2").each(function(){
+                        var $h = $(this);
+                        // Shuffle apenas se não for o span que será digitado (ou faz no texto pai)
+                        $h.shuffleLetters(); 
+                    });
+
+                    // 2. Efeito Typewriter para os spans destacados (vazados)
                     activeItem.find("h1 span, h2 span").each(function() {
                         applyTypewriter(this);
                     });
                 });
                 
-                // Inicialização para o primeiro slide e outros elementos vazados na página
+                // Inicialização Urgente
                 setTimeout(function(){
                     var activeItem = $(".slider-venor .owl-item.active");
                     activeItem.find("h1, h2, .slider-body").addClass('active');
+                    
+                    activeItem.find("h1, h2").shuffleLetters();
+                    
                     activeItem.find("h1 span, h2 span").each(function() {
                         applyTypewriter(this);
                     });
 
-                    // Aplica em outros H3 spans (como os da seção de serviços) ou banners
                     $("h1.banner-title span, h3 span, .typed-section .mt_typed-beforetext").each(function(){
-                         // Só aplica se for visível ou conforme o scroll (ScrollReveal já cuida da visibilidade)
-                         // Para garantir o efeito "como original":
                          applyTypewriter(this);
                     });
-                }, 1000);
+                }, 500);
             });
         })
     } ( jQuery ) )
