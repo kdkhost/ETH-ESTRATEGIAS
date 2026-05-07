@@ -443,6 +443,29 @@
                   loop: true
                 });
             });
+
+            /* SHUFFLE LETTERS SLIDER */
+            $(function(){
+                $('.slider-venor').on('change.owl.carousel', function(event) {
+                    $(".slider-venor h1, .slider-venor h2, .slider-venor .slider-body").removeClass('active');
+                });
+
+                $('.slider-venor').on('translated.owl.carousel', function(event) {
+                    var activeItem = $(".slider-venor .owl-item.active");
+                    activeItem.find("h1, h2, .slider-body").addClass('active');
+                    
+                    activeItem.find("h1").shuffleLetters();
+                    activeItem.find("h2").shuffleLetters();
+                });
+                
+                // Trigger on first load
+                setTimeout(function(){
+                    var activeItem = $(".slider-venor .owl-item.active");
+                    activeItem.find("h1, h2, .slider-body").addClass('active');
+                    activeItem.find("h1").shuffleLetters();
+                    activeItem.find("h2").shuffleLetters();
+                }, 1000);
+            });
         })
     } ( jQuery ) )
     </script>
