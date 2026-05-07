@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">{{clean( trans('niva-backend.pricing_settings') )}}</h1>
+        <h1 class="h3 mb-0 text-gray-800">{{clean( trans('niva-backend.pricing_settings') )}} - TESTE GOURMET</h1>
         <div class="d-flex gap-2">
             <a href="{{route('home-setting.edit') . '?language=' . request()->input('language')}}" class="btn btn-light shadow-sm btn-sm">
                 <i class="fas fa-home fa-sm me-1"></i> Voltar Home
