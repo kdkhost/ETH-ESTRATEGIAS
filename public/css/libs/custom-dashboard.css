@@ -19,9 +19,26 @@ body {
     padding-top: 1.5rem !important;
 }
 
+/* Header / Topbar Fixed */
+.app-header {
+    position: sticky !important;
+    top: 0;
+    z-index: 1030 !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-bs-theme="dark"] .app-header {
+    background: rgba(30, 41, 59, 0.9) !important;
+}
+
 /* Sidebar Rigorous Styling */
 .app-sidebar {
     background: #0f172a !important; /* Deep Navy Premium */
+    height: 100vh !important;
+    position: sticky !important;
+    top: 0;
 }
 
 .sidebar-brand .brand-text {
