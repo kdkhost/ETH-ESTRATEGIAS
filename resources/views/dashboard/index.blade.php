@@ -192,33 +192,51 @@
                     <h6 class="m-0 font-weight-bold text-dark text-uppercase small opacity-75" style="letter-spacing: 1px;">Últimas Atividades do Sistema</h6>
                 </div>
                 <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <table class="table table-hover align-middle mb-0">
-                            <thead>
-                                <tr class="bg-light bg-opacity-50">
-                                    <th class="ps-4 border-0 small text-uppercase py-3">Módulo</th>
-                                    <th class="border-0 small text-uppercase py-3">Status</th>
-                                    <th class="text-end pe-4 border-0 small text-uppercase py-3">Registro</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="ps-4 py-3 fw-bold text-dark small"><i class="fas fa-newspaper text-primary me-2 opacity-50"></i>Blog / Notícias</td>
-                                    <td><span class="badge bg-success-subtle text-success px-3 rounded-pill">Ativo</span></td>
-                                    <td class="text-end pe-4 text-muted small fw-medium">{{ now()->diffForHumans() }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="ps-4 py-3 fw-bold text-dark small"><i class="fas fa-briefcase text-success me-2 opacity-50"></i>Portfólio ETH</td>
-                                    <td><span class="badge bg-success-subtle text-success px-3 rounded-pill">Ativo</span></td>
-                                    <td class="text-end pe-4 text-muted small fw-medium">{{ now()->subHours(2)->diffForHumans() }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="ps-4 py-3 fw-bold text-dark small"><i class="fas fa-photo-video text-info me-2 opacity-50"></i>Mídia Center</td>
-                                    <td><span class="badge bg-primary-subtle text-primary px-3 rounded-pill">Operacional</span></td>
-                                    <td class="text-end pe-4 text-muted small fw-medium">{{ now()->subDays(1)->diffForHumans() }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="activity-feed p-4">
+                        <!-- Blog Activity -->
+                        <div class="activity-item d-flex align-items-center mb-4 p-3 rounded-4 bg-light bg-opacity-10 hover-elevate transition-all border-start border-4 border-primary shadow-sm">
+                            <div class="activity-icon bg-primary bg-opacity-10 text-primary rounded-circle d-flex align-items-center justify-content-center me-3 shadow-sm" style="width: 48px; height: 48px;">
+                                <i class="fas fa-newspaper fs-5"></i>
+                            </div>
+                            <div class="activity-content flex-grow-1">
+                                <h6 class="mb-0 fw-bold text-dark">Blog / Notícias</h6>
+                                <p class="mb-0 text-muted small">Conteúdo atualizado recentemente</p>
+                            </div>
+                            <div class="activity-meta text-end">
+                                <span class="badge bg-success-subtle text-success px-3 rounded-pill mb-1">Ativo</span>
+                                <div class="text-muted small fw-medium">{{ now()->diffForHumans() }}</div>
+                            </div>
+                        </div>
+
+                        <!-- Portfolio Activity -->
+                        <div class="activity-item d-flex align-items-center mb-4 p-3 rounded-4 bg-light bg-opacity-10 hover-elevate transition-all border-start border-4 border-success shadow-sm">
+                            <div class="activity-icon bg-success bg-opacity-10 text-success rounded-circle d-flex align-items-center justify-content-center me-3 shadow-sm" style="width: 48px; height: 48px;">
+                                <i class="fas fa-briefcase fs-5"></i>
+                            </div>
+                            <div class="activity-content flex-grow-1">
+                                <h6 class="mb-0 fw-bold text-dark">Portfólio ETH</h6>
+                                <p class="mb-0 text-muted small">Novos projetos publicados</p>
+                            </div>
+                            <div class="activity-meta text-end">
+                                <span class="badge bg-success-subtle text-success px-3 rounded-pill mb-1">Ativo</span>
+                                <div class="text-muted small fw-medium">{{ now()->subHours(2)->diffForHumans() }}</div>
+                            </div>
+                        </div>
+
+                        <!-- Media Activity -->
+                        <div class="activity-item d-flex align-items-center p-3 rounded-4 bg-light bg-opacity-10 hover-elevate transition-all border-start border-4 border-info shadow-sm">
+                            <div class="activity-icon bg-info bg-opacity-10 text-info rounded-circle d-flex align-items-center justify-content-center me-3 shadow-sm" style="width: 48px; height: 48px;">
+                                <i class="fas fa-photo-video fs-5"></i>
+                            </div>
+                            <div class="activity-content flex-grow-1">
+                                <h6 class="mb-0 fw-bold text-dark">Mídia Center</h6>
+                                <p class="mb-0 text-muted small">Otimização de arquivos concluída</p>
+                            </div>
+                            <div class="activity-meta text-end">
+                                <span class="badge bg-primary-subtle text-primary px-3 rounded-pill mb-1">Operacional</span>
+                                <div class="text-muted small fw-medium">{{ now()->subDays(1)->diffForHumans() }}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
