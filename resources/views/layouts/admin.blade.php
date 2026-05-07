@@ -162,6 +162,9 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
+        .pricing-title-box h3 { font-size: 1.1rem !important; font-weight: 700 !important; margin-bottom: 5px !important; color: #1e293b; }
+        .pricing-title-box p { font-size: 0.85rem !important; color: #64748b; margin-bottom: 0; }
+        .pricing-title-box span { font-size: 0.85rem !important; }
     </style>
 </head>
 

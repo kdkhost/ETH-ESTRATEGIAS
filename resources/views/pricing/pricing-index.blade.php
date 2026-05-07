@@ -57,22 +57,35 @@
                                 @foreach($pricings as $pricing)
                                     <tr class="border-bottom-0">
                                         <td class="px-3"><input class="checkboxes form-check-input" form="delete-pricing-form" type="checkbox" name="checkbox_array[]" value="{{$pricing->id}}"></td>
-                                        <td class="fw-bold text-dark">{{$pricing->title}}</td>
-                                        <td>
-                                            <span class="text-primary fw-bold fs-5">{{$pricing->price}}</span>
+                                        <td class="text-dark py-3">
+                                            <div class="pricing-title-box">
+                                                {!! clean($pricing->title) !!}
+                                            </div>
+                                            <small class="text-muted d-block mt-1">ID: #{{$pricing->id}}</small>
                                         </td>
                                         <td>
-                                            <span class="badge bg-info-subtle text-info border border-info px-3 rounded-pill small">{{$pricing->currency}}</span>
+                                            @if($pricing->price)
+                                                <span class="badge bg-success-subtle text-success border border-success-subtle px-3 rounded-pill fw-bold">{{$pricing->price}}</span>
+                                            @else
+                                                <span class="text-muted small">N/A</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($pricing->currency)
+                                                <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-3 rounded-pill small fw-semibold">{{$pricing->currency}}</span>
+                                            @else
+                                                <span class="text-muted small">N/A</span>
+                                            @endif
                                         </td>
                                         <td class="text-end px-3">
                                             <div class="d-flex justify-content-end gap-2">
-                                                <a href="{{ route('pricing.edit', $pricing->id) . '?language=' . request()->input('language')}}" class="btn btn-sm btn-outline-primary border-0 rounded-circle p-2" title="Editar">
+                                                <a href="{{ route('pricing.edit', $pricing->id) . '?language=' . request()->input('language')}}" class="btn btn-sm btn-outline-primary border-0 rounded-circle p-2 shadow-none" title="Editar">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <form action="{{ route('pricing.destroy', $pricing->id) }}" method="POST" class="d-inline single-delete-form">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-outline-danger border-0 rounded-circle p-2" title="Excluir">
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger border-0 rounded-circle p-2 shadow-none" title="Excluir">
                                                         <i class="fas fa-trash-alt"></i>
                                                     </button>
                                                 </form>
